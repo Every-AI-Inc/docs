@@ -1,0 +1,256 @@
+---
+title: "Companies"
+description: "Manage the businesses you work with using AI-powered enrichment, billing history, and affiliated people"
+icon: "building-2"
+---
+
+## Overview
+
+Companies are the **businesses** you work with and invoice. They represent your billing relationships with organizations - each company can have multiple [people](/network/people) affiliated with it, linked through "Works At."
+
+Not every billing relationship goes through a company, though - a Person can now be billed directly with no company involved. See [Billing a Person Directly](/network/people#billing-a-person-directly).
+
+**Key capabilities:**
+- Track companies and their billing details
+- AI-powered company enrichment from web, Gmail, and Google Contacts
+- Complete billing history (invoices, proposals, payments)
+- Affiliate multiple [people](/network/people) with role-based document access
+
+<Card title="Open Companies" icon="building-2" href="https://app.every.ai/network/companies" horizontal>
+  View and manage all your companies in Every
+</Card>
+
+<Note>
+  Looking for the AI sales pipeline? Tracking *deals* through Lead → Opportunity → Won/Lost — with an agent that reviews each deal, drafts outreach, and detects won deals — lives on the new [Sales Pipeline](/prospecting/pipeline), not here. This page is about your company **records**. Deals can target either a Company or a [Person](/network/people).
+</Note>
+
+## Creating Companies
+
+Go to [**Companies**](https://app.every.ai/network/companies) → **Add Company** → Fill name and details → **Save**
+
+**Required:** Company name
+**Recommended:** At least one affiliated [person](/network/people) with email (needed for invoicing)
+**Optional:** Phone, website, address, internal notes
+
+<Tip>
+  **Ask Every Agent:** Create new companies instantly:
+  - "Create a company named ACME Corp with contact email contact@acme.com"
+  - "Add a new company for TechStart Inc, phone 555-0123, website techstart.io"
+  - "Create a company called Global Consulting with address 123 Main St, New York, NY 10001"
+</Tip>
+
+### Adding People to Companies
+
+Every company needs at least one affiliated [person](/network/people) to receive invoices and proposals, unless you bill the company's own email address directly. People exist independently and can be affiliated with multiple companies.
+
+**To add people:**
+1. Open the company → its **People** section → **Add**
+2. Search for an existing person or create a new one
+3. Choose the document access level: Primary, Copied, Portal, or None. It governs both delivery and portal sign-in.
+4. The first person defaults to Primary; additional people default to Copied.
+
+<Tip>
+  **Ask Every Agent:** Manage company people:
+  - "Add John Smith as the primary invoice contact for ACME Corp"
+  - "Give Sarah Portal access for ACME Corp"
+  - "Show me all people at ACME Corp"
+</Tip>
+
+<Note>
+  For full details on people, importing, document access, and affiliations, see the [People](/network/people) documentation.
+</Note>
+
+## Company Enrichment
+
+AI-powered enrichment automatically finds and fills company and people information from multiple sources.
+
+**How it works:** Open a company record → Click **Enrich** → Choose enrichment mode → Every Agent queries Gmail, Calendar, web data, and Google Contacts to populate details.
+
+**What gets enriched:**
+- **Company Data:** Name, logo, website, address, industry, description
+- **People:** Discovers additional people at the company domain from Gmail headers and Google Contacts
+- **Social Links:** LinkedIn, Twitter, and other social profiles
+
+**Enrichment Modes:**
+- **Fill Empty (default):** Only adds data to blank fields, preserves your existing entries
+- **Overwrite:** Updates all fields with enriched data, replacing existing values
+
+<Tip>
+  **Ask Every Agent:** Trigger enrichment from chat:
+  - "Create and enrich a company for Microsoft Corporation"
+  - "Enrich the existing company Tesla Inc with updated company details"
+  - "Find additional people at ACME Corp from my emails"
+</Tip>
+
+<Tip>
+  Works best for established businesses with web presence. May not find data for small businesses or individuals.
+</Tip>
+
+## Tracking Sales with the AI Pipeline
+
+Every's sales tracking lives on the dedicated **[Sales Pipeline](/prospecting/pipeline)** — an AI-managed kanban board that tracks *deals* (potential sales) through Lead → Opportunity → Won/Lost. An agent reviews each deal, drafts outreach and follow-ups, recommends the next step, and can detect won deals automatically. Deals link back to a Company or a [Person](/network/people) record.
+
+This is a separate surface from your company list: the Companies page is for managing company **records** (details, affiliated people, billing history), while the pipeline is for working **deals**.
+
+<Card title="Open the Sales Pipeline" icon="git-branch" href="/prospecting/pipeline" horizontal>
+  Track deals and let the AI agent run your sales motion
+</Card>
+
+## Company History
+
+View complete activity timeline per company:
+- Invoice history and status
+- Proposal history and approvals
+- Payment records
+- Email tracking (sends, opens, clicks)
+- Expense and time tracking records
+
+## Search & Filtering
+
+**Search by:** Name, email, company, phone
+**Filter by:** Active/archived, outstanding/overdue invoices, revenue
+**Sort by:** Alphabetical, recent, revenue, invoice count
+
+<Tip>
+  **Ask Every Agent:** Find and filter companies:
+  - "Show me all companies with overdue invoices"
+  - "Find companies with outstanding balances"
+  - "List all archived companies"
+  - "Find the company ACME Corp"
+</Tip>
+
+## Managing Companies
+
+### Editing
+
+Open the company → **Edit** → Update fields → **Save Changes**
+
+<Note>
+  Changes don't affect existing invoices, only new ones.
+</Note>
+
+<Tip>
+  **Ask Every Agent:** Update company details:
+  - "Update ACME Corp's phone to 555-9999"
+  - "Change the address for XYZ Company to 456 Oak Ave, San Francisco, CA 94102"
+  - "Add website www.newsite.com to the company Beta Solutions"
+</Tip>
+
+### Archiving
+
+Archive inactive companies to hide them while preserving all data and history.
+
+**To archive:** Open the company → **Archive** → Confirm
+**To restore:** Filter archived → Open the company → **Restore**
+
+<Tip>
+  **Ask Every Agent:** Archive or restore:
+  - "Archive the company ABC Inc"
+  - "Restore the archived company Old Company"
+  - "Archive all companies with no invoices in the last 12 months"
+</Tip>
+
+### Deleting
+
+<Warning>
+  Deleting permanently removes the company. Only possible if no issued invoices exist. Archive instead to preserve history.
+</Warning>
+
+## Company Dependencies
+
+Understanding what a Company is required for (the same relationships are available with a Person instead - see [Billing a Person Directly](/network/people#billing-a-person-directly)):
+
+```
+Company (Optional - a Person can substitute)
+├── Invoices
+│   ├── Company info appears on invoice
+│   └── Invoice sent to affiliated people per their access level
+│
+├── Proposals
+│   ├── Proposals sent to affiliated people per their access level
+│   └── Approved proposals convert to invoices
+│
+├── People (affiliated)
+│   ├── People linked with a Works At relationship
+│   └── Document access set per person, per company
+│
+├── Time Tracking
+│   ├── Track time per company
+│   └── Company-specific billing rates
+│
+├── Expense Billback
+│   ├── Bill expenses to companies
+│   └── Add expenses to company invoices
+│
+└── Automations
+    ├── Recurring invoices per company
+    └── Company-specific automation settings
+```
+
+## Best Practices
+
+<Tip>
+  **Add complete info** for professional invoices - name, address, and at least one affiliated person with email
+</Tip>
+
+<Tip>
+  **Use enrichment** to save time filling in company details
+</Tip>
+
+<Tip>
+  **Set document access carefully** for proper invoice and proposal delivery
+</Tip>
+
+<Tip>
+  **Archive** instead of deleting to preserve billing history
+</Tip>
+
+## Troubleshooting
+
+**Enrichment not finding data:** Try name variations, add website URL, or enter details manually. Works best for established businesses with web presence.
+
+**Can't delete company:** Archive instead - the company has issued invoices that preserve billing history.
+
+**Invoices not sending to right people:** Check document access on the company - ensure one person has Primary access for invoices. See [People](/network/people) for details.
+
+**Duplicate companies:** Search before creating. If duplicates exist, archive one and move affiliated people/invoices to the other.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Manage People"
+    icon="user-round"
+    href="/network/people"
+  >
+    Add and manage the people affiliated with your companies
+  </Card>
+
+  <Card
+    title="Create Invoices"
+    icon="file-text"
+    href="/billing/invoices-and-proposals"
+  >
+    Start billing your companies with professional invoices
+  </Card>
+
+  <Card
+    title="Track Time"
+    icon="clock"
+    href="/scheduling/time-tracking"
+  >
+    Track billable hours per company
+  </Card>
+
+  <Card
+    title="Create Proposals"
+    icon="file-check"
+    href="/billing/invoices-and-proposals"
+  >
+    Send proposals before invoicing
+  </Card>
+</CardGroup>
+
+<Note>
+  **Need help?** Contact support at [hello@every.ai](mailto:hello@every.ai)
+</Note>

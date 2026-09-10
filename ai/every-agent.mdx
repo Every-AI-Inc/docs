@@ -27,8 +27,8 @@ Every Agent works directly with your data in Every. It can read, create, update,
 
 | Area | What the agent can do |
 |-|-|
-| **Clients** | Create and update clients, enrich company records, analyze concentration and revenue |
-| **Contacts** | Create and link contacts; import from Google, LinkedIn, or CSV |
+| **Companies** | Create and update companies, enrich company records, analyze concentration and revenue |
+| **People** | Create and affiliate people; import from Google, LinkedIn, or CSV; bill a person directly with no company required |
 | **Invoices** | Draft, edit, apply tax and discounts, schedule sends, send to clients |
 | **Proposals** | Draft structured proposals, track approval, convert issued or approved proposals into invoices |
 | **Payments** | Record manual payments, send reminders and confirmations, check Stripe-linked state |
@@ -51,7 +51,7 @@ The exact toolset changes as Every adds capabilities. If a task is outside the c
 
 ## What kind of CRM is Every?
 
-Every is an **AI-native CRM and client-operations workspace** for service businesses. It connects relationship-based prospecting and a sales pipeline to proposals, invoices, payments, expenses, time tracking, and client records.
+Every is an **AI-native CRM and client-operations workspace** for service businesses. It connects relationship-based prospecting and a sales pipeline to proposals, invoices, payments, expenses, time tracking, and your network of people and companies.
 
 It is not a full enterprise CRM administration suite, and it is not a general ledger or tax-filing system. If you already use HubSpot or Xero, Every Agent can work with those connected systems while Every handles the client workflows that live in its own workspace.
 
@@ -74,7 +74,7 @@ You: "Perfect, send it"
 In interactive app chat, actions that **leave your workspace or remove data are gated**. The agent shows you what it's about to do and waits for your go-ahead before:
 
 - **Sending** anything to a client — invoices, proposals, payment reminders, confirmations, and emails
-- **Deleting** records — clients, contacts, invoices, proposals, payments, services, and more
+- **Deleting** records — people, companies, invoices, proposals, payments, services, and more
 
 Reads, drafts, and internal edits happen directly so the conversation stays fast; the irreversible, client-facing steps are the ones that ask first.
 
@@ -112,7 +112,7 @@ The newly written part of your reply must be exact, the invoice number must matc
 
 ## Navigation
 
-You don't have to know where a page lives. Ask the agent to take you somewhere and it can navigate the app for you — "open the payments page," "take me to my overdue invoices," "show me ACME's client record." This pairs well with analysis: ask a question, then jump straight to the records behind the answer.
+You don't have to know where a page lives. Ask the agent to take you somewhere and it can navigate the app for you — "open the payments page," "take me to my overdue invoices," "show me ACME's company record." This pairs well with analysis: ask a question, then jump straight to the records behind the answer.
 
 ## Voice Input
 
@@ -166,7 +166,7 @@ Every Agent can read supported uploads and help you work with them:
 
 **Supported file types include:** PDF, Word documents, Excel spreadsheets, CSV files, images, and plain text files.
 
-<Card title="Import Data Guide" icon="file-import" href="/clients/contacts">
+<Card title="Import Data Guide" icon="file-import" href="/network/people">
   See supported import formats, file handling, and batch workflow details
 </Card>
 
@@ -174,7 +174,7 @@ Every Agent can read supported uploads and help you work with them:
 
 Export your existing system to CSV or Excel, then open [**Data → Import**](https://app.every.ai/data/import). The Import Agent analyzes the file, proposes how its columns map to Every records, and asks you to review the mapping before it writes data.
 
-Imports can create connected clients, contacts, invoices, line items, payments, services, expenses, and time records. Start with a representative export, check dates, currencies, status values, and client matching carefully, then run the full import. If the source system has a compatible direct integration, use that connection for ongoing access and CSV import for the historical backfill.
+Imports can create connected companies, people, invoices, line items, payments, services, expenses, and time records. Start with a representative export, check dates, currencies, status values, and person/company matching carefully, then run the full import. If the source system has a compatible direct integration, use that connection for ongoing access and CSV import for the historical backfill.
 
 ## Batch & Multi-Step Workflows
 
@@ -210,7 +210,7 @@ Most data operations can be reversed:
 
 - **Invoices & proposals** — creation, updates, status changes, line item additions
 - **Payments & time tracking** — payment records, time entries, expense records
-- **Clients** — supported client record changes
+- **People & Companies** — supported record changes for either party type
 - **Complex operations** — multi-step workflows, bulk operations, CSV import results
 
 ### What Cannot Be Undone
@@ -287,7 +287,7 @@ AI output can be incomplete or wrong. Use the source records, previews, and perm
   </Accordion>
 
   <Accordion title="Can I migrate from another CRM?">
-    Yes. Export the source data as CSV or Excel and use Data → Import. Review the Import Agent's mapping before the write, then verify record counts and a sample of clients, invoices, and balances after completion.
+    Yes. Export the source data as CSV or Excel and use Data → Import. Review the Import Agent's mapping before the write, then verify record counts and a sample of people, companies, invoices, and balances after completion.
   </Accordion>
 </AccordionGroup>
 

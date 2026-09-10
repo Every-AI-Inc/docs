@@ -31,13 +31,13 @@ For an answer-first overview before using the product, read the [AI invoice gene
 
 <Note>
   **Required to create an invoice:**
-  - **Client** (select from existing clients; create clients first if needed)
+  - **A Company or Person to bill** (select a [Company](/network/companies) or [Person](/network/people); create one first if needed)
   - **At least one line item** (from services, products, manual entry, time records, or expenses)
 
   All other fields (payment terms, notes, attachments) are optional.
 </Note>
 
-Go to [**Invoices**](https://app.every.ai/invoices) → **Create Invoice** → Select client → Add line items → Set payment terms → Save as Draft or Send
+Go to [**Invoices**](https://app.every.ai/invoices) → **Create Invoice** → Select who to bill → Add line items → Set payment terms → Save as Draft or Send
 
 <Tip>
   **Ask Every Agent:** Create invoices with natural language:
@@ -48,9 +48,9 @@ Go to [**Invoices**](https://app.every.ai/invoices) → **Create Invoice** → S
 
 ### Invoice Components
 
-#### Client Selection
+#### Choosing Who to Bill
 
-Every invoice must have a client. Select from existing clients — their name, email (for delivery), address, and CC emails appear automatically. Review the selected client before saving or sending.
+Every invoice must have a Company or Person to bill. Select from your network — their name, email (for delivery), address, and CC emails appear automatically. A Person doesn't need a company to be billed directly. Review the selected party before saving or sending.
 
 #### Line Items
 
@@ -242,7 +242,7 @@ Complete chronological history of all invoice events: created, edited, sent, del
 
 <Note>
   **Required to create a proposal:**
-  - **Client** (select from existing clients)
+  - **A Company or Person to bill** (select a [Company](/network/companies) or [Person](/network/people))
   - **Title** (descriptive name)
   - **At least one line item** (scope description and pricing)
 </Note>
@@ -322,7 +322,7 @@ Convert an issued or approved proposal into a draft invoice without re-entering 
 
 Open an issued or approved proposal → **Convert to Invoice** → New draft invoice created with the same client and line items → Review the new issue date, due date, notes, attachments, taxes, discounts, and payment settings → Send when ready
 
-**Copied:** Client, currency, line items, linked time/expense sources, pricing, discounts, taxes, and downloadable attachments
+**Copied:** The Company or Person, currency, line items, linked time/expense sources, pricing, discounts, taxes, and downloadable attachments
 
 **Rebuilt for the invoice:** A new invoice number, today's issue date, a due date based on your invoice defaults, invoice notes, and online-payment setting
 
@@ -601,11 +601,19 @@ You can also set **per-service tax rates** (e.g., consulting at 13%, educational
   </Card>
 
   <Card
-    title="Manage Clients"
-    icon="users"
-    href="/clients/clients"
+    title="Manage Companies"
+    icon="building-2"
+    href="/network/companies"
   >
-    Track client billing history and contact info
+    Track company billing history and affiliated people
+  </Card>
+
+  <Card
+    title="Manage People"
+    icon="user-round"
+    href="/network/people"
+  >
+    Bill an individual directly, no company required
   </Card>
 
   <Card

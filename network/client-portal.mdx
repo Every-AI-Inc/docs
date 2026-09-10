@@ -1,16 +1,16 @@
 ---
 title: "Client Portal"
-description: "Give clients a branded portal for invoices and proposals"
+description: "Give your network a branded portal for invoices and proposals, with one access control per person or company"
 icon: "globe"
 ---
 
 ## Overview
 
-The client portal gives each organization a branded public home on its subdomain, such as `your-company.every.ai`. Clients can use it to sign in by email, review documents, and move between your public invoice and proposal pages without juggling separate links.
+The client portal gives each organization a branded public home on its subdomain, such as `your-company.every.ai`. The people and companies you work with can use it to sign in by email, review documents, and move between your public invoice and proposal pages without juggling separate links - whether they're billed as a [Company](/network/companies) or directly as a [Person](/network/people).
 
 For a public overview of the buyer and client experience, see [Every's client portal guide](https://every.ai/client-portal/). This page covers setup and access behavior inside the product.
 
-**What clients can do:**
+**What they can do:**
 - Sign in with a magic link sent to their email
 - View invoices they are allowed to access
 - View proposals they are allowed to access
@@ -23,6 +23,23 @@ For a public overview of the buyer and client experience, see [Every's client po
 <Card title="Open Organization Settings" icon="settings" href="https://app.every.ai/settings" horizontal>
   Set your branding and subdomain in Every
 </Card>
+
+## Document Access
+
+Delivery and portal sign-in are governed by one access level per email address, set on the person or company's record:
+
+| Level | Emailed the document | Can sign in to the portal |
+|-|-|-|
+| **Primary** | Yes - the main To recipient | Yes |
+| **Copied** | Yes - Cc'd | Yes |
+| **Portal** | No | Yes |
+| **None** | No | No - document links still open for anyone who has them |
+
+A Company and every [Person](/network/people) affiliated with it can each carry their own access level, and a Person billed directly sets access on their own addresses the same way. A company or person needs exactly one Primary recipient per document type; you can't have Copied people without a Primary.
+
+<Note>
+  Affiliation with a company ("Works At") is relationship context, not access - being affiliated never grants portal sign-in by itself. Access is set explicitly, per address.
+</Note>
 
 ## Setting Up Your Branded Subdomain
 
@@ -37,11 +54,11 @@ Once set, Every uses that subdomain across your public client-facing pages:
   Existing root-domain public links still keep working, so older shared links do not immediately break when you add a branded subdomain.
 </Note>
 
-## How Clients Sign In
+## How People Sign In
 
-Clients do not need a password. They enter their email address and Every sends a secure magic link to that inbox.
+Nobody needs a password. They enter their email address and Every sends a secure magic link to that inbox.
 
-After signing in, clients can see the invoices and proposals they are allowed to access based on their linked contact roles.
+After signing in, they can see the invoices and proposals they are allowed to access based on their document access level - whether they're an affiliated person, an individual billed directly, or someone at a company set to Portal or higher.
 
 ## How It Works with Invoices and Proposals
 
@@ -49,12 +66,13 @@ The client portal is part of the same branded public surface as your other clien
 
 - **Invoices** open on the same branded subdomain
 - **Proposals** open on the same branded subdomain
-This means the client experience feels consistent across payment and approval flows.
+
+This means the experience feels consistent across payment and approval flows, regardless of whether the document was addressed to a Company or a Person.
 
 ## Best Practices
 
 <Tip>
-  Use your branded subdomain early, keep your logo and brand color current, and make sure the right contacts are linked to each client so portal access is predictable.
+  Use your branded subdomain early, keep your logo and brand color current, and set document access correctly on every person or company so portal access is predictable.
 </Tip>
 
 ## Next Steps

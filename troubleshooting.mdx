@@ -10,8 +10,8 @@ icon: "wrench"
   <Card title="Organization & Setup" icon="building-2">
     Logo, branding, and configuration issues
   </Card>
-  <Card title="Clients" icon="users">
-    Client management and enrichment problems
+  <Card title="Network" icon="users">
+    People and Company management and enrichment problems
   </Card>
   <Card title="Invoices" icon="file-text">
     Creating, sending, and editing invoices
@@ -73,10 +73,10 @@ icon: "wrench"
   </Accordion>
 </AccordionGroup>
 
-## Clients
+## People & Companies
 
 <AccordionGroup>
-  <Accordion icon="search" title="Client Enrichment Not Finding Data">
+  <Accordion icon="search" title="Company Enrichment Not Finding Data">
     **Why It Happens:**
     - Company too small or newly established
     - Limited web presence
@@ -87,31 +87,31 @@ icon: "wrench"
     1. Try different name variations
     2. Add company website first to help search
     3. Manually enter information
-    4. Skip enrichment for individual clients
+    4. Skip enrichment for individual people
 
     <Tip>AI enrichment works best for established companies with public information. For individuals or small businesses, manual entry is often faster.</Tip>
   </Accordion>
 
-  <Accordion icon="trash-2" title="Can't Delete Client">
-    **Reason:** Client has issued invoices and must be preserved for financial records
+  <Accordion icon="trash-2" title="Can't Delete a Company or Person">
+    **Reason:** The record has issued invoices and must be preserved for financial records
 
     **Solutions:**
-    - **Archive client** instead (preserves all data)
-    - Void all client invoices first, then delete
-    - Keep client for historical records (recommended)
+    - **Archive** instead (preserves all data)
+    - Void all its invoices first, then delete
+    - Keep the record for historical records (recommended)
 
-    <Warning>Deleting clients with invoices can break financial reporting. Use archive instead.</Warning>
+    <Warning>Deleting a person or company with invoices can break financial reporting. Use archive instead.</Warning>
   </Accordion>
 
   <Accordion icon="mail" title="Google Contact Scan Not Working">
     **Check:**
     - Google Workspace connected with Contacts + Gmail/Calendar scopes
-    - **Let Every import your contacts** button appears on the Contacts page
+    - **Let Every import your contacts** button appears on the People page
     - Contact exists in Google with an email address
 
     **Solutions:**
     1. Reconnect Google integration in **Agent → Connections**
-    2. Re-run **Scan Contacts** from the Contacts page
+    2. Re-run **Scan Contacts** from the People page
     3. Ask Every Agent: "scan my Google contacts"
     4. Use inline email field suggestions for single contacts
     5. Confirm contact exists in Google Contacts with correct email
@@ -131,7 +131,7 @@ icon: "wrench"
     - Email address has no typos
 
     **Solutions:**
-    1. Verify client email in client profile
+    1. Verify the email address on the person or company's profile
     2. Check invoice status (must click "Send")
     3. Try resending invoice
     4. Check email delivery status
@@ -256,14 +256,14 @@ icon: "wrench"
     - Next run date in future, not past
     - Start date is in the past
     - End date hasn't passed (if set)
-    - Client still exists and is active
+    - The billed person or company still exists and is active
 
     **Solutions:**
     1. Verify automation is Active
     2. Check next run date
     3. Manually trigger test run
     4. Review execution history for errors
-    5. Verify client hasn't been archived/deleted
+    5. Verify the billed person or company hasn't been archived/deleted
 
     <Tip>Use test mode to verify automation works before activating for real.</Tip>
   </Accordion>
@@ -379,19 +379,19 @@ icon: "wrench"
     3. Try in a different browser
     4. Contact support if the timer still will not start
 
-    A client is optional when starting a timer. Select a client before saving the timer as a time entry.
+    A person or company is optional when starting a timer. Select one before saving the timer as a time entry.
   </Accordion>
 
   <Accordion icon="search-x" title="Time Entry Missing">
     **Check:**
     - Date filter on time list
-    - Client filter applied
+    - Person/company filter applied
     - Billable/non-billable filter
     - Search function
 
     **Solutions:**
     1. Clear all filters
-    2. Search by client name or description
+    2. Search by person/company name or description
     3. Check if accidentally deleted
     4. Verify date range includes entry date
   </Accordion>
@@ -476,7 +476,7 @@ icon: "wrench"
     **Solution:**
     - Follow agent's guidance to connect integration
     - Grant required permission
-    - Create missing prerequisites (client, service, product, etc.)
+    - Create missing prerequisites (person, company, service, product, etc.)
   </Accordion>
 
   <Accordion icon="coins" title="Credits, Billing & Failed AI Runs">
@@ -590,7 +590,7 @@ icon: "wrench"
 </Tip>
 
 <Tip>
-**Test in safe environment** - Use test mode for automations, create test clients for experiments
+**Test in safe environment** - Use test mode for automations, create test people or companies for experiments
 </Tip>
 
 <Tip>

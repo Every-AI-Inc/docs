@@ -11,7 +11,7 @@ Track business expenses for tax purposes and bill them back to clients. Upload r
 **Key capabilities:**
 - Receipt scanning with Every Agent AI extraction
 - Expense categorization for tax reporting
-- Client billback capabilities
+- Billback to a Company or a Person, billed directly
 - Receipt attachment and storage
 - One-click conversion to invoice line items
 
@@ -31,7 +31,7 @@ Track business expenses for tax purposes and bill them back to clients. Upload r
 
 **Basic expense:** Expenses → Add Expense → Fill merchant, amount, date, category → Save
 **Receipt scanning:** Add Expense → Upload receipt → Every Agent extracts details → Review → Save
-**Bill to client:** Mark as billable → Select client → Add to invoice when ready
+**Bill to a Company or Person:** Mark as billable → Select who to bill → Add to invoice when ready
 
 ## Creating Expenses
 
@@ -41,12 +41,12 @@ Track business expenses for tax purposes and bill them back to clients. Upload r
 
   Add the merchant, amount, date, currency, and receipt when available so the record is useful for billing and reporting.
 
-  **To Bill Expenses to Clients:** Mark as billable and select a client. Keep the documentation your accountant or local tax authority requires.
+  **To Bill Expenses Back:** Mark as billable and select a Company or Person. Keep the documentation your accountant or local tax authority requires.
 </Note>
 
 ### Basic Expense Entry
 
-Go to [**Expenses**](https://app.every.ai/expenses) → **Add Expense** → Enter a description and add merchant, amount, date, category, receipt, and client as needed → Save
+Go to [**Expenses**](https://app.every.ai/expenses) → **Add Expense** → Enter a description and add merchant, amount, date, category, receipt, and who to bill as needed → Save
 
 <Tip>
   Receipt and record-keeping requirements vary by jurisdiction and expense type. Keep the source documents your accountant recommends.
@@ -77,7 +77,7 @@ Every's AI-powered receipt scanner automatically extracts expense details from p
    - **Payment method** (if visible: card, cash, check)
 5. Review the extracted data in the form
 6. Correct any inaccuracies
-7. Add optional details (client for billback, notes)
+7. Add optional details (a Company or Person for billback, notes)
 8. Save expense
 
 **Supported in the expense form:** JPEG, PNG, GIF, WEBP, PDF, and CSV
@@ -180,14 +180,14 @@ Categories align with common tax deduction types to make year-end tax preparatio
 
 ## Billable Expenses
 
-Bill expenses back to clients by marking them billable and adding to invoices.
+Bill expenses back to a Company or a Person by marking them billable and adding to invoices.
 
 ### Marking as Billable
 
-**When creating:** Add expense → Check "Billable to Client" → Select client → Save
-**Existing expense:** Edit expense → Check "Billable to Client" → Select client → Save
+**When creating:** Add expense → Toggle **Billable** → Select who to bill → Save
+**Existing expense:** Edit expense → Toggle **Billable** → Select who to bill → Save
 
-Billable expenses show client name, "Unbilled" status until invoiced, and can be filtered by billable status.
+Billable expenses show the billed party's name, "Unbilled" status until invoiced, and can be filtered by billable status.
 
 <Tip>
   **Ask Every Agent:** Mark expenses billable:
@@ -198,7 +198,7 @@ Billable expenses show client name, "Unbilled" status until invoiced, and can be
 
 ### Adding to Invoices
 
-**Process:** Create invoice → Select client → Click "Add from Expenses" → Select unbilled expenses → Add Selected → Expenses become line items with description and amount → Marked as "Billed"
+**Process:** Create invoice → Select who to bill → Click "Add from Expenses" → Select unbilled expenses → Add Selected → Expenses become line items with description and amount → Marked as "Billed"
 
 **Example:**
 ```
@@ -227,7 +227,7 @@ Becomes Invoice Line Item:
 
 ### Viewing & Filtering
 
-**Expense List** shows all expenses with filters for date range, category, client, billable status, and search by merchant/description.
+**Expense List** shows all expenses with filters for date range, category, billed party, billable status, and search by merchant/description.
 
 **Summary Metrics** display total expenses, billable expenses, unbilled value, and breakdown by category.
 
@@ -284,11 +284,11 @@ Track spending patterns with metrics for total expenses by period, breakdown by 
   - "Create a year-end expense report for tax purposes"
 </Tip>
 
-### Category & Client Breakdowns
+### Category & Billed-Party Breakdowns
 
 **By category:** View total per category, percentage of total, trends over time, and tax-deductible totals for tax preparation and budget planning.
 
-**By client:** View total expenses per client, billable vs billed amounts, unbilled expenses, and expense types to ensure all client expenses are billed and track project costs.
+**By billed party:** View total expenses per Company or Person, billable vs billed amounts, unbilled expenses, and expense types to ensure everything is billed and track project costs.
 
 <Tip>
   **Ask Every Agent:** Get breakdowns:
@@ -339,12 +339,12 @@ Track spending patterns with metrics for total expenses by period, breakdown by 
     Yes. Upload a supported image, PDF, or CSV in the expense form, or attach receipt files in Every Agent. Review the merchant, date, amount, currency, tax, and category before saving; receipt extraction is not guaranteed to be correct.
   </Accordion>
 
-  <Accordion title="How do I bill an expense to a client?">
-    Mark the expense as billable, choose the client, and optionally set a percentage markup. On that client's draft invoice, add the unbilled expense as a line item.
+  <Accordion title="How do I bill an expense back to a Company or Person?">
+    Mark the expense as billable, choose who to bill, and optionally set a percentage markup. On that party's draft invoice, add the unbilled expense as a line item.
   </Accordion>
 
   <Accordion title="Can I delete an expense after it is invoiced?">
-    Not while an invoice line item still references it. Remove it from a draft invoice first. For an issued invoice, preserve the billed record and correct the client document through the appropriate invoice workflow.
+    Not while an invoice line item still references it. Remove it from a draft invoice first. For an issued invoice, preserve the billed record and correct the document through the appropriate invoice workflow.
   </Accordion>
 
   <Accordion title="Does Every decide whether an expense is tax-deductible?">
@@ -358,9 +358,9 @@ Track spending patterns with metrics for total expenses by period, breakdown by 
 
 **Every Agent extracted wrong amount:** Common issue is reading tax/subtotal instead of total. Always review extracted data and correct before saving.
 
-**Billed expense differs from invoice:** Check the source expense and its saved invoice line item. Correct the relevant record and review the client document before resending.
+**Billed expense differs from invoice:** Check the source expense and its saved invoice line item. Correct the relevant record and review the document before resending.
 
-**Expense not in "Add to Invoice":** Verify expense is marked billable, assigned to correct client, not already billed, and exists (not deleted).
+**Expense not in "Add to Invoice":** Verify expense is marked billable, assigned to the correct Company or Person, not already billed, and exists (not deleted).
 
 ## Next Steps
 
@@ -370,15 +370,15 @@ Track spending patterns with metrics for total expenses by period, breakdown by 
     icon="file-invoice"
     href="/billing/invoices-and-proposals"
   >
-    Add expenses to client invoices
+    Add expenses to Company or Person invoices
   </Card>
 
   <Card
-    title="Manage Clients"
+    title="Manage Your Network"
     icon="users"
-    href="/clients/clients"
+    href="/network/companies"
   >
-    Track expenses per client
+    Track expenses per Company or Person
   </Card>
 
   <Card

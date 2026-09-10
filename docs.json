@@ -76,11 +76,11 @@
         ]
       },
       {
-        "group": "Clients & Contacts",
+        "group": "Network",
         "pages": [
-          "clients/clients",
-          "clients/contacts",
-          "clients/client-portal"
+          "network/people",
+          "network/companies",
+          "network/client-portal"
         ]
       },
       {
@@ -175,9 +175,12 @@
   "redirects": [
     { "source": "/getting-started/organization-setup", "destination": "/quickstart" },
     { "source": "/getting-started/install-mobile-app", "destination": "/quickstart" },
-    { "source": "/features/clients", "destination": "/clients/clients" },
-    { "source": "/features/contacts", "destination": "/clients/contacts" },
-    { "source": "/features/client-portal", "destination": "/clients/client-portal" },
+    { "source": "/features/clients", "destination": "/network/companies" },
+    { "source": "/features/contacts", "destination": "/network/people" },
+    { "source": "/features/client-portal", "destination": "/network/client-portal" },
+    { "source": "/clients/clients", "destination": "/network/companies" },
+    { "source": "/clients/contacts", "destination": "/network/people" },
+    { "source": "/clients/client-portal", "destination": "/network/client-portal" },
     { "source": "/features/services", "destination": "/billing/services-and-products" },
     { "source": "/features/products", "destination": "/billing/services-and-products" },
     { "source": "/features/invoices", "destination": "/billing/invoices-and-proposals" },
@@ -190,7 +193,7 @@
     { "source": "/advanced/multi-currency", "destination": "/billing/invoices-and-proposals" },
     { "source": "/advanced/tax-management", "destination": "/billing/invoices-and-proposals" },
     { "source": "/advanced/reporting", "destination": "/reference/reports-and-export" },
-    { "source": "/data/csv-import", "destination": "/clients/contacts" },
+    { "source": "/data/csv-import", "destination": "/network/people" },
     { "source": "/data/export", "destination": "/reference/reports-and-export" },
     { "source": "/ai/business-context", "destination": "/ai/context-and-voice" },
     { "source": "/ai/business-context-and-tokens", "destination": "/ai/context-and-voice" },

@@ -31,7 +31,7 @@ Opportunity holds the full active conversation instead of splitting every milest
 ## How deals get into the pipeline
 
 - **Warm Leads:** Every searches your network and puts qualified matches in Pending.
-- **Manual deals:** Add a contact or client directly to any active stage.
+- **Manual deals:** Add a person or company directly to any active stage.
 - **Commercial activity:** When configured, proposals or invoices created outside the board can be linked to a deal so the sales and billing records stay connected.
 
 ## Review the Pending queue
@@ -85,7 +85,7 @@ The pipeline connects sales activity to the documents that close and collect the
 - **Draft a proposal** from the deal so the client, scope context, and pipeline link stay together.
 - **Convert an issued or approved proposal to an invoice** when you are ready to bill.
 - **Link an invoice** so issued and paid status can update the deal's commercial context.
-- **Move to Won** after linking or creating the client record required for the closed deal.
+- **Move to Won** after linking or creating the Person or Company record required for the closed deal - Won accepts either party type, so a solo individual never needs a company just to close.
 
 See [Invoices & Proposals](/billing/invoices-and-proposals) for the full proposal-to-invoice workflow.
 
@@ -104,8 +104,8 @@ Manual stage moves are authoritative: the agent replans around the stage you cho
     No. Pending is a review queue for agent-discovered matches. A lead enters the active pipeline only after approval.
   </Accordion>
 
-  <Accordion title="Why does Every need a client before Won?">
-    The client record connects the deal to proposals, invoices, payments, and revenue. If one is missing, Every asks you to link an existing client or create one from the deal.
+  <Accordion title="Why does Every need a Person or Company before Won?">
+    The Person or Company record connects the deal to proposals, invoices, payments, and revenue. If one is missing, Every asks you to link an existing person or company, or create one from the deal - a Person alone is enough, no company is required.
   </Accordion>
 
   <Accordion title="Can I move a deal myself?">
@@ -128,8 +128,12 @@ Manual stage moves are authoritative: the agent replans around the stage you cho
     Manage scheduled Warm Leads and other recurring agent tasks
   </Card>
 
-  <Card title="Clients" icon="building-2" href="/clients/clients">
-    Manage the client records connected to won work
+  <Card title="Companies" icon="building-2" href="/network/companies">
+    Manage the company records connected to won work
+  </Card>
+
+  <Card title="People" icon="user-round" href="/network/people">
+    Manage the people records connected to won work, including deals billed directly to a Person
   </Card>
 </CardGroup>
 

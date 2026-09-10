@@ -39,7 +39,7 @@ Recurring billing generates invoices automatically based on your schedule:
 
 <Note>
   **Required to Create a Recurring Invoice:**
-  - **Client** (select from existing clients)
+  - **A Company or Person to bill** (select a [Company](/network/companies) or [Person](/network/people))
   - **Schedule** (Daily, Weekly, Monthly, Quarterly, or Yearly)
   - **Start Date** (when recurring billing begins)
   - **At least one line item** (services/products to invoice)
@@ -52,7 +52,7 @@ Recurring billing generates invoices automatically based on your schedule:
 
 Go to [**Recurring Billing**](https://app.every.ai/invoices/recurring-invoices) → **Add recurring invoice** → Configure these key fields:
 
-1. **Client**: Select who to invoice
+1. **Who to bill**: Select a Company or Person
 2. **Schedule**: Daily, Weekly, Monthly, Quarterly, or Yearly
 3. **Start Date**: When recurring billing begins
 4. **Line Items**: Add services/products (reuse your saved catalog when possible)
@@ -279,7 +279,7 @@ Create recurring invoice → Select client → Yearly schedule → Set anniversa
 | **Recurring invoice not running** | Status is Active, next run date, start/end dates, client exists | Activate if inactive, verify dates and client status, review execution history |
 | **Test invoice not generated** | Test mode enabled, recurring invoice saved, organization email configured | Re-enable test mode, save, check drafts and spam folder |
 | **Wrong amount** | Line item amounts, tax settings, discounts, saved service/product pricing | Edit recurring invoice, update amounts, verify pricing, re-test |
-| **Wrong client** | Not possible - each recurring invoice tied to specific client | If seeing this, check which recurring invoice generated which invoice |
+| **Wrong Company or Person** | Not possible - each recurring invoice tied to a specific Company or Person | If seeing this, check which recurring invoice generated which invoice |
 
 <Tip>
   **Ask Every Agent:** To troubleshoot:
@@ -335,11 +335,11 @@ Create recurring invoice → Select client → Yearly schedule → Set anniversa
   </Card>
 
   <Card
-    title="Manage Clients"
+    title="Manage Your Network"
     icon="users"
-    href="/clients/clients"
+    href="/network/companies"
   >
-    Add clients for recurring billing
+    Add Companies or People for recurring billing
   </Card>
 
   <Card

@@ -1,25 +1,25 @@
 ---
 title: "Time Tracking"
-description: "Track client work with a live timer or manual entries, then add unbilled time to an invoice at the linked service rate"
+description: "Track billable work with a live timer or manual entries, then add unbilled time to an invoice at the linked service rate"
 icon: "clock"
 ---
 
 ## Overview
 
-Every's timesheet connects work performed to the client, service, and invoice that bills it. Use the live timer while you work, add an entry after the fact, or ask Every Agent to log completed time from a plain-language description.
+Every's timesheet connects work performed to the Company or Person it's for, the service, and the invoice that bills it. Use the live timer while you work, add an entry after the fact, or ask Every Agent to log completed time from a plain-language description.
 
 <Card title="Open Timesheet" icon="clock" href="https://app.every.ai/timesheet" horizontal>
-  Track and review client time
+  Track and review billable time
 </Card>
 
 ## Use the live timer
 
-Open the timer widget, choose a client, optionally choose a service, add a description, and start the timer. You can pause, resume, collapse, or hide it while you move through the app.
+Open the timer widget, choose a Company or Person, optionally choose a service, add a description, and start the timer. You can pause, resume, collapse, or hide it while you move through the app.
 
 The active timer is saved in the browser for the current organization, so hiding the widget or reloading the page does not silently discard an in-progress session. Choose **Stop and save** when the work is complete.
 
 <Note>
-  The timer requires a client before it can save. Add a service when you want the entry to carry that service's billing rate into an invoice.
+  The timer requires a Company or Person before it can save. Add a service when you want the entry to carry that service's billing rate into an invoice.
 </Note>
 
 ## Add time manually
@@ -27,7 +27,7 @@ The active timer is saved in the browser for the current organization, so hiding
 Go to [**Timesheet**](https://app.every.ai/timesheet) → **Add Time** and enter:
 
 - Date, start time, and end time
-- Client, when the work belongs to a client
+- The Company or Person the work belongs to
 - Service, when the work should use a saved service and rate
 - A client-facing description
 - Optional private notes for Every Agent
@@ -46,13 +46,13 @@ Every Agent creates a time record; it does not control the live browser timer.
 
 Time entries use the rate on the linked service. The invoice quantity comes from the entry duration, and the rate comes from that service when you add the time to an invoice.
 
-- A client plus a service makes the entry ready for client billing.
-- An entry without a client or service can still record internal work, but it is not ready to become a priced invoice line item.
+- A Company or Person plus a service makes the entry ready for billing.
+- An entry without a billed party or service can still record internal work, but it is not ready to become a priced invoice line item.
 - Updating a service rate affects the rate used when work is added later; review historical entries and invoice amounts before billing.
 
 ## Add time to an invoice
 
-1. Create or open a draft invoice for the same client.
+1. Create or open a draft invoice for the same Company or Person.
 2. Choose **Add from Time Tracking**.
 3. Select the unbilled entries.
 4. Review the generated descriptions, quantities, service rates, taxes, and total.
@@ -66,9 +66,9 @@ Each selected time entry becomes a linked invoice line item. Once linked, Every 
 
 ## Review and correct time
 
-The Timesheet can be filtered by client, service, date range, and billed status. Open an unbilled entry to correct the client, service, time range, description, or private notes.
+The Timesheet can be filtered by Company or Person, service, date range, and billed status. Open an unbilled entry to correct the billed party, service, time range, description, or private notes.
 
-For billed time, correct the invoice relationship first. A source time record cannot be deleted while an invoice line item references it; this keeps the timesheet and client document from disagreeing.
+For billed time, correct the invoice relationship first. A source time record cannot be deleted while an invoice line item references it; this keeps the timesheet and the invoice from disagreeing.
 
 ## Frequently asked questions
 
@@ -82,11 +82,11 @@ For billed time, correct the invoice relationship first. A source time record ca
   </Accordion>
 
   <Accordion title="Can I invoice several time entries together?">
-    Yes. Open a draft invoice for the client and select all relevant unbilled entries from Time Tracking. Each entry remains linked to the invoice for billed-status integrity.
+    Yes. Open a draft invoice for the Company or Person and select all relevant unbilled entries from Time Tracking. Each entry remains linked to the invoice for billed-status integrity.
   </Accordion>
 
   <Accordion title="Can I delete billed time?">
-    Not while an invoice line item references it. Remove it from a draft invoice first. If the invoice has already been issued, preserve the source record and correct the client document through the invoice workflow.
+    Not while an invoice line item references it. Remove it from a draft invoice first. If the invoice has already been issued, preserve the source record and correct the invoice through the invoice workflow.
   </Accordion>
 </AccordionGroup>
 
@@ -94,15 +94,15 @@ For billed time, correct the invoice relationship first. A source time record ca
 
 <CardGroup cols={2}>
   <Card title="Invoices & Proposals" icon="file-invoice" href="/billing/invoices-and-proposals">
-    Add unbilled time to client invoices
+    Add unbilled time to invoices
   </Card>
 
   <Card title="Services & Products" icon="list" href="/billing/services-and-products">
     Create the services and rates used for billed time
   </Card>
 
-  <Card title="Clients" icon="users" href="/clients/clients">
-    Manage the clients linked to time entries
+  <Card title="Your Network" icon="users" href="/network/companies">
+    Manage the Companies and People linked to time entries
   </Card>
 
   <Card title="Reports & Export" icon="chart-line" href="/reference/reports-and-export">

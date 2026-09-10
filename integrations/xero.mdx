@@ -62,12 +62,12 @@ The exact result depends on the connected Xero organization, your Xero role, the
 
 ## Xero data and Every data are separate
 
-An invoice in Xero is not automatically the same record as an invoice in Every. A Xero contact lookup—or a contact created in Xero—also does not create an Every client. Be explicit about the source in your request:
+An invoice in Xero is not automatically the same record as an invoice in Every. A Xero contact lookup—or a contact created in Xero—also does not create an Every Person or Company. Be explicit about the source in your request:
 
 ```text
 Show overdue invoices in Xero.
 Show overdue invoices in Every.
-Use the Xero contact details as context while I create a draft client record in Every.
+Use the Xero contact details as context while I create a draft Person or Company record in Every.
 ```
 
 When you need records to live in Every, import or create them in Every and verify the result. When Xero should remain authoritative, use the Xero connection and name Xero explicitly in the request.
@@ -92,7 +92,7 @@ Xero imports normally create records in Xero's own workflow. Review them there b
 
 Choose the path based on where the records should live:
 
-- **Historical Every workspace:** Export CSV/XLSX from the source and use [**Data → Import**](https://app.every.ai/data/import). Review client matching, currencies, taxes, invoice status, line items, and payments before the write.
+- **Historical Every workspace:** Export CSV/XLSX from the source and use [**Data → Import**](https://app.every.ai/data/import). Review Person/Company matching, currencies, taxes, invoice status, line items, and payments before the write.
 - **Xero stays authoritative:** Keep the data in Xero and use Every Agent for supported Xero reads and permission-gated actions.
 - **Accounting-sync pilot:** If your organization has the Accounting settings feature, follow the controls and mapping requirements shown there. Do not infer pilot availability from this public connection guide.
 

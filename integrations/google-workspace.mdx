@@ -6,10 +6,10 @@ icon: "mail"
 
 ## Overview
 
-Google Workspace integration connects Every with your Gmail, Calendar, Drive, and Contacts. Import contacts, send emails through the Agent, attach Drive files, and schedule meetings seamlessly.
+Google Workspace integration connects Every with your Gmail, Calendar, Drive, and Contacts. Import people, send emails through the Agent, attach Drive files, and schedule meetings seamlessly.
 
 **What You Can Do:**
-- Import contacts from Google Contacts
+- Import people from Google Contacts
 - Send emails through Gmail (via Every Agent)
 - Create and view calendar events
 - Attach Google Drive files you create in or open with Every (Drive Picker)
@@ -131,33 +131,33 @@ Create/edit invoice or proposal → Click "Attach from Drive" → **Pick a file*
 
 ## Google Contacts Integration
 
-### Importing Contacts
+### Importing People
 
-Every provides multiple ways to import contacts from Google:
+Every provides multiple ways to import people from Google:
 
 **1. Direct Import (Bulk):**
-Go to [**Contacts**](https://app.every.ai/contacts) page → Click **Import** dropdown → Select **Google Contacts**
+Go to [**People**](https://app.every.ai/network/people) page → Click **Import** dropdown → Select **Google Contacts**
 
 - Fetches all your Google contacts at once
 - Automatically filters out non-person contacts (organizations, bots)
-- Deduplicates against existing contacts by email
+- Deduplicates against existing people by email
 - Captures social links (LinkedIn, Twitter, GitHub, etc.)
-- One-click import of new contacts
+- One-click import of new people
 
 **What's imported:** Name, email, phone, organization (stored in notes), social URLs
 
 **2. Inline Autocomplete:**
-Once Google is connected, the Email field in client and contact forms uses Google Contacts search. Pick a result to auto-fill name, phone, and other details instantly.
+Once Google is connected, the Email field in company and person forms uses Google Contacts search. Pick a result to auto-fill name, phone, and other details instantly.
 
 **3. Scan Contacts (AI-Powered):**
-Open [**Contacts**](https://app.every.ai/contacts) → **Let Every import your contacts**.
+Open [**People**](https://app.every.ai/network/people) → **Let Every import your contacts**.
 
-This AI-powered workflow reviews your Gmail, Calendar, and Contacts history to identify which contacts look like potential business clients, rather than importing all contacts.
+This AI-powered workflow reviews your Gmail, Calendar, and Contacts history to identify which contacts look like potential business relationships, rather than importing all contacts.
 
 **4. Warm Leads:**
-Open [**Deals**](https://app.every.ai/) → **Find warm leads**. Every evaluates eligible contacts against the audience you describe and uses available Gmail and Calendar relationship evidence when ranking matches.
+Open [**Deals**](https://app.every.ai/) → **Find warm leads**. Every evaluates eligible people against the audience you describe and uses available Gmail and Calendar relationship evidence when ranking matches.
 
-**Duplicate Prevention:** All import methods filter by email so existing contacts are skipped automatically.
+**Duplicate Prevention:** All import methods filter by email so existing people are skipped automatically.
 
 **Refresh cadence:** Contact import and one-time Warm Leads searches run when you request them. A scheduled Warm Leads routine can continue searching automatically.
 
@@ -178,21 +178,21 @@ Open [**Deals**](https://app.every.ai/) → **Find warm leads**. Every evaluates
 
 ### Google Contacts Sync
 
-Every tracks which contacts exist in your team's Google Contacts, helping you identify established relationships.
+Every tracks which people exist in your team's Google Contacts, helping you identify established relationships.
 
 **How it works:**
-- When a contact is created with an email, Every checks if that email exists in any team member's Google Contacts
-- A sync indicator badge appears on contacts that match
+- When a person is created with an email, Every checks if that email exists in any team member's Google Contacts
+- A sync indicator badge appears on people that match
 - Background sync keeps the relationship indicator current
 
 **Benefits:**
-- See at a glance which client contacts are already in your Google ecosystem
-- Avoid duplicating contacts you already have relationships with
-- Know when colleagues have interacted with a contact before
+- See at a glance which people are already in your Google ecosystem
+- Avoid duplicating people you already have relationships with
+- Know when colleagues have interacted with someone before
 
-### Client Enrichment
+### Company Enrichment
 
-After a client is created, open their record and click **Enrich Client**. Every Agent uses Gmail, Calendar, Google Contacts, and public web data to enrich the record with company info, additional contacts, and social profiles.
+After a company is created, open its record and click **Enrich**. Every Agent uses Gmail, Calendar, Google Contacts, and public web data to enrich the record with company info, additional people, and social profiles.
 
 ## Every Agent Integration
 
@@ -249,7 +249,7 @@ Agent: ✓ Sends via your Gmail
 **What Happens:**
 - Stored tokens removed
 - Features become unavailable
-- Historical data preserved (imported clients, past Drive links, email/calendar history)
+- Historical data preserved (imported people and companies, past Drive links, email/calendar history)
 - Can reconnect anytime
 
 <Warning>
@@ -258,7 +258,7 @@ Agent: ✓ Sends via your Gmail
 
 ### Deleting Google data from Every
 
-Disconnecting stops future Google access. It does not remove contacts, client records, or relationship activity that Every already added to your workspace.
+Disconnecting stops future Google access. It does not remove people, company records, or relationship activity that Every already added to your workspace.
 
 - **Delete Google-sourced data but keep your Every account:** Email [hello@every.ai](mailto:hello@every.ai) from the email address on your Every account. Name the workspace and connected Google account, and describe what Google-sourced data you want removed. We verify the request before deleting data.
 - **Delete your personal Every account in a shared workspace:** Go to [**Settings → Profile**](https://app.every.ai/settings/profile) → **Delete my account**. This permanently deletes your private conversations, connected Google account and access tokens, and personal notification settings. Shared business records stay with the workspace, with your attribution removed.
@@ -283,8 +283,8 @@ Disconnecting stops future Google access. It does not remove contacts, client re
     No. You can connect only the scopes needed for the workflows you use. If a later task needs another permission, Every asks you to reconnect and add it.
   </Accordion>
 
-  <Accordion title="What happens to imported contacts if I disconnect Google?">
-    The Google connection stops working, but contacts and other records already imported into Every remain in your workspace until you edit or remove them there.
+  <Accordion title="What happens to imported people if I disconnect Google?">
+    The Google connection stops working, but people and other records already imported into Every remain in your workspace until you edit or remove them there.
   </Accordion>
 </AccordionGroup>
 
@@ -313,7 +313,7 @@ Disconnecting stops future Google access. It does not remove contacts, client re
 ## Best Practices
 
 <Tip>
-  **Import contacts early** - Start by importing Google Contacts to save manual data entry.
+  **Import people early** - Start by importing Google Contacts to save manual data entry.
 </Tip>
 
 <Tip>
@@ -344,9 +344,9 @@ Disconnecting stops future Google access. It does not remove contacts, client re
   </Card>
 
   <Card
-    title="Import Contacts"
+    title="Import People"
     icon="users"
-    href="/clients/clients"
+    href="/network/people"
   >
     Import people from Google Contacts
   </Card>
@@ -360,11 +360,11 @@ Disconnecting stops future Google access. It does not remove contacts, client re
   </Card>
 
   <Card
-    title="Manage Clients"
+    title="Manage Companies"
     icon="address-book"
-    href="/clients/clients"
+    href="/network/companies"
   >
-    Enrich clients with Google data
+    Enrich companies with Google data
   </Card>
 </CardGroup>
 
