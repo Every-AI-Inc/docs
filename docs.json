@@ -116,7 +116,8 @@
           "integrations/xero",
           "integrations/hubspot",
           "integrations/granola",
-          "integrations/connect-ai-tools"
+          "integrations/connect-ai-tools",
+          "integrations/api-keys"
         ]
       },
       {

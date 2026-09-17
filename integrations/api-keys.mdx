@@ -1,0 +1,275 @@
+---
+title: "API Keys"
+description: "Mint a long-lived key so a script, CI job, or agent can use Every without a person signing in"
+icon: "key"
+---
+
+## Overview
+
+An API key lets a script, CI job, or agent use Every with **nobody signed in**. It's the headless alternative to the OAuth connection on [Connect to Claude & ChatGPT](/integrations/connect-ai-tools) — same tools, same data, no browser.
+
+Use it when the caller is a machine: a nightly sync, a webhook handler, a GitHub Actions workflow, a server-side agent. If a human is at the keyboard, use the OAuth connection instead.
+
+<Note>
+  Only **organization admins** can mint keys. The backend re-checks that on every request against live Clerk data — it isn't a UI-only restriction.
+</Note>
+
+## Creating a key
+
+Go to [**Settings**](https://every.ai/settings) → **API keys** → **Create key**. You'll choose a name, tick the permissions the key needs, pick an expiry, and optionally set a rate limit.
+
+The key looks like this:
+
+```
+evk_3f1c8e02-4b77-4e6c-9a19-2d0f5b7a6c31.Xk9tQ2vR7pL4mN8wZ1yB6hC3jD5sF0aG
+```
+
+<Warning>
+  The key is shown **exactly once**, at creation. Every stores only a hash of it — nobody, including Every support, can retrieve it later. Copy it into your secret store before closing the dialog. If you lose it, [rotate the key](#rotating-a-key) to get a new one.
+</Warning>
+
+### Permissions
+
+Permissions are ticked individually at creation. There are ten areas, each with a separate **Read** and **Write** permission, grouped in the UI as:
+
+| Group | Areas |
+|-|-|
+| **Contacts & deals** | [People](/clients/contacts), [Companies](/clients/clients), [Deals](/prospecting/pipeline) |
+| **Money** | [Invoices](/billing/invoices-and-proposals), [Proposals](/billing/invoices-and-proposals), [Payments](/billing/payments), [Expenses](/billing/expenses), [Services](/billing/services-and-products) |
+| **Workspace** | Custom fields, [Reports](/reference/reports-and-export) |
+
+Internally each one is a scope named `<area>:<action>` — `people:read`, `deals:write`, `invoices:read`, and so on. You'll see those names in error messages. A key can only do what was ticked: an unticked area is simply absent from the key's tool list.
+
+<Tip>
+  Tick the narrowest set that does the job. A CI job that files new leads usually needs `people:write` and `deals:write` and nothing else.
+</Tip>
+
+### Expiry
+
+Every key expires. Choose **90 days**, **1 year** (the default), or **2 years**.
+
+<Note>
+  There is deliberately **no never-expires option**, and 2 years is the maximum. Plan to rotate.
+</Note>
+
+### Rate limit
+
+Each key has a request rate limit, defaulting to about **120 requests per minute**. You can set a different limit per key when you create it. Requests over the limit are rejected with a `Retry-After` telling you how long to wait.
+
+<Note>
+  Treat the limit as **approximate**. It's counted per server process, so a burst can exceed it — it's a floor you can rely on, not a ceiling that's guaranteed to stop you.
+</Note>
+
+## Using a key with the Every CLI
+
+The [Every CLI](https://www.npmjs.com/package/@everyai/cli) is the easiest way to drive a key. Set the key as the `EVERY_TOKEN` environment variable and the CLI uses it instead of an interactive sign-in.
+
+```bash
+npm install -g @everyai/cli
+
+export EVERY_TOKEN=evk_...
+
+# Confirm the key works — this lists ONLY the tools its permissions allow
+every tools list
+
+# Call a tool with arguments from a JSON file
+every tool call create_person --args person.json --yes
+every tool call create_deal --args deal.json --yes
+```
+
+`--args` takes a path to a JSON file containing that tool's arguments. `--yes` skips the interactive confirmation, which a headless job can't answer.
+
+<Warning>
+  `every whoami` does **not** work with an API key — it expects a signed-in person's identity. Use `every tools list` to confirm a key is valid and to see what it can reach.
+</Warning>
+
+### GitHub Actions
+
+A scheduled workflow that files leads from your website's contact form into Every:
+
+```yaml
+name: Sync contact form leads to Every
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      EVERY_TOKEN: ${{ secrets.EVERY_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build person.json and deal.json from new form submissions
+        run: ./scripts/build-lead-payloads.sh
+
+      - name: Confirm the key is valid
+        run: npx @everyai/cli@0.7.0 tools list
+
+      - name: Create the person
+        run: npx @everyai/cli@0.7.0 tool call create_person --args person.json --yes
+
+      - name: Create the deal
+        run: npx @everyai/cli@0.7.0 tool call create_deal --args deal.json --yes
+```
+
+Store the key as a repository secret (**Settings** → **Secrets and variables** → **Actions**) named `EVERY_API_KEY`. Pin the CLI version (`@everyai/cli@0.7.0`) so a new release can't change your job's behavior overnight.
+
+### What goes in the payloads
+
+`person.json` — a person, with their email as a contact method:
+
+```json
+{
+  "command": {
+    "operation_id": "3f8c1e0a-9b7d-4c2e-8a51-6d0f2b4e7c93",
+    "name": "Jane Doe",
+    "job_title": "Operations Lead",
+    "notes": "Message from the website contact form",
+    "methods": [
+      {
+        "action": "upsert",
+        "kind": "email",
+        "display_value": "jane@example.com",
+        "is_primary": true
+      }
+    ]
+  }
+}
+```
+
+`deal.json` — a deal linked to that person. `party.id` is the person id returned by `create_person`:
+
+```json
+{
+  "target_name": "Jane Doe",
+  "party": { "kind": "person", "id": "16edc84a-8f71-4dfa-b979-f370b2d7bb82" },
+  "target_email": "jane@example.com",
+  "notes": "Inbound enquiry from the website contact form",
+  "stage": "lead"
+}
+```
+
+<Warning>
+  Generate a **fresh `operation_id` UUID for every new person you create**. Reuse the same one only when retrying that exact write — that is what makes a retry safe instead of creating a duplicate.
+</Warning>
+
+Two things that commonly trip people up on the first run:
+
+- `lead_source` belongs to a **company**, not a person. Sending it to `create_person` fails with `Lead source belongs to a Company`.
+- `create_deal` needs the person to exist first, because `party.id` is the id from the `create_person` response. Create the person, read the id out of the result, then create the deal.
+
+## Using a key over raw MCP
+
+If you're driving the protocol yourself, `POST` standard JSON-RPC to the Admin MCP server with the key as a bearer token:
+
+```bash
+curl -X POST https://admin-mcp.every.ai/ \
+  -H "Authorization: Bearer evk_..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/list",
+    "params": {}
+  }'
+```
+
+Calling a tool is the same shape with `"method": "tools/call"`:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/call",
+  "params": {
+    "name": "create_person",
+    "arguments": { }
+  }
+}
+```
+
+<Note>
+  The endpoint is the **root path** — `https://admin-mcp.every.ai/`, not a sub-path. `tools/list` returns only the tools the key's permissions allow, so it doubles as a permissions check.
+</Note>
+
+## Security
+
+### What no key can ever do
+
+Some capabilities are **unreachable at any combination of permissions**. They aren't unticked by default — they were removed from the key path entirely, because a headless job has nobody to approve a send or a delete:
+
+| Never available to a key | Why |
+|-|-|
+| Sending email | No one is there to approve an outbound message |
+| Deleting anything | Destructive and unapprovable without a human |
+| Voiding or cancelling | Same — irreversible actions need a person |
+| Gmail (search, read, draft) | These act on a **person's** connected Google account, not the org's |
+| Calendar (list, create, reschedule) | Same — tied to a person's Google connection |
+| [Scheduled tasks](/scheduled-tasks/scheduled-tasks) | A key must not be able to mint unattended agent runs |
+| Business settings and [business DNA](/ai/business-dna) | Rewrites your org's identity |
+| Onboarding and help tools, including the Assistant | These can mint a one-time sign-in handoff link |
+
+This holds for stored agent output too — the [Daily Brief](/scheduled-tasks/daily-brief) and heartbeat summaries are off limits to keys because they can contain summarized Gmail content.
+
+### A key acts as its creator
+
+A key carries the permissions of the admin who created it. It is **not** super-user access, and it can never exceed what that person could do.
+
+<Warning>
+  If the creating admin ever loses admin rights in the org, all of their keys stop working **within about a minute**. If a key belongs to someone who might leave, plan for that.
+</Warning>
+
+### Rotating a key
+
+**Rotate** issues a new secret while the old one keeps working for a grace window — **24 hours** by default. That lets you update a running job's secret without a failed run: rotate, deploy the new value, and the old key retires itself when the window closes.
+
+Rotation carries the old key's permissions over, but it **starts a fresh 1-year expiry** rather than inheriting the old key's remaining lifetime. A key can be rotated once; rotate the new key when you need to roll again.
+
+### Revoking a key
+
+**Revoke** kills a key. It takes effect **within about a minute** — there's a short validation cache, so a request already in flight may still succeed.
+
+Revoked keys stay in the list as an audit record. There is no hard delete.
+
+### What the list shows
+
+For each key: its permissions, who created it, the creation date, the expiry, the last time it was used, and its rate limit. Check **last used** before revoking a key you don't recognize — a key that has never been used is safe to remove.
+
+## Errors
+
+| What happened | What you get back |
+|-|-|
+| The tool needs a permission the key doesn't have | An error naming the exact missing scope (for example `deals:write`) and listing the scopes the key *does* hold |
+| The tool is one no key can call | `<tool> is not available to API keys` |
+| The key is expired, revoked, or its creator is no longer an admin | The request is rejected as unauthenticated |
+| You exceeded the rate limit | A rejection with a `Retry-After` value in seconds |
+
+Because `tools list` is filtered to the key's permissions, a tool that's missing from that output will fail if you call it anyway. Check the list first.
+
+## Not available yet
+
+To set expectations plainly, none of the following exist today:
+
+- **No expiry reminders.** Nothing emails you before a key expires — put the expiry date in your own calendar.
+- **No unused-key flagging.** Keys that go unused are not surfaced automatically; check the **last used** column yourself.
+- **No audit log screen.** Usage is recorded per key and surfaced as **last used**. There is no browsable per-request log.
+- **No IP allowlist.** A key works from anywhere it's presented.
+- **MCP only.** API keys work with the Admin MCP server. There is **no REST API** for them today.
+
+## Troubleshooting
+
+**`every tools list` returns fewer tools than expected?**
+The list is filtered to the key's permissions. Mint a new key with the missing areas ticked — permissions can't be edited after creation.
+
+**Everything stopped working at once?**
+Check whether the key expired, was revoked, or whether the admin who created it lost admin rights in the org. All three fail the same way.
+
+**`every whoami` fails?**
+Expected — it needs a signed-in person. Use `every tools list` instead.
+
+**Need help?**
+Contact [hello@every.ai](mailto:hello@every.ai).
