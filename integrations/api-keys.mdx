@@ -107,16 +107,16 @@ jobs:
         run: ./scripts/build-lead-payloads.sh
 
       - name: Confirm the key is valid
-        run: npx @everyai/cli@0.7.0 tools list
+        run: npx @everyai/cli@0.7.1 tools list
 
       - name: Create the person
-        run: npx @everyai/cli@0.7.0 tool call create_person --args person.json --yes
+        run: npx @everyai/cli@0.7.1 tool call create_person --args person.json --yes
 
       - name: Create the deal
-        run: npx @everyai/cli@0.7.0 tool call create_deal --args deal.json --yes
+        run: npx @everyai/cli@0.7.1 tool call create_deal --args deal.json --yes
 ```
 
-Store the key as a repository secret (**Settings** → **Secrets and variables** → **Actions**) named `EVERY_API_KEY`. Pin the CLI version (`@everyai/cli@0.7.0`) so a new release can't change your job's behavior overnight.
+Store the key as a repository secret (**Settings** → **Secrets and variables** → **Actions**) named `EVERY_API_KEY`. Pin the CLI version (`@everyai/cli@0.7.1`) so a new release can't change your job's behavior overnight.
 
 ### What goes in the payloads
 
