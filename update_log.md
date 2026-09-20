@@ -26,3 +26,5 @@
 | 2025-11-19    | Updated Organization Setup to include Organization Prompt |
 | 2025-11-17    | Added Agent Scheduled Tasks doc |
 | 2025-11-11    | Initialized docs                |
+
+- 2026-09-20 — UNPUBLISHED: restored the first DNA tab/page label to Business DNA at Satish’s request; `/agent/dna` and all other IA refinements are unchanged.
