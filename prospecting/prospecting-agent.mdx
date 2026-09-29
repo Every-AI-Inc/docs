@@ -6,32 +6,31 @@ icon: "telescope"
 
 ## Overview
 
-Every's **Prospecting Agent** finds potential clients among people you already know. It searches the contacts and relationship data you choose to connect, researches promising matches, scores them for fit and relationship strength, and puts the best matches in **Prospects** for review.
+Every's **Prospecting Agent** finds potential clients among people you already know. It searches the contacts and relationship data you choose to connect, researches promising matches, scores them for fit and relationship strength, and lists the best matches on the **Prospects** page for review.
 
 This is warm-network prospecting, not a cold-contact database. Every does not buy a lead list or send automatic outreach to everyone it finds.
 
 For a public explanation of how this differs from list-based prospecting, see [AI lead generation from your existing network](https://every.ai/ai-lead-generation/). For the broader relationship-to-client workflow, see [Every's AI CRM guide](https://every.ai/ai-crm/).
 
-<Card title="Open Deals" icon="git-branch" href="https://app.every.ai/" horizontal>
-  The Prospecting Agent runs from the Deals page, and approved deals land there
+<Card title="Open Prospects" icon="telescope" href="https://app.every.ai/prospects" horizontal>
+  Prospecting runs from the Prospects page; approved prospects land on Deals at the Lead stage
 </Card>
 
 <Note>
-  Prospecting uses AI credits. The work required depends on the size of the search and how much enrichment or research the agent needs to do. See [What is a credit?](/plans/what-is-a-credit).
+  Prospecting uses AI credits. The work required depends on the size of your network and how much enrichment or research the agent needs to do. See [What is a credit?](/plans/what-is-a-credit).
 </Note>
 
 ## How warm-lead discovery works
 
-When you run a search, Every:
+Prospecting works through **targets**. A target describes who you want to reach and the services it applies to. For each target, Every:
 
-1. Reads what your business sells and the audience you want to reach.
-2. Excludes people who are already clients, already being worked, or have been rejected.
-3. Enriches people who need more professional context before they can be evaluated.
-4. Reviews relationship evidence and professional fit across the eligible network.
-5. Researches the strongest candidates more deeply.
-6. Saves qualified matches to **Prospects** with a reason, evidence, and score.
+1. Reads what your business sells and the audience the target describes.
+2. Skips people who are already in an active deal, already waiting for your review, or that you have rejected. Your teammates and people at your own company are never scored.
+3. Scores everyone else in your network for fit and relationship strength. People whose details are still being filled in are scored once enrichment finishes.
+4. Researches the strongest matches more deeply and writes a short reason for each one.
+5. Adds each qualified match to the review table on the **Prospects** page as soon as it is scored.
 
-The search keeps working toward the number of leads you requested. If it cannot reach that number, the result explains whether the remaining network was already represented, missing enough professional data, previously reviewed, or otherwise ineligible.
+There is no lead count to request. Every scores the whole eligible network for each target, so matches stream in while the pass runs. A target also keeps working after that: when people are added or their details change, Every scores them again.
 
 ## Where Every looks
 
@@ -45,36 +44,40 @@ Every searches the relationship sources you have added to your workspace:
 
 Every uses evidence from the relationship itself rather than treating one source as inherently better. A first-degree LinkedIn connection, recent correspondence, meetings, and a complete professional record can all help establish that a relationship is warm.
 
+To bring in more people, use **Add to network** in the Prospects page header.
+
 <Note>
   Every only uses sources you connect or import. Google Drive access is file-by-file, and Google permissions can be managed separately. See [Google Workspace](/integrations/google-workspace).
 </Note>
 
 ## How leads are scored
 
-The Prospects queue shows the two primary decision scores:
+The review table on the Prospects page shows the two primary decision scores:
 
 - **Fit** — how closely the person matches what you sell and who you want to reach.
 - **Relationship** — how strong the available path is based on your recorded history and connection evidence.
 
-The agent also considers timing, confidence, professional context, and contactability when deciding whether to surface a match. Open a prospect to see the evidence and rationale behind the recommendation; a score is a decision aid, not proof that someone will buy.
+The agent also considers timing, confidence, professional context, and contactability when deciding whether to surface a match. The **Reason** column says why Every surfaced each person (hover it to read the full text). A score is a decision aid, not proof that someone will buy.
 
 ## Choose who you want to find
 
-Open **Deals** and select **Find prospects** to set the audience for a search.
+Open [**Prospects**](https://app.every.ai/prospects) and select **Add target**. Pick one of the suggestions Every draws from your [Business DNA](/ai/context-and-voice), or describe a custom audience and the services it applies to. Every names the target for you.
 
-### Scheduled search
+New workspaces start with up to three targets suggested from Business DNA, so there is usually something to review right after onboarding.
 
-The scheduled Prospecting routine uses your saved targeting and searches automatically. You can manage its schedule and the number of new matches it should find from the same dialog.
+### Targets run automatically
 
-Your saved targeting persists between runs. Updating it lets Every reconsider contacts against the new audience without wiping your existing review history.
+There is no schedule to set and no search to re-run. Once you add a target, Every scores your network for it and keeps it current as your network changes.
 
-<Card title="Manage Prospecting" icon="clock" href="/scheduled-tasks/scheduled-tasks" horizontal>
-  Review the schedule and other recurring agent tasks
-</Card>
+- **Target cards** across the top of the page show each target's name, how many prospects are left to review, and how many active deals it has produced. **All prospects** combines every target. Select a card to filter the table to that target.
+- **Min scores** sets the lowest Fit and Relationship score a prospect needs for the selected target. The table re-filters live as you move the sliders; nothing is re-scanned.
+- **Target details** (the ⓘ button on a card) shows the brief, services, min scores, results, the deals the target produced (archived ones included), network coverage, and what Every learned. Rename the target, **Duplicate** it, or **Archive** it from there.
 
-### Custom search
+A target's brief stays fixed once it is created. To try a variation, **Duplicate** the target. Archiving a target removes it from the page but leaves its deals on Deals. You can have up to 10 active targets.
 
-A custom search is a one-time run with a specific target and lead count. It does not change the scheduled search. You can reuse a past target, or describe a new one in plain language.
+### Custom targets
+
+A custom target is one you describe yourself instead of picking a suggestion. Describe the audience in plain language and choose the services it applies to.
 
 Examples:
 
@@ -84,20 +87,27 @@ Past clients and collaborators who work at B2B software companies
 Marketing leaders in my network who may need a brand refresh this quarter
 ```
 
-Running the same target again continues through the eligible network instead of starting the search history over.
+If you describe a target you already have, Every opens the existing one instead of creating a duplicate, and offers to restore it if it was archived.
 
 ## Review before anything happens
 
-Every puts every discovered match in **Prospects**. At this point the lead has a rationale and score, but no outreach draft has been sent and the person is not yet in the active pipeline.
+Every lists every discovered match on the **Prospects** page. At this point the prospect has a reason and scores, but no outreach draft has been sent and the person is not yet in the active pipeline.
 
-- **Approve** moves the match to **Lead**. The pipeline agent then builds the sales plan and prepares the first outreach draft.
-- **Reject** removes the match and suppresses that person from future searches. You can add a reason to teach Every what to avoid.
+Prospects is its own page in the left rail, right after Deals, with a count of who is waiting. The Deals header also shows **Prospects · N** to take you there.
+
+Each row has:
+
+- **Approve** — creates a deal at the **Lead** stage. The pipeline agent then builds the sales plan and prepares the first outreach draft.
+- **Add to deal** — shown when the person's company matches one of your existing deals. It adds the person to that deal instead of creating a new one; the menu next to it still offers **Approve as new deal**.
+- **Reject** — removes the match and suppresses that person from future searches. A feedback row stays open for 5 seconds so you can tell Every why.
+
+Select several rows and use **Actions** to approve or reject them together.
 
 Nothing is sent from Prospects. Later, when the pipeline prepares outreach, you still review the exact message before sending it.
 
 ## Teach Every what a good lead looks like
 
-Every learns from the leads you approve or reject and from guidance you add under **Warm lead preferences**. Use preferences for durable rules such as:
+Every learns from the prospects you approve or reject and from guidance you add under **What Every learned**, in **Prospecting settings** (the settings icon in the Prospects page header). Use it for durable rules such as:
 
 ```text
 Prioritize founders who have raised a seed round in the last year.
@@ -105,7 +115,7 @@ Do not suggest direct competitors.
 Favor people I have met or emailed in the last two years.
 ```
 
-You can review and remove learned preferences. Rejecting a person suppresses them globally; the optional reason helps improve the broader scoring pattern.
+You can review and remove anything Every learned from the same place. Rejecting a person suppresses them globally; the optional reason helps improve the broader scoring pattern.
 
 ## Frequently asked questions
 
@@ -115,15 +125,19 @@ You can review and remove learned preferences. Rejecting a person suppresses the
   </Accordion>
 
   <Accordion title="Will Every message people automatically?">
-    No. Matches first appear in Prospects. You approve a lead before the pipeline prepares outreach, and you review the message before it is sent.
+    No. Matches first appear on the Prospects page. You approve a prospect before the pipeline prepares outreach, and you review the message before it is sent.
   </Accordion>
 
   <Accordion title="What happens when I reject a lead?">
-    The person is removed from review and suppressed from future searches, even if you later change your targeting. Adding a reason also gives the agent a useful preference signal.
+    The person is removed from review and suppressed from future searches under every target, including targets you add later. Adding a reason also gives the agent a useful preference signal.
   </Accordion>
 
-  <Accordion title="Why did a search find fewer leads than I requested?">
-    The eligible network may be smaller than the target. Existing clients, active or previously reviewed deals, rejected contacts, and records without enough professional data can all be excluded. The completed run summarizes what happened.
+  <Accordion title="Why does a target have only a few prospects?">
+    Every only lists people who meet the target's **Min scores**. People already in a deal, already reviewed, or rejected are skipped, and records without enough professional data score low. Lower the min scores to see more, or grow your network with **Add to network**. **Target details** shows how much of your network the target has covered.
+  </Accordion>
+
+  <Accordion title="Where did the scheduled Prospecting task go?">
+    Prospecting no longer runs as a scheduled task. Targets keep working on their own from the Prospects page, so there is no schedule or lead count to manage.
   </Accordion>
 </AccordionGroup>
 
@@ -135,7 +149,7 @@ You can review and remove learned preferences. Rejecting a person suppresses the
   </Card>
 
   <Card title="Scheduled Tasks" icon="clock" href="/scheduled-tasks/scheduled-tasks">
-    Manage the recurring Prospecting search and other agent tasks
+    Manage other recurring agent tasks
   </Card>
 
   <Card title="Google Workspace" icon="google" href="/integrations/google-workspace">
