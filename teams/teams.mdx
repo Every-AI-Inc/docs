@@ -60,10 +60,17 @@ The [Every Agent](/ai/every-agent) pipeline gives ownership a functional role:
 - Every deal has an **owner**. The Pipeline shows all deals by default, with a **"My deals" filter** to narrow to the ones you own.
 - The deal detail dialog includes an **owner switcher**. The current owner or a workspace admin can reassign an owned deal to another member.
 - **Outreach is owner-gated.** Only a deal's owner can send its outreach — the owner's connected Gmail is used to draft and scan replies. Non-owners can read and copy the drafted message, but the send action is reserved for the owner. This is enforced on the backend, not just hidden in the UI.
+- **Auto mode is owner-gated too.** Only the deal owner can turn on [Auto mode](/prospecting/auto-mode), and it sends from the owner's connected accounts. Anyone who can open the deal can turn it off.
 
 <Tip>
   If you can't send a teammate's outreach, that's by design — ask the owner to send, or ask the owner or a workspace admin to reassign the deal to you.
 </Tip>
+
+### Personal connections, shared results
+
+Each teammate connects their own [LinkedIn and Instagram](/integrations/linkedin-and-instagram) from [**Agent → Connections**](https://app.every.ai/agent/connections). A connection belongs to the person who made it: only they can sync or send from it. The people, messages, and deal activity it imports are shared with the workspace. Open the LinkedIn or Instagram row to see which teammates have connected under **Team members**.
+
+Gmail accounts are connected per person too. Each one has a **Workspace access** control for whether teammates can use it or it stays private to its owner. See [Google Workspace](/integrations/google-workspace#connecting-more-than-one-gmail-account).
 
 ## Private agent chats
 

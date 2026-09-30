@@ -14,7 +14,7 @@ It is not a separate chatbot with a copied database. It works against the live r
 - It works directly with your live business data in Every
 - It uses your saved [Business DNA and Voice & Tone](/ai/context-and-voice) so its work fits your business and sounds like you
 - It [remembers facts and applies skills](/ai/memory-and-skills) you've taught it across every chat
-- It connects to external systems like Google Workspace, Xero, HubSpot, and Granola
+- It connects to external systems like Google Workspace, [LinkedIn and Instagram](/integrations/linkedin-and-instagram), Xero, HubSpot, and Granola
 - It handles multi-step workflows without you mapping every click
 
 <Card title="Open Every Agent" icon="message-circle" href="https://app.every.ai" horizontal>
@@ -28,13 +28,13 @@ Every Agent works directly with your data in Every. It can read, create, update,
 | Area | What the agent can do |
 |-|-|
 | **Companies** | Create and update companies, enrich company records, analyze concentration and revenue |
-| **People** | Create and affiliate people; import from Google, LinkedIn, or CSV; bill a person directly with no company required |
+| **People** | Create and affiliate people; import from Google, LinkedIn, or CSV; sync your connected LinkedIn connections and Instagram following; bill a person directly with no company required |
 | **Invoices** | Draft, edit, apply tax and discounts, schedule sends, send to clients |
 | **Proposals** | Draft structured proposals, track approval, convert issued or approved proposals into invoices |
 | **Payments** | Record manual payments, send reminders and confirmations, check Stripe-linked state |
 | **Expenses** | Parse receipt uploads into expenses, add unbilled expenses to invoices |
 | **Time** | Log time entries, add unbilled time to invoices |
-| **Pipeline** | Find prospects, review deals, update sales plans, and draft outreach |
+| **Pipeline** | Find prospects, review deals, update sales plans, draft outreach, read your synced LinkedIn and Instagram conversations, and turn a deal's [Auto mode](/prospecting/auto-mode) on or off |
 | **Recurring invoices** | Create, pause, and update recurring invoice automations; review run history |
 
 It also runs reporting and analysis on top of all of this — revenue summaries, overdue and cash-flow reviews, client concentration, and service or product trends.
@@ -73,7 +73,7 @@ You: "Perfect, send it"
 
 In interactive app chat, actions that **leave your workspace or remove data are gated**. The agent shows you what it's about to do and waits for your go-ahead before:
 
-- **Sending** anything to a client — invoices, proposals, payment reminders, confirmations, and emails
+- **Sending** anything to a client — invoices, proposals, payment reminders, confirmations, emails, and LinkedIn or Instagram messages
 - **Deleting** records — people, companies, invoices, proposals, payments, services, and more
 
 Reads, drafts, and internal edits happen directly so the conversation stays fast; the irreversible, client-facing steps are the ones that ask first.
@@ -83,6 +83,8 @@ Reads, drafts, and internal edits happen directly so the conversation stays fast
 </Warning>
 
 Scheduled and background routines use a stricter boundary: they can read, analyze, create internal drafts, and prepare work, but outbound sends and destructive actions are unavailable while nobody is present to review them.
+
+The one exception is a deal where you turned on [Auto mode](/prospecting/auto-mode). You grant it per deal, and only the deal owner can turn it on. With it on, Every replies to and follows up with that deal's contact on its own, over Gmail, LinkedIn, or Instagram, inside conversations that already exist. Each message waits a few minutes before it sends so you can cancel it, and everything it sends appears in the deal's Activity.
 
 ### Using Every Agent by email
 
@@ -275,7 +277,7 @@ AI output can be incomplete or wrong. Use the source records, previews, and perm
 
 <AccordionGroup>
   <Accordion title="Can Every Agent send an email or invoice without me reviewing it?">
-    In interactive chat, outbound send tools pause on an approval card showing what will be sent. Scheduled and unattended routines can prepare drafts but cannot perform the final send by themselves.
+    In interactive chat, outbound send tools pause on an approval card showing what will be sent. Scheduled and unattended routines can prepare drafts but cannot perform the final send by themselves. The exception is a deal where you turned on [Auto mode](/prospecting/auto-mode): there, Every replies and follows up with the deal's contact on its own, with a few minutes to cancel each message.
   </Accordion>
 
   <Accordion title="Does Every replace an accounting system?">
@@ -301,7 +303,7 @@ AI usage consumes credits — agent conversations, file processing, and schedule
 2. Try an action like "Create a draft invoice for $100"
 3. Review [Business DNA and Voice & Tone](/ai/context-and-voice)
 4. Create a [skill](/ai/memory-and-skills) for a workflow you repeat
-5. Connect Google Workspace and any agent integrations you use
+5. Connect Google Workspace, LinkedIn, Instagram, and any agent integrations you use
 
 ## Next Steps
 
