@@ -13,13 +13,31 @@ Google Workspace integration connects Every with your Gmail, Calendar, Drive, an
 - Send emails through Gmail (via Every Agent)
 - Create and view calendar events
 - Attach Google Drive files you create in or open with Every (Drive Picker)
+- Keep deals current from your Gmail conversations
+- Connect more than one Gmail account
 - Automate workflows with Google services
 
 ## Connecting Google Workspace
 
 ### Quick Setup
 
-Go to [**Agent → Connections**](https://app.every.ai/agent/connections) → find the **Google Workspace** card → **Connect Google Account** → select your Google account → review permissions → click **Allow** → return to Every.
+Go to [**Agent → Connections**](https://app.every.ai/agent/connections) → **Communication** → open the **Gmail & Calendar** row → connect your Google account → review permissions → click **Allow** → return to Every.
+
+<Frame>
+  <img src="/images/features/communication.png" alt="The Communication section of Connections, with the Gmail & Calendar row and its Add button above the LinkedIn and Instagram rows" />
+</Frame>
+
+### Connecting more than one Gmail account
+
+You can connect more than one Gmail account, for example a work inbox and a personal one you also use for clients.
+
+Once your first account is connected, select **Add** on the **Gmail & Calendar** row, choose the other Google account, and review its permissions. Each connected account is listed in the row with its own sync settings and **⋯** menu (**Manage Google permissions**, **Use in this workspace**, **Sync history**, **Disconnect**).
+
+On a team workspace, each account also has a **Workspace access** control for whether teammates can use it or it stays private to you.
+
+<Note>
+  LinkedIn and Instagram are in the same **Communication** section. See [LinkedIn & Instagram](/integrations/linkedin-and-instagram).
+</Note>
 
 **Permissions Requested:**
 - **Gmail:** Send emails, read messages
@@ -42,7 +60,7 @@ Go to [**Agent → Connections**](https://app.every.ai/agent/connections) → fi
 
 Scopes define what Every can access. If a feature requires missing scopes, the app prompts you to reconnect and grant additional permissions.
 
-**To Update:** Agent → Connections → Reconnect Google → Grant additional permissions
+**To Update:** Agent → Connections → **Gmail & Calendar** → the account's **⋯** menu → **Manage Google permissions** → grant additional permissions. If an account shows **Reconnect needed**, select **Reconnect** on the row.
 
 ## Gmail Integration
 
@@ -155,21 +173,20 @@ Open [**People**](https://app.every.ai/network/people) → **Let Every import yo
 This AI-powered workflow reviews your Gmail, Calendar, and Contacts history to identify which contacts look like potential business relationships, rather than importing all contacts.
 
 **4. Prospecting:**
-Open [**Deals**](https://app.every.ai/) and select **Find prospects**. Every evaluates eligible people against the audience you describe and uses available Gmail and Calendar relationship evidence when ranking matches.
+Open [**Prospects**](https://app.every.ai/prospects) and select **Add target**. Every evaluates eligible people against the audience you describe and uses available Gmail and Calendar relationship evidence when ranking matches.
 
 **Duplicate Prevention:** All import methods filter by email so existing people are skipped automatically.
 
-**Refresh cadence:** Contact import and one-off prospecting searches run when you request them. The scheduled Prospecting routine can continue searching automatically.
+**Refresh cadence:** Contact import runs when you request it. Every re-scores automatically as contacts arrive, so your prospecting targets stay current without a scheduled search.
 
 <Tip>
-  Use **Direct Import** to build the contact pool. Use **Find prospects** to identify which people in that pool fit the business audience you are targeting.
+  Use **Direct Import** to build the contact pool. Use **Add target** on the Prospects page to identify which people in that pool fit the business audience you are targeting.
 </Tip>
 
 <Tip>
   **Ask Every Agent:**
-  - "Find 10 warm leads among agency founders in my network"
-  - "What did my last prospecting search target?"
-  - "Show me my scheduled Prospecting routine"
+  - "Find prospects among agency founders in my network"
+  - "What did my last prospecting pass target?"
 </Tip>
 
 <Tip>
@@ -220,7 +237,7 @@ Agent: ✓ Sends via your Gmail
 
 ### Connection Status
 
-**View Status:** Agent → Connections → Google Workspace section
+**View Status:** Agent → Connections → **Communication** → **Gmail & Calendar**. Each connected account shows its own status.
 
 **Status Indicators:**
 - ✅ Connected
@@ -240,11 +257,11 @@ Agent: ✓ Sends via your Gmail
 
 **When Needed:** Adding new scopes, token expired, connection error, or permission changes
 
-**To Reconnect:** Agent → Connections → Reconnect Google → Log in → Grant permissions
+**To Reconnect:** Agent → Connections → **Gmail & Calendar** → **Reconnect** → Log in → Grant permissions
 
 ### Disconnecting
 
-**To Disconnect:** Agent → Connections → Google Workspace → Disconnect → Confirm
+**To Disconnect:** Agent → Connections → **Gmail & Calendar** → the account's **⋯** menu → **Disconnect** → Confirm. With more than one account connected, this disconnects only that account. To stop using an account in one workspace but keep it connected elsewhere, turn off **Use in this workspace** in the same menu.
 
 **What Happens:**
 - Stored tokens removed
@@ -277,6 +294,12 @@ Disconnecting stops future Google access. It does not remove people, company rec
 
   <Accordion title="Can Every send Gmail messages without review?">
     In interactive chat, the send tool shows the recipient, subject, and message in a permission card. Scheduled and unattended routines can prepare a draft but cannot perform the final send while nobody is present.
+
+    The one exception is a deal where you turned on [Auto mode](/prospecting/auto-mode). There, Every replies to and follows up with that deal's contact from Gmail on its own, inside the existing email thread. Each message waits a few minutes so you can cancel it, and everything it sends appears in the deal's Activity.
+  </Accordion>
+
+  <Accordion title="Can I connect more than one Gmail account?">
+    Yes. Select **Add** on the **Gmail & Calendar** row in Connections. Each account keeps its own permissions and sync settings.
   </Accordion>
 
   <Accordion title="Do I need to grant every Google permission?">

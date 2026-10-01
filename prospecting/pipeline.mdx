@@ -6,9 +6,9 @@ icon: "git-branch"
 
 ## Overview
 
-The **Sales Pipeline** is where Every turns a promising relationship into a managed sales process. Warm leads discovered by the [Prospecting Agent](/prospecting/prospecting-agent) arrive for review; approved leads get a plan, outreach drafts, linked proposals and invoices, and a history of what happened.
+The **Sales Pipeline** is where Every turns a promising relationship into a managed sales process. Warm leads discovered by the [Prospecting Agent](/prospecting/prospecting-agent) arrive for review on the **Prospects** page; approved leads get a plan, outreach drafts, linked proposals and invoices, and a history of what happened.
 
-Every prepares and updates the work, while you control who enters the pipeline and what gets sent.
+Every prepares and updates the work, while you control who enters the pipeline and what gets sent. Deals stay current from your Gmail, LinkedIn, and Instagram conversations, and for any deal you choose, [Auto mode](/prospecting/auto-mode) lets Every send replies and follow-ups on its own.
 
 <Card title="Open Deals" icon="git-branch" href="https://app.every.ai/" horizontal>
   View and manage your deals on the AI pipeline, now the **Deals** page — the first item in the left nav
@@ -16,11 +16,10 @@ Every prepares and updates the work, while you control who enters the pipeline a
 
 ## Pipeline stages
 
-**Prospects** is a review queue. The four columns after it are the active pipeline.
+The board has four columns: Lead, Opportunity, Won, and Lost. Prospects are not a column. They live on their own [**Prospects**](https://app.every.ai/prospects) page, and the Deals header shows **Prospects · N** to get there.
 
 | Column | What it means |
 |-|-|
-| **Prospects** | Agent-discovered warm leads waiting for approval or rejection. |
 | **Lead** | An approved prospect before a meaningful sales motion is underway. |
 | **Opportunity** | An active sales motion, from a positive reply through proposal, invoice, and close. |
 | **Won** | Work closed successfully under your configured criteria. |
@@ -28,27 +27,29 @@ Every prepares and updates the work, while you control who enters the pipeline a
 
 Opportunity holds the full active conversation instead of splitting every milestone into a separate stage. Proposal and invoice status appear on the deal so you can see the commercial state without rebuilding your pipeline around each document.
 
+## Stage criteria
+
+Stage criteria tell Every what each stage means for your business. They set the goal the agent works toward at each stage: how it plans each deal, which stage it thinks a deal is in, and what it tries to get out of each conversation, especially in [Auto mode](/prospecting/auto-mode).
+
+For some businesses a reply is enough to count as an Opportunity; for others it takes a booked meeting. Write the criteria that match how you sell.
+
+**To edit them:** On [**Deals**](https://app.every.ai/), select the **Deal settings** button in the header → **Stage criteria**. Select a stage (**Lead**, **Opportunity**, **Won**, or **Lost**), edit its criteria, and select **Save**. Each stage shows whether it uses Every's default or has been customized for your business.
+
+**For a single deal:** Open the deal's **Stage criteria** chip (it reads **Default** or **Customized**) to customize criteria for that deal only. Leaving a stage blank uses your workspace default.
+
+<Tip>
+  Below the criteria, **What Every learned** in Deal settings lists the lessons Every took from your guidance, stage moves, and the deals you archive.
+</Tip>
+
 ## How deals get into the pipeline
 
-- **Prospecting:** Every searches your network and puts qualified matches in Prospects.
+- **Prospecting:** Every scores your network for each target and lists qualified matches on the Prospects page. Approving one adds it to Lead.
 - **Manual deals:** Add a person or company directly to any active stage.
 - **Commercial activity:** When configured, proposals or invoices created outside the board can be linked to a deal so the sales and billing records stay connected.
 
-## Review the Prospects queue
+## Review prospects
 
-Open a prospect to see:
-
-- The reason Every surfaced the person
-- Fit and relationship scores
-- Supporting evidence and source context
-- The intended path from relationship to sale
-
-Then choose:
-
-- **Approve** — moves the person to Lead and asks the pipeline agent to build the first sales plan and outreach draft.
-- **Reject** — removes the person and prevents that person from being suggested in future Prospecting searches. An optional reason helps improve future scoring.
-
-No message is sent from Prospects.
+Prospects are reviewed on their own page, not on the board. See [Review before anything happens](/prospecting/prospecting-agent#review-before-anything-happens) for Approve, Add to deal, Reject, and bulk actions. No message is sent from Prospects.
 
 ## Plans, outreach, and activity
 
@@ -57,7 +58,8 @@ Each approved deal has a plan made of concrete next steps. The agent refreshes t
 Open a deal to:
 
 - Review the current plan and its rationale
-- Edit and send an outreach draft
+- Edit and send an outreach draft by email, or send a LinkedIn message with **Send via Every**
+- Turn [Auto mode](/prospecting/auto-mode) on or off
 - Log a call, meeting, note, or attachment
 - Draft a proposal
 - Link or inspect proposals and invoices
@@ -65,18 +67,29 @@ Open a deal to:
 - Review the chronological history
 
 <Note>
-  An agent-generated draft is not a sent message. Outreach is sent only after you review it and choose to send.
+  An agent-generated draft is not a sent message. Unless [Auto mode](/prospecting/auto-mode) is on for the deal, outreach is sent only after you review it and choose to send.
 </Note>
 
-## Reply detection
+### Sending on LinkedIn and Instagram
 
-For outreach sent through the connected Gmail account, the Deal Sync routine checks for replies and updates the deal context:
+When a plan step is a LinkedIn or Instagram message, Every drafts it for that channel.
+
+- **LinkedIn:** select **Send via Every**. Every shows the message and recipient, then sends it from your connected LinkedIn account when you confirm.
+- **Instagram:** select **Copy message** and send it from Instagram.
+
+Connect both from [LinkedIn & Instagram](/integrations/linkedin-and-instagram).
+
+## Conversations keep deals current
+
+Every reads the conversations you have with a deal's contact on Gmail, LinkedIn, and Instagram, including messages you send outside Every, and attaches each one to the right person and deal:
 
 - A positive reply can move the deal to Opportunity and trigger a new plan.
 - A neutral reply updates the plan without forcing a stage change.
 - A negative reply is recorded so the agent does not plan from stale assumptions.
 
-Gmail and Calendar events can provide real-time context; the background check provides a catch-up path when needed.
+Each deal's activity, next steps, and stage update as new messages arrive, so the board shows where each conversation stands and which channel reaches each person.
+
+Gmail and Calendar events can provide real-time context, and the Deal Sync routine checks for replies as a catch-up path. LinkedIn and Instagram messages sync on their own while **Sync deal-related messages** is on for that network. See [LinkedIn & Instagram](/integrations/linkedin-and-instagram#what-syncs).
 
 ## Proposals and invoices
 
@@ -91,17 +104,21 @@ See [Invoices & Proposals](/billing/invoices-and-proposals) for the full proposa
 
 ## Human control and learning
 
-Manual stage moves are authoritative: the agent replans around the stage you chose. Every also learns from durable signals such as rejections with reasons, edited outreach, stage moves, and won/lost outcomes. You can review Warm Lead preferences separately from the plan for an individual deal.
+Manual stage moves are authoritative: the agent replans around the stage you chose. Every also learns from durable signals such as rejections with reasons, edited outreach, stage moves, and won/lost outcomes. You can review prospecting lessons under **What Every learned** in **Prospecting settings** on the Prospects page, separately from the plan for an individual deal.
 
 ## Frequently asked questions
 
 <AccordionGroup>
   <Accordion title="Does Every send outreach automatically?">
-    No. The pipeline agent prepares the plan and draft, but you review the message and initiate the send. Unattended routines can prepare work but cannot send external messages on their own.
+    Not by default. The pipeline agent prepares the plan and draft, and you review the message and initiate the send. If you turn on [Auto mode](/prospecting/auto-mode) for a deal, Every replies and follows up with that deal's contact on its own, inside existing Gmail, LinkedIn, or Instagram conversations. Each message waits a few minutes so you can cancel it.
+  </Accordion>
+
+  <Accordion title="Where do I change what counts as an Opportunity or a Win?">
+    In [stage criteria](#stage-criteria): Deals → **Deal settings** → **Stage criteria**. The agent plans and moves deals against those criteria.
   </Accordion>
 
   <Accordion title="Is Prospects a pipeline stage?">
-    No. Prospects is a review queue for agent-discovered matches. A lead enters the active pipeline only after approval.
+    No. Prospects is a review list for agent-discovered matches on the Prospects page. A prospect enters the active pipeline only after approval.
   </Accordion>
 
   <Accordion title="Why does Every need a Person or Company before Won?">
@@ -120,12 +137,20 @@ Manual stage moves are authoritative: the agent replans around the stage you cho
     Find and score warm leads from your existing network
   </Card>
 
+  <Card title="Auto mode" icon="zap" href="/prospecting/auto-mode">
+    Let Every reply and follow up on a deal without asking first
+  </Card>
+
+  <Card title="LinkedIn & Instagram" icon="messages-square" href="/integrations/linkedin-and-instagram">
+    Keep deals current from your LinkedIn and Instagram messages
+  </Card>
+
   <Card title="Invoices & Proposals" icon="file-text" href="/billing/invoices-and-proposals">
     Turn accepted work into billing
   </Card>
 
   <Card title="Scheduled Tasks" icon="clock" href="/scheduled-tasks/scheduled-tasks">
-    Manage the scheduled Prospecting search and other recurring agent tasks
+    Manage other recurring agent tasks
   </Card>
 
   <Card title="Companies" icon="building-2" href="/network/companies">

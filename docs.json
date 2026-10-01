@@ -65,7 +65,8 @@
         "group": "Prospecting & Pipeline",
         "pages": [
           "prospecting/prospecting-agent",
-          "prospecting/pipeline"
+          "prospecting/pipeline",
+          "prospecting/auto-mode"
         ]
       },
       {
@@ -113,10 +114,12 @@
           "integrations/slack",
           "integrations/stripe",
           "integrations/google-workspace",
+          "integrations/linkedin-and-instagram",
           "integrations/xero",
           "integrations/hubspot",
           "integrations/granola",
-          "integrations/connect-ai-tools"
+          "integrations/connect-ai-tools",
+          "integrations/api-keys"
         ]
       },
       {
