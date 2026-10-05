@@ -98,6 +98,20 @@ Open **Settings → MCP Servers → Add Server**, choose HTTP, and enter `https:
 
 Use the server URL and Streamable HTTP transport above. The client must support remote OAuth-authenticated MCP servers.
 
+## New to Every? Sign up from your assistant
+
+You don't need an Every account before connecting. Ask your assistant to sign you up, then:
+
+1. **Connect the server** with the URL above. When the browser opens, create your account (or sign in) on Every's own page. Your assistant never sees your password or any code.
+2. **Confirm your business.** The assistant calls `get_signup_status`, which returns suggested values for your organization name, description and public links, inferred from your mailbox and the web. The suggestions are unverified, so the assistant asks you once to confirm or change them. Only the organization name is required.
+3. **Finish.** The assistant calls `complete_signup` with what you confirmed. Your account is ready right away; Business DNA and other setup continue in the background.
+
+Until signup is finished, Every's other tools answer `signup_incomplete` and point the assistant to `get_signup_status`. If you already have an account, `get_signup_status` returns `ready` and the assistant continues with the normal tools.
+
+<Tip>
+  Coding agents can do the same from a shell with the [Every CLI](/cli/every-cli#sign-up-for-every-from-the-cli): `every signup`.
+</Tip>
+
 ## What connected assistants can do
 
 The current Admin MCP includes tools across:

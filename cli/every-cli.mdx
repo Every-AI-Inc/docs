@@ -40,8 +40,40 @@ Requires [Node.js](https://nodejs.org) 18 or newer.
 </Steps>
 
 <Note>
-  **Headless / CI:** set the `EVERY_TOKEN` environment variable to a valid access token to skip the browser flow entirely. `every login` requires an interactive terminal and exits with code `3` without one, so it never hangs a script.
+  **Headless / CI:** set the `EVERY_TOKEN` environment variable to a valid access token to skip the browser flow entirely. `every login` requires an interactive terminal and exits with code `3` without one, so it never hangs a script. `every signup` (below) does not need a terminal.
 </Note>
+
+## Sign up for Every from the CLI
+
+New to Every? `every signup` creates your account, or signs you in if you already have one, in one browser step. A coding agent can run it for you: it needs no interactive terminal and never waits for Enter. Requires CLI 0.8.0 or newer.
+
+<Steps>
+  <Step title="Authorize in the browser">
+    ```bash
+    every signup
+    ```
+    The CLI prints an authorization URL, tries to open your browser, and waits up to 5 minutes (`--timeout <seconds>` to change it). Sign in or create your account on Every's own page. The CLI never sees your password or any code.
+  </Step>
+  <Step title="Confirm your business name">
+    If the account is new, the CLI reports `needs_profile` with suggested values for your organization name, description and public links, inferred from your mailbox and the web. Suggestions are unverified: confirm or change them.
+    ```bash
+    every signup complete --org-name "Acme Studio" --description "Brand design for startups" --link https://acme.studio --yes
+    ```
+    Only `--org-name` is required. The account is ready as soon as this returns; Business DNA and other setup continue in the background.
+  </Step>
+  <Step title="Check status any time">
+    ```bash
+    every signup status
+    ```
+    Returns `ready` for an account that is good to go.
+  </Step>
+</Steps>
+
+Until signup is finished, other tools return `error.code: "signup_incomplete"` and the CLI names the command that finishes it. If the browser step is denied or times out, the command exits `3`; run `every signup` again. `every login --create-account` still works as an alias for `every signup`.
+
+<Tip>
+  **For agents:** run `every signup --json`. Stdout is NDJSON: an `authorization_required` event with the `url`, a `waiting_for_authorization` event with `browser_opened`, then the usual envelope. Give the person the URL only if `browser_opened` is false. Ask once to confirm the organization name (and, optionally, description and links), then run `every signup complete ... --yes --json`. Never ask for passwords, codes or tokens.
+</Tip>
 
 ## Output contract
 
@@ -61,7 +93,7 @@ Branch on the process **exit code** rather than scraping text:
 | `0` | Success | Read `data` |
 | `1` | Tool or generic error | Read `error.message` before retrying |
 | `2` | Usage error | Fix the command or arguments |
-| `3` | Auth required or expired | Run `every login` |
+| `3` | Auth required or expired | Run `every signup` (any context), or `every login` at a terminal |
 | `4` | Permission / confirmation needed | Add the required local safety flag, or approve a pending sensitive action in Every and retry identically |
 | `5` | Rate limited | Back off and retry |
 | `6` | Not found | Re-list and verify the ID |
@@ -125,7 +157,9 @@ every contact list --search "acme" --json
 ```
 
 ```bash Auth & identity
-every login                        # browser sign-in
+every signup                       # create an account, or sign in, in one browser step
+every signup status                # is signup finished?
+every login                        # browser sign-in (interactive terminal)
 every whoami                       # user, org, environment, tool count
 every auth status                  # local session state (no network)
 every org                          # the organization commands act on
@@ -141,7 +175,7 @@ If you're a coding agent driving this CLI, four rules make you reliable:
 
 <Tip>
   1. **Always pass `--json`** and read the envelope (`ok`, `data`/`error.code`, `env`, `schema_version`).
-  2. **Branch on exit codes**, not on stderr text — exit `3` means tell the user to run `every login`.
+  2. **Branch on exit codes**, not on stderr text — exit `3` means run `every signup` (or ask the user to run `every login` at a terminal).
   3. **Never guess an ID.** List or search first, then act with the exact ID returned in `[id: ...]`.
   4. **Only add `--yes` / `--allow-destructive` when the human explicitly asked** for that write or send.
 </Tip>

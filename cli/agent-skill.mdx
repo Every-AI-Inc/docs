@@ -59,6 +59,7 @@ You can also install it through your agent's plugin system, which delivers the s
 ## What the skill teaches
 
 - **The output contract** — always `--json`, parse the envelope, branch on exit codes.
+- **Signing a user up** — run `every signup --json` for them, share the authorization URL only if the browser did not open, ask one combined question to confirm the organization name (description and links optional), then `every signup complete ... --yes --json`. Never ask for passwords, codes or tokens. CLI 0.8.0+ refreshes an older installed copy of the skill on `every signup` and `every login`.
 - **ID discipline** — list or search first, act only with the exact ID returned; ask when a name is ambiguous.
 - **Safety choreography** — reads run free; add `--yes` only for a requested write; add `--allow-destructive` only for a requested send/delete/payment; satisfy Every's server confirmation when requested; after a human approves a sensitive action in Every, retry only the identical command.
 - **Every's domain rules**, the things a generic tool description can't convey — for example:
