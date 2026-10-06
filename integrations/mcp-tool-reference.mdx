@@ -80,8 +80,8 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `get_pipeline_settings` | Read | Read the org's pipeline (sales stage) settings: each stage's (lead, opportunity, won, lost) success criteria and whether the agent is allowed to move a deal into it, plus whether Won automation is enabled overall. | None | None |
 | `list_deals` | Read | List pipeline deals. | `stage`, `review_state`, `search`, `limit`, `offset`, `order_by`, `order_desc`, `response_format`, `include_archived` | None |
 | `list_workspace_deals` | Read | Read all supported deal lanes with bounded cards and exact visible counts. | `stage`, `search`, `offset`, `limit` | None |
-| `view_deal` | Read | View a single deal with stage, Person or Company, plan snapshot, and recent activity. | `deal_id`* | None |
-| `create_deal` | Write | Create a manual pipeline deal at Lead or Opportunity. | `target_name`*, `party`, `target_email`, `target_company_name`, `target_role`, `notes`, `stage` | Confirmation phrase |
+| `view_deal` | Read | View a single deal with stage, Person or Company, sales strategy and its target, plan snapshot, and recent activity. | `deal_id`* | None |
+| `create_deal` | Write | Create a manual pipeline deal at Lead or Opportunity. | `target_name`*, `party`, `target_email`, `target_company_name`, `target_role`, `notes`, `stage`, `sales_strategy_id` | Confirmation phrase |
 | `create_delivery_deal` | Write | Start delivery tracking at Won for an existing Person or Company. | `party`*, `name`, `budget_type`, `budget_amount`, `budget_hours`, `budget_currency`, `retainer_period`, `prior_deal_id` | Confirmation phrase |
 | `set_deal_name` | Write | Set or clear WHAT a Deal is called (the name of the work, e.g. | `deal_id`*, `name` | Confirmation phrase |
 | `set_deal_value_estimate` | Write | Set or clear a manual value estimate on one Deal. | `deal_id`*, `target_value` | Confirmation phrase |
@@ -94,6 +94,14 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `archive_deal` | Write | Archive an approved deal: it leaves the Deals board but keeps its stage, history and linked records, and can be restored from Archived deals. | `deal_id`* | Confirmation phrase |
 | `delete_deal` | Sensitive write | Permanently delete a deal with its messages, members and links; an active deal is archived first. | `deal_id`*, `operation_id` | Approve in the Every app |
 | `approve_pending_deal` | Write | Approve a prospect awaiting review, activate it in Lead, and queue its plan. | `deal_id`* | Confirmation phrase |
+
+### Sales strategies
+
+| Tool | Class | What it does | Inputs | Every approval |
+|-|-|-|-|-|
+| `list_sales_strategies` | Read | List the default sales strategy and strategies from active targets. | `include_ids`, `limit`, `offset` | None |
+| `set_deal_sales_strategy` | Write | Switch one visible Deal to a content-ready sales strategy, or null for the default. | `deal_id`*, `operation_id`*, `expected_assignment_rev`*, `sales_strategy_id` | Confirmation phrase |
+| `update_sales_strategy` | Write | Edit a shared sales strategy for all its Deals. | `sales_strategy_id`*, `expected_revision`*, `summary`* | Confirmation phrase |
 
 ### Prospects
 
@@ -200,4 +208,4 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `get_daily_brief` | Read | Read the caller's latest stored daily brief, optionally for a UTC date. | `date` | None |
 | `get_financial_report` | Read | Get revenue, outstanding AR, expenses, net, proposals, and recurring totals. | `entities` | None |
 
-116 tools: 55 read, 39 write, 22 sensitive write.
+119 tools: 56 read, 41 write, 22 sensitive write.
