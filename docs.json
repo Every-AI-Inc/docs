@@ -119,6 +119,7 @@
           "integrations/hubspot",
           "integrations/granola",
           "integrations/connect-ai-tools",
+          "integrations/mcp-tool-reference",
           "integrations/api-keys"
         ]
       },
