@@ -107,12 +107,23 @@ The CLI classifies every tool and gates it locally, then Every applies its serve
 
 - **Reads** run freely.
 - **Writes** (create/update) require `--yes`.
-- **Destructive or external-impact actions** — sending invoices/proposals, deletes, voids, recording payments — require **both** `--yes` and `--allow-destructive`.
+- **Destructive or external-impact actions** — sending invoices, proposals and deal messages, deletes, voids, recording payments — require **both** `--yes` and `--allow-destructive`.
 - **`--read-only`** (or the `EVERY_READ_ONLY=1` environment variable) blocks anything that isn't a read, for safe automation.
+
+Each verb gets the gate that fits it:
+
+| Command | Local flags | In Every |
+|-|-|-|
+| `list`, `view`, `deal stages`, `approvals` | None | Runs at once |
+| `create`, `update`, `deal move`, `deal outreach edit`, `deal outreach cancel` | `--yes` | Confirmation phrase, handled by the CLI |
+| `invoice send`, `proposal send`, `deal outreach send` | `--yes --allow-destructive` | Waits for your approval in Settings → Approvals |
+| `every tool call deal_outreach` (any action) | `--yes --allow-destructive` | A send waits for approval. Edit and cancel take a confirmation phrase |
 
 For ordinary writes, Every may return an exact action-and-target confirmation. In an interactive terminal, CLI 0.6.3 or newer can confirm the trusted phrase and retry once after your local consent.
 
-Higher-impact actions also create a request in [**Every → Settings → Approvals**](https://app.every.ai/settings/approvals). The CLI never automatically retries a human-approved action: after approving, rerun the identical command with the same arguments and flags within 10 minutes.
+Higher-impact actions also create a request in [**Every → Settings → Approvals**](https://app.every.ai/settings/approvals). The CLI never automatically retries a human-approved action: after approving, rerun the identical command with the same arguments and flags within 24 hours. An approval belongs to the connection that asked for it, and can be used once.
+
+Archiving a deal from the CLI needs only the confirmation phrase, not an approval, because you can restore it. Archiving or deleting People and Companies, deleting deals, and every send still wait for approval.
 
 In a non-interactive context, a missing flag fails fast with exit code `4` and names the exact flag needed — it never silently prompts and hangs.
 
@@ -151,9 +162,36 @@ every tool call create_invoice --args invoice.json --yes --json
 every invoice list --status overdue --json
 every invoice create --client "Acme Consulting" --amount 100 --yes --json
 every invoice send <invoice_id> --yes --allow-destructive --json
-every deal list --stage opportunity --json
+every deal stages --json           # your workspace's stages, in order
+every deal list --stage "Discovery booked" --json
 every deal move <deal_id> won --yes --json
 every contact list --search "acme" --json
+```
+
+```bash People & Companies
+every company list --search "acme" --json
+every company view <company_id> --json
+every company create --name "Acme Consulting" --website https://acme.example --yes --json
+every person view <person_id> --json
+every person create --name "Jane Doe" --email jane@example.com --company "Acme Consulting" --yes --json
+```
+
+```bash Deals
+every deal list --attention needs_reply,step_due --json   # deals that need you
+every deal list --stale-days 14 --mine --json             # your deals with no activity for 14 days
+every deal list --since 2026-11-09T08:00:00Z --sort last_activity_at --json
+every deal view <deal_id> --plan --draft --auto-sends --json
+every deal create --person-id <person_id> --deal-name "Q1 brand refresh" --value 12000 --yes --json
+every deal update <deal_id> --value 15000 --owner me --yes --json
+every deal move <deal_id> "Proposal sent" --yes --json
+```
+
+```bash Deal messages & approvals
+every deal outreach edit <deal_id> --body-file reply.txt --yes --json
+every deal outreach send <deal_id> --yes --allow-destructive --json
+every deal outreach cancel <deal_id> --send-id <send_id> --yes --json
+every approvals --json             # requests from this connection that wait or are approved
+every approvals --all --json       # every request of the last 24 hours
 ```
 
 ```bash Auth & identity
@@ -168,6 +206,58 @@ every logout
 </CodeGroup>
 
 `every invoice create` resolves the client by name — if the name is ambiguous it returns exit code `6` with the candidate list (each `client_id` and name) so a retry with `--client-id` is mechanical.
+
+Short commands such as `every deal update` call one tool each. `every tool call <tool>` still works for every tool. Stages are per workspace, so `--stage` and `deal move` take a stage key or a label from `every deal stages`. Short commands for companies, people, deal views and updates, deal messages and approvals need CLI 0.10.0 or newer.
+
+### Update a deal
+
+`every deal update` changes only the fields you pass: `--name`, `--value`, `--owner` (`me`, a teammate's email or a user id), `--person-id` or `--company-id`, `--add-member` and `--remove-member`. It has no goal flag, because a goal change replaces the whole goal. To change what a deal sells, call the tool directly:
+
+```bash
+every tool call update_deal --args goal.json --yes --json
+```
+
+`update_deal` replaces the older `set_deal_name` and `set_deal_value_estimate` tools. They still work for now, but new scripts should use `update_deal`.
+
+### Send a deal's next message
+
+Every keeps one draft for the message a deal owes. Read it, edit it if needed, then ask to send it:
+
+<Steps>
+  <Step title="Read the draft">
+    ```bash
+    every deal view <deal_id> --draft --json
+    ```
+    The result shows the draft's channel (email, LinkedIn or Instagram), recipient, subject, text and draft version.
+  </Step>
+  <Step title="Edit it (optional)">
+    ```bash
+    every deal outreach edit <deal_id> --subject "Next steps" --body-file reply.txt --yes --json
+    ```
+    `--recipient` must be an email address of a Person on the deal. `--thread` takes one of the deal's Gmail threads, or `new` for a new email. A LinkedIn or Instagram draft has only a body.
+  </Step>
+  <Step title="Ask to send it">
+    ```bash
+    every deal outreach send <deal_id> --yes --allow-destructive --json
+    ```
+    The CLI reads the draft again, shows its channel, recipient, subject and text, and asks to send that exact version. Pass `--draft-version <v>` to send a version you already read. Every then holds the send for you: the command exits `4`, and `error.approvals_url` links to Settings → Approvals.
+  </Step>
+  <Step title="Approve, then run the same command again">
+    Review the To, Cc, subject and text on the approval card and approve it. Then rerun the identical command within 24 hours to send.
+  </Step>
+</Steps>
+
+If the draft changed after you approved, or a new reply reached the deal, Every refuses the send and nothing goes out. Read the draft again and ask for a new approval. If the send fails at your mail provider, the approval is used up. If the channel can't be sent from Every, for example because your LinkedIn or Instagram account isn't connected, the result gives you the text to send yourself.
+
+To stop a scheduled or held send, use `every deal outreach cancel <deal_id> --send-id <send_id> --yes`. The send ids are in `every deal view <deal_id> --auto-sends`.
+
+### Check approvals
+
+`every approvals` lists the requests that wait for approval in Every: status, tool, deal and action, the connection that asked, and when each was created and expires. By default it shows the pending and approved requests of this connection. `--all` shows every request of the last 24 hours. It is read only: you approve in [**Settings → Approvals**](https://app.every.ai/settings/approvals), never from the CLI.
+
+<Card title="Automate your CRM with an agent" icon="robot" href="/integrations/automate-with-an-agent">
+  Run your deals and prospects on a schedule with the CLI and the use-every skill
+</Card>
 
 ## For AI agents
 

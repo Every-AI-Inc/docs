@@ -14,7 +14,9 @@ The connection is for you and your team as business operators. Client self-servi
   [Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting an AI client to tools and data. The AI client supplies the conversation; Every supplies authenticated business tools.
 </Note>
 
-This page covers connecting an assistant you sign in to yourself. For a script, a CI job or an agent that runs with nobody signed in, use an [API key](/integrations/api-keys) instead.
+This page covers connecting an assistant you sign in to yourself. To have an agent work your deals and prospects on a schedule, see [Automate your CRM with an agent](/integrations/automate-with-an-agent).
+
+For a script, a CI job or an agent that runs with nobody signed in, use an [API key](/integrations/api-keys) instead. A key reaches only the areas ticked on it, never Gmail, your calendar or the Daily Brief, and can't send email, invoices or proposals, or read or send deal drafts.
 
 ## Connection details
 
@@ -139,7 +141,7 @@ Every's MCP server classifies actions before dispatch:
 
 - **Reads** run without a write confirmation.
 - **Ordinary writes** require an exact action-specific confirmation phrase.
-- **Higher-risk actions**, including external sends and destructive changes, create a short-lived approval request for the signed-in user. The approved request is bound to that organization, requester, tool, and exact normalized arguments, and can be consumed once.
+- **Higher-risk actions**, including external sends and destructive changes, create an approval request for the signed-in user that stays open for 24 hours. The approved request is bound to that organization, requester, connection, tool, and exact normalized arguments, and can be consumed once.
 
 Client behavior varies, so do not rely on an AI assistant's wording alone. Read the target identifiers, recipient, amount, and other arguments shown in the confirmation or Every approval card.
 
@@ -163,7 +165,7 @@ Organizations originally created through an MCP connection can receive the curre
   </Accordion>
 
   <Accordion title="Can a connected assistant send an invoice immediately?">
-    A send is a higher-risk action. Every creates an out-of-band approval request for the signed-in user, bound to the exact operation. Review the recipient and invoice before approval.
+    No. A send is a higher-risk action. Every creates an approval request for the signed-in user, bound to the exact operation, and it waits up to 24 hours. Review the recipient and invoice before approval.
   </Accordion>
 
   <Accordion title="Is the MCP connection a copy of my CRM?">

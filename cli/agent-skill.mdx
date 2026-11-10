@@ -10,6 +10,11 @@ The Every CLI ships with a **skill** called `use-every` — a set of instruction
 
 Without the skill an agent can still use the CLI — the commands are self-describing via `every docs` and `every tools describe`. With the skill, it gets there in far fewer steps and avoids the common mistakes.
 
+Since CLI 0.10.0 the skill has two parts:
+
+- **General use** covers requests you make in the conversation: invoices, People, Companies, proposals, deals and the rest of Every.
+- **Agent automation** is a routine for an agent that runs your deals and prospects on a schedule. See [Automate your CRM with an agent](/integrations/automate-with-an-agent).
+
 ## Bundled vs. installed
 
 <Note>
@@ -42,6 +47,16 @@ Without the skill an agent can still use the CLI — the commands are self-descr
   You don't have to remember the command. After `every login` in an interactive terminal, the CLI detects Claude Code or Codex on your machine and offers to install the skill for you — just pick an option at the prompt.
 </Tip>
 
+### Refresh an installed copy
+
+An installed copy doesn't change when you update the CLI. To get the latest skill, including the Agent automation part:
+
+1. Update the CLI: `npm install -g @everyai/cli@latest`.
+2. Run `every login` (or `every signup`). The CLI refreshes any copy it installed earlier that is older than the bundled skill. It never installs a new copy and skips symlinked copies.
+3. Or run `every skills install claude` (or `codex`) again in the same folder. It replaces the copy there.
+
+Commit the refreshed files if the skill lives in your repo.
+
 ### As a plugin
 
 You can also install it through your agent's plugin system, which delivers the skill and points you at the CLI:
@@ -67,5 +82,6 @@ You can also install it through your agent's plugin system, which delivers the s
   - Only issued or approved proposals convert to invoices, and conversion (not manual re-creation) preserves the link.
   - Invoice line items use per-unit prices; Every applies the business's default tax automatically.
   - For "who owes me money", filter by status and paginate to completion before totaling.
+- **Agent automation** — a routine for a scheduled run: start with Priorities and the approvals it is waiting on, sweep deals that need a reply, have a step due, have a draft ready or have gone quiet, read each deal's plan and draft, edit the draft and ask to send it, close plan steps, move stages with a reason, archive dead deals, approve, merge or reject prospects by your rules, and end with a short report. It never approves its own sends and never waits inside a run: it repeats an approved request on the next run.
 
 The result: an agent that behaves like it already knows how your business runs in Every.

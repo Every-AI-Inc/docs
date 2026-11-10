@@ -4,6 +4,30 @@ description: "Latest features and improvements in Every"
 icon: "sparkles"
 ---
 
+## November 2026
+
+### Run your pipeline with your own agent
+
+Released November 10, 2026.
+
+Before, an AI agent could look at your deals but couldn't keep them moving: it couldn't find what needed attention in one step, read a deal's full plan and draft, or send the deal's next message. Now your own agent can run your deals and prospects on a schedule, and you approve every message before it goes out.
+
+**What's new:**
+- **Find what needs attention** — list deals that need a reply, have a step due, have a draft ready, or have gone quiet, and what changed since the last run
+- **Follow up from the deal** — read the deal's full plan and draft, edit the draft, and ask to send it on email, LinkedIn or Instagram. The send waits for your approval
+- **Keep deals current** — close or skip plan steps, move stages with a reason, and change a deal's name, value estimate, owner, Person or Company, or members in one step with `update_deal`. `set_deal_name` and `set_deal_value_estimate` still work but are deprecated
+- **Approvals wait 24 hours** — a request from an AI tool or the CLI now waits a day instead of 10 minutes, so a daily agent can pick up your decision on its next run. Requests from one agent run can be allowed or cancelled together
+- **Archive without a tap** — archiving a deal from the CLI or a direct MCP connection takes a typed confirmation, and you can restore it any time
+- **API keys do more for deals** — a key with the Deals write permission can approve, merge and reject prospects and create prospecting targets, and the Deals read permission covers your Priorities
+- **CLI 0.10.0** — `every deal stages`, `every company list|view|create`, `every person view|create`, `every deal view|create|update`, new `every deal list` filters, `every deal outreach edit|send|cancel` and `every approvals`. The use-every skill adds an Agent automation part, and server refusals now show their reason
+
+The ChatGPT app and Claude.ai connectors get these tools later. Today they work through the Every CLI and direct MCP connections such as Claude Code, Codex and Cursor.
+
+**How to use it:**
+Run `npm install -g @everyai/cli@latest`, sign in with `every login`, and follow the routine in [Automate your CRM with an agent](/integrations/automate-with-an-agent). Full details: [Every CLI](/cli/every-cli), [Approvals](/reference/approvals), and [API keys](/integrations/api-keys).
+
+---
+
 ## October 2026
 
 ### Sign up for Every from ChatGPT, Claude or the CLI

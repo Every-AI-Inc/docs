@@ -16,7 +16,7 @@ Use it when the caller is a machine: a nightly sync, a webhook handler, a GitHub
 
 ## Creating a key
 
-Go to [**Settings**](https://every.ai/settings) → **API keys** → **Create key**. You'll choose a name, tick the permissions the key needs, pick an expiry, and optionally set a rate limit.
+Go to [**Settings → Apps**](https://app.every.ai/settings/apps), scroll to **API keys** at the bottom of the page, and choose **Create key**. You'll choose a name, tick the permissions the key needs, pick an expiry, and optionally set a rate limit.
 
 The key looks like this:
 
@@ -30,7 +30,7 @@ evk_3f1c8e02-4b77-4e6c-9a19-2d0f5b7a6c31.Xk9tQ2vR7pL4mN8wZ1yB6hC3jD5sF0aG
 
 ### Permissions
 
-Permissions are ticked individually at creation. There are ten areas, each with a separate **Read** and **Write** permission, grouped in the UI as:
+Permissions are ticked individually at creation. There are ten areas, each with a separate **Read** and **Write** permission. People, Companies and Deals also have a **Delete** permission, which permanently deletes those records with no approval step. The areas are grouped in the UI as:
 
 | Group | Areas |
 |-|-|
@@ -43,6 +43,17 @@ Internally each one is a scope named `<area>:<action>` — `people:read`, `deals
 <Tip>
   Tick the narrowest set that does the job. A CI job that files new leads usually needs `people:write` and `deals:write` and nothing else.
 </Tip>
+
+#### What the Deals permissions cover
+
+- **`deals:read`** reads deals, prospects, prospecting targets, pipeline settings and your Priorities (the ranked list of what needs attention).
+- **`deals:write`** creates and updates deals (`update_deal`), moves stages, logs activity and closes plan steps. It also **approves, merges and rejects prospects, and creates prospecting targets**.
+
+<Warning>
+  A key with `deals:write` approves, merges and rejects prospects with **no approval step**: ticking the permission is the approval. Rejecting a prospect hides that person from prospecting across your whole workspace, and a new prospecting target can start paid prospecting work. Give a key this permission only if you trust the job that uses it.
+</Warning>
+
+For an agent that runs your deals on a schedule, see [Automate your CRM with an agent](/integrations/automate-with-an-agent).
 
 ### Expiry
 
@@ -79,9 +90,9 @@ every tool call create_deal --args deal.json --yes
 
 `--args` takes a path to a JSON file containing that tool's arguments. `--yes` skips the interactive confirmation, which a headless job can't answer.
 
-<Warning>
-  `every whoami` does **not** work with an API key — it expects a signed-in person's identity. Use `every tools list` to confirm a key is valid and to see what it can reach.
-</Warning>
+<Note>
+  With CLI 0.7.1 or newer, `every whoami` confirms a key: it reports that you're signed in with an API key, the environment, and how many tools the key can reach. `every tools list` shows exactly which tools those are.
+</Note>
 
 ### GitHub Actions
 
@@ -197,22 +208,23 @@ Calling a tool is the same shape with `"method": "tools/call"`:
 
 ## Security
 
-### What no key can ever do
+### What a key cannot do
 
-Some capabilities are **unreachable at any combination of permissions**. They aren't unticked by default — they were removed from the key path entirely, because a headless job has nobody to approve a send or a delete:
+Some capabilities are **unreachable at any combination of permissions** you can tick today, because a headless job has nobody signed in:
 
-| Never available to a key | Why |
+| Not available to a key | Why |
 |-|-|
-| Sending email | No one is there to approve an outbound message |
-| Deleting anything | Destructive and unapprovable without a human |
-| Voiding or cancelling | Same — irreversible actions need a person |
+| Sending email, invoices or proposals | No one is there to approve an outbound message |
+| Reading or sending a deal's draft (for now) | A key sees only that a draft exists and its status. An agent that needs drafts and sends uses the [Every CLI](/cli/every-cli) signed in as you, or a direct MCP connection |
+| Archiving deals (for now) | The key dialog doesn't offer this permission yet |
+| [Scheduled tasks](/scheduled-tasks/scheduled-tasks) (for now) | The key dialog doesn't offer these permissions yet |
+| Deleting anything other than People, Companies and Deals | Needs a person to approve. People, Companies and Deals can be deleted only with their **Delete** permission |
+| Voiding invoices or proposals | Irreversible actions need a person |
 | Gmail (search, read, draft) | These act on a **person's** connected Google account, not the org's |
 | Calendar (list, create, reschedule) | Same — tied to a person's Google connection |
-| [Scheduled tasks](/scheduled-tasks/scheduled-tasks) | A key must not be able to mint unattended agent runs |
-| Business settings and [business DNA](/ai/business-dna) | Rewrites your org's identity |
+| The [Daily Brief](/scheduled-tasks/daily-brief) | It can contain summarized Gmail content |
+| Business settings and [Business DNA](/ai/context-and-voice) | Rewrites your org's identity |
 | Onboarding and help tools, including the Assistant | These can mint a one-time sign-in handoff link |
-
-This holds for stored agent output too — the [Daily Brief](/scheduled-tasks/daily-brief) and heartbeat summaries are off limits to keys because they can contain summarized Gmail content.
 
 ### A key acts as its creator
 
@@ -268,7 +280,7 @@ The list is filtered to the key's permissions. Mint a new key with the missing a
 Check whether the key expired, was revoked, or whether the admin who created it lost admin rights in the org. All three fail the same way.
 
 **`every whoami` fails?**
-Expected — it needs a signed-in person. Use `every tools list` instead.
+Update the CLI to 0.7.1 or newer. Older versions expected a signed-in person and could not read a key.
 
 **Need help?**
 Contact [hello@every.ai](mailto:hello@every.ai).
