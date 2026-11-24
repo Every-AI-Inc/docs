@@ -95,7 +95,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `view_deal` | Read | View a single deal with stage, Person or Company, sales strategy and its target, plan snapshot, and recent activity. | `deal_id`*, `include` | None |
 | `create_deal` | Write | Create a manual pipeline deal at Lead or Opportunity. | `target_name`*, `party`, `target_email`, `target_company_name`, `target_role`, `notes`, `stage`, `sales_strategy_id`, `name`, `value_estimate`, `owner`, `goal` | Confirmation phrase |
 | `update_deal` | Write | Change one or more fields of a Deal in one call. | `deal_id`*, `name`, `value_estimate`, `owner`, `party`, `members`, `goal` | Confirmation phrase |
-| `deal_outreach` | Sensitive write | Edit, send or cancel the message that a Deal owes, on the Deal's own draft. | `deal_id`*, `action`*, `draft_version`, `subject`, `body`, `recipient`, `thread_id`, `send_id` | send: approve in the Every app. edit and cancel: confirmation phrase |
+| `deal_outreach` | Action-dependent write | Draft, revise, edit, send, or cancel outreach on a deal. | `deal_id`*, `action`*, plus the action inputs below | Send requires approval in Every. Other actions use the confirmation phrase. |
 | `create_delivery_deal` | Write | Start delivery tracking at Won for an existing Person or Company. | `party`*, `name`, `budget_type`, `budget_amount`, `budget_hours`, `budget_currency`, `retainer_period`, `prior_deal_id` | Confirmation phrase |
 | `set_deal_name` | Write | Set or clear the name of the work on one Deal. Deprecated: use update_deal (name). | `deal_id`*, `name` | Confirmation phrase |
 | `set_deal_value_estimate` | Write | Set or clear a value estimate on one Deal. Deprecated: use update_deal (value_estimate). | `deal_id`*, `target_value` | Confirmation phrase |
@@ -108,6 +108,34 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `archive_deal` | Write | Archive an approved deal: it leaves the Deals board but keeps its stage, history and linked records, and can be restored from Archived deals. | `deal_id`*, `operation_id`, `reason` | Confirmation phrase |
 | `delete_deal` | Sensitive write | Permanently delete a deal with its messages, members and links. | `deal_id`*, `operation_id` | Approve in the Every app |
 | `approve_pending_deal` | Write | Approve a prospect awaiting review, activate it in Lead, and queue its plan. | `deal_id`* | Confirmation phrase |
+
+#### Deal outreach actions
+
+Read the current draft with `view_deal` and `{"deal_id":"<deal-id>","include":["draft"]}`. Use its `draft_version` for the next edit, redraft, or send. Field visibility depends on your access. Use `deal_outreach` for a deal plan step. The separate `draft_email` tool creates a Gmail mailbox draft.
+
+| Action | Additional inputs | Result |
+|-|-|-|
+| `draft` | Optional `channel` (`email`, `linkedin`, or `instagram`) | Writes an unsent message for the deal owner. Omit the channel to follow the plan. |
+| `redraft` | Required `draft_version` and `operation_id` (UUID). Optional `instruction`. | Revises the saved draft on its channel. An email instruction can change the thread, recipients, subject, and body together. |
+| `edit` | At least one of `subject`, `body`, `recipient`, `cc`, or `thread_id`. Email requires `draft_version`. | Changes exact fields. A DM accepts body edits. A new primary email recipient must be a Person on the deal. |
+| `send` | Required `draft_version` | Requests approval for the reviewed version. Every refuses a changed draft. |
+| `cancel` | `send_id` from `view_deal` with `include: ["auto_sends"]` | Stops a scheduled or held send. |
+
+Example arguments for `deal_outreach`:
+
+```json
+{
+  "deal_id": "<deal-id>",
+  "action": "redraft",
+  "draft_version": "<reviewed-version>",
+  "operation_id": "6c93b868-9978-4c3d-9aa0-3a03430fb028",
+  "instruction": "Start a new email to the deal contact alone and keep the pilot terms."
+}
+```
+
+Generate a fresh UUID for each new Redraft request. After a timeout, repeat the original request with the same UUID, version, and instruction. After `draft_changed`, reread the draft and review the audience again.
+
+For an exact email edit, `cc: []` clears all copies. An address array replaces the list. Omit `cc` on a copy-only edit to preserve it. Changing recipient or thread resets inherited copies. Use `thread_id: "new"` for a new email or supply the Gmail thread ID of a conversation on the deal.
 
 ### Sales strategies
 

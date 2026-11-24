@@ -169,6 +169,36 @@ every logout
 
 `every invoice create` resolves the client by name — if the name is ambiguous it returns exit code `6` with the candidate list (each `client_id` and name) so a retry with `--client-id` is mechanical.
 
+## Draft and revise deal outreach
+
+As the deal owner, you can draft email, LinkedIn messages, and Instagram messages. Set `DEAL_ID` to an ID from `every deal list`. Draft follows the deal’s primary channel. To choose one explicitly, add `--channel email`, `--channel linkedin`, or `--channel instagram`.
+
+```bash
+every deal outreach draft "$DEAL_ID" --yes --json
+every deal view "$DEAL_ID" --draft --json
+```
+
+If the step already has a draft, use Redraft. Set `VERSION` to the returned `draft_version`. One instruction can change the email conversation, audience, subject, and copy. For a DM, try “Mention the pilot and ask which day works.”
+
+```bash
+every deal outreach redraft "$DEAL_ID" --draft-version "$VERSION" --instruction "Start a new email to the deal contact alone. Keep the pilot terms." --yes --json
+```
+
+For an exact change, use Edit. Each example assumes you have read the current draft version.
+
+| Change | Command |
+|-|-|
+| Remove everyone from Cc | `every deal outreach edit "$DEAL_ID" --draft-version "$VERSION" --clear-cc --yes` |
+| Replace Cc | `every deal outreach edit "$DEAL_ID" --draft-version "$VERSION" --cc reviewer@example.com --yes` |
+| Start a new email and clear Cc | `every deal outreach edit "$DEAL_ID" --draft-version "$VERSION" --thread new --clear-cc --yes` |
+| Replace the message text | `every deal outreach edit "$DEAL_ID" --draft-version "$VERSION" --body-file message.txt --yes` |
+
+Repeat `--cc` for each copied address. Email edits also accept `--recipient` and `--subject`. Omitting Cc preserves it on a copy-only edit. Changing recipient or thread resets inherited copies. If you omit the version on Edit, the CLI reads it first.
+
+Draft and Redraft save unsent messages. Before sending email, check New, Reply, or Reply all, then To, Cc, subject, and body. For a DM, check the network, recipient, and text. Use `every deal outreach send --help` for the separate send command. The owner reviews the send request in Every. To stop a scheduled or held send, read its ID with `every deal view "$DEAL_ID" --auto-sends`, then run `every deal outreach cancel "$DEAL_ID" --send-id "$SEND_ID" --yes`.
+
+If Redraft times out, repeat the identical command. The CLI reuses its operation ID. If Every reports `draft_changed`, read the current version before applying the instruction again. If Every cannot verify a destination, check the deal’s People and account connection.
+
 ## For AI agents
 
 If you're a coding agent driving this CLI, four rules make you reliable:
