@@ -38,11 +38,11 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 
 | Tool | Class | What it does | Inputs | Every approval |
 |-|-|-|-|-|
-| `open_every_workspace` | Read | Open the user's Every home: setup, Priorities and suggested conversations. | `view`, `entity_type`, `entity_id` | None |
+| `open_every_workspace` | Read | Open Every Home or one selected record. | `view`, `entity_type`, `entity_id` | None |
 | `get_workspace_setup` | Read | Read current setup readiness and a bounded Business DNA summary without starting scans, minting links or changing settings. | None | None |
 | `get_workspace_priorities` | Read | Read your current ranked Priorities with scoped context for an Ask Every conversation. | None | None |
 | `get_home` | Read | Show the first-run getting-started overview of Every's features and setup. | None | None |
-| `get_started` | Read | Use this when a newly connected user wants to get started or set up Business DNA. | None | None |
+| `get_started` | Read | Use this when a newly connected user wants to get started or set up Business DNA. | `topic` | None |
 | `what_every_does` | Read | Use this for high-level capability questions about Every. | None | None |
 | `setup_business_context` | Read | Same as get_started. Kept for clients that use the older name. | None | None |
 | `save_business_info` | Write | Save basic business information gathered during onboarding. | `info`*, `replace_existing` | Confirmation phrase |
@@ -55,44 +55,58 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 
 | Tool | Class | What it does | Inputs | Every approval |
 |-|-|-|-|-|
-| `list_people` | Read | Search People by name, email, phone or employer. | `query`, `archived`, `limit`, `offset`, `filters`, `order_by` | None |
+| `list_people` | Read | Search People by name, email, phone or employer. | `query`, `archived`, `limit`, `offset`, `filters`, `order_by`, `exact_terms`, `include_company_fields` | None |
+| `match_people` | Read | Find stored People from up to 2,000 emails and 2,000 LinkedIn profile URLs. | `emails`, `linkedin_urls` | None |
 | `view_person` | Read | Read one Person, their email/phone methods, Companies, avatar and current versions. | `person_id`* | None |
 | `create_person` | Write | Create a Person with a name and optional multiple methods or Company relationships, atomically. | `command`*, `prospecting_suppressed` | Confirmation phrase |
 | `update_person` | Write | Edit or archive a Person atomically using expected_version from view_person and an operation_id UUID. | `person_id`*, `command`*, `prospecting_suppressed` | Confirmation phrase |
-| `delete_person` | Sensitive write | Permanently delete a Person and their email/phone methods and Company relationships; an active Person is archived first. | `person_id`*, `expected_version`*, `operation_id`* | Approve in the Every app |
+| `delete_person` | Sensitive write | Permanently delete a Person and their methods and Company relationships. | `person_id`*, `expected_version`*, `operation_id`* | Approve in the Every app |
 | `redact_person_history` | Sensitive write | Remove a permanently deleted Person's name from the activity history: their own events, events linked to them, their Deals' events and the re-import record. | `person_id`*, `operation_id`* | Approve in the Every app |
-| `list_companies` | Read | Search Companies. | `query`, `archived`, `limit`, `offset`, `filters`, `order_by` | None |
+| `list_companies` | Read | Search Companies. | `query`, `archived`, `limit`, `offset`, `filters`, `order_by`, `exact_terms` | None |
 | `view_company` | Read | Read one Company, its methods, associated People, avatar and current versions. | `company_id`* | None |
 | `create_company` | Write | Create a real Company with a name and optional email/phone methods or existing People relationships, atomically. | `command`* | Confirmation phrase |
 | `update_company` | Write | Edit or archive a Company atomically using expected_version from view_company and an operation_id UUID. | `company_id`*, `command`* | Confirmation phrase |
 | `delete_company` | Sensitive write | Permanently delete a Company and its owned profile methods/relationships. | `company_id`*, `expected_version`*, `operation_id`* | Approve in the Every app |
 | `end_affiliation` | Sensitive write | End a Person's relationship to a Company. | `person_id`*, `company_id`*, `expected_person_version`*, `expected_affiliation_version`*, `operation_id`* | Approve in the Every app |
-| `get_recipient_defaults` | Read | Read invoice/proposal To and CC defaults, addresses explicitly set to none, the effective recipients in force, eligible method IDs and configuration version. | `party_kind`*, `party_id`*, `document_kind`* | None |
-| `set_recipient_defaults` | Write | Set explicit To/CC email-method IDs, and none_method_ids for addresses that must not receive, using the current configuration version from get_recipient_defaults. | `party_kind`*, `party_id`*, `document_kind`*, `command`* | Confirmation phrase |
-| `view_entity_timeline` | Read | Read a Person, Company, or Deal's activity timeline — emails, logged interactions, stage changes, and agent actions, newest first. | `entity_type`*, `entity_id`*, `scope`, `limit`, `before`, `before_id` | None |
+| `get_recipient_defaults` | Read | Read invoice/proposal To and CC defaults, addresses explicitly set to none, the effective recipients in force, eligible method IDs and configuration version. | `party_kind`*, `party_id`*, `document_kind`*, `kind` | None |
+| `set_recipient_defaults` | Write | Set explicit To/CC email-method IDs, and none_method_ids for addresses that must not receive, using the current configuration version from get_recipient_defaults. | `party_kind`*, `party_id`*, `document_kind`*, `command`*, `kind` | Confirmation phrase |
+| `view_entity_timeline` | Read | Read a Person, Company, or Deal's activity timeline — emails, logged interactions, stage changes, and agent actions, newest first. | `entity_type`*, `entity_id`*, `scope`, `limit`, `before`, `before_id`, `after`, `after_id` | None |
+| `log_interaction` | Write | Log an interaction the user captured outside Every (iMessage, WhatsApp, X DM, Signal, Telegram, a call, a meeting) onto a Person's timeline. | `person_id`*, `channel`*, `direction`*, `occurred_at`*, `content`*, `external_id`*, `summary`, `channel_identity`, `channel_label`, `deal_id`, `company_id`, `source_url`, `participants` | Confirmation phrase |
 | `get_entity_counts` | Read | Exact counts of People, Companies, invoices, expenses, proposals, and active Deals you can access. | None | None |
+
+### Archive, restore and delete records
+
+| Tool | Class | What it does | Inputs | Every approval |
+|-|-|-|-|-|
+| `find_records_for_action` | Read | Find authorized typed records before an explicit lifecycle action. | `kind`*, `action`*, `query`, `limit`, `offset` | None |
+| `archive_records` | Sensitive write | Archive 1 to 25 explicit typed records after independent human approval. | `operation_id`*, `records`* | Approve in the Every app (Deals only: confirmation phrase) |
+| `restore_records` | Sensitive write | Restore 1 to 25 explicit typed archived records after independent human approval. | `operation_id`*, `records`* | Approve in the Every app |
+| `delete_records` | Sensitive write | Permanently delete 1 to 25 explicit typed records after independent human approval. | `operation_id`*, `records`* | Approve in the Every app |
 
 ### Deals and pipeline
 
 | Tool | Class | What it does | Inputs | Every approval |
 |-|-|-|-|-|
-| `get_pipeline_summary` | Read | Summarize active deal counts, linked value by stage, and pending-review count. | None | None |
-| `get_pipeline_settings` | Read | Read the org's pipeline (sales stage) settings: each stage's (lead, opportunity, won, lost) success criteria and whether the agent is allowed to move a deal into it, plus whether Won automation is enabled overall. | None | None |
-| `list_deals` | Read | List pipeline deals. | `stage`, `review_state`, `search`, `limit`, `offset`, `order_by`, `order_desc`, `response_format`, `include_archived` | None |
-| `list_workspace_deals` | Read | Read all supported deal lanes with bounded cards and exact visible counts. | `stage`, `search`, `offset`, `limit` | None |
-| `view_deal` | Read | View a single deal with stage, Person or Company, sales strategy and its target, plan snapshot, and recent activity. | `deal_id`* | None |
-| `create_deal` | Write | Create a manual pipeline deal at Lead or Opportunity. | `target_name`*, `party`, `target_email`, `target_company_name`, `target_role`, `notes`, `stage`, `sales_strategy_id` | Confirmation phrase |
+| `get_pipeline_summary` | Read | Read active deal counts, linked value by stage, and pending-review count without a display. | None | None |
+| `get_pipeline_settings` | Read | Read the org's pipeline (sales stage) settings: the ordered stages (key, label, role), each stage's success criteria and whether the agent is allowed to move a deal into it, plus whether Won automation is enabled overall. | None | None |
+| `update_pipeline_stages` | Sensitive write | Add, rename or reorder the org's middle Deal stages (between Lead and Won), or set the rules of an existing stage. | `action`*, `label`, `criteria`, `after_stage`, `stage`, `order`, `expected_edit_version` | Approve in the Every app |
+| `list_deals` | Read | Read pipeline deals as text and structured data without a display. | `stage`, `review_state`, `search`, `limit`, `offset`, `order_by`, `order_desc`, `response_format`, `include_archived`, `attention`, `inactive_days`, `owner`, `updated_since`, `sort` | None |
+| `list_workspace_deals` | Read | Show one interactive Deals board when the user asks to see Deals, their pipeline, or Deal lanes. | `stage`, `search`, `offset`, `limit`, `focus` | None |
+| `view_deal` | Read | View a single deal with stage, Person or Company, sales strategy and its target, plan snapshot, and recent activity. | `deal_id`*, `include` | None |
+| `create_deal` | Write | Create a manual pipeline deal at Lead or Opportunity. | `target_name`*, `party`, `target_email`, `target_company_name`, `target_role`, `notes`, `stage`, `sales_strategy_id`, `name`, `value_estimate`, `owner`, `goal` | Confirmation phrase |
+| `update_deal` | Write | Change one or more fields of a Deal in one call. | `deal_id`*, `name`, `value_estimate`, `owner`, `party`, `members`, `goal` | Confirmation phrase |
+| `deal_outreach` | Sensitive write | Edit, send or cancel the message that a Deal owes, on the Deal's own draft. | `deal_id`*, `action`*, `draft_version`, `subject`, `body`, `recipient`, `thread_id`, `send_id` | send: approve in the Every app. edit and cancel: confirmation phrase |
 | `create_delivery_deal` | Write | Start delivery tracking at Won for an existing Person or Company. | `party`*, `name`, `budget_type`, `budget_amount`, `budget_hours`, `budget_currency`, `retainer_period`, `prior_deal_id` | Confirmation phrase |
-| `set_deal_name` | Write | Set or clear WHAT a Deal is called (the name of the work, e.g. | `deal_id`*, `name` | Confirmation phrase |
-| `set_deal_value_estimate` | Write | Set or clear a manual value estimate on one Deal. | `deal_id`*, `target_value` | Confirmation phrase |
-| `move_deal_stage` | Write | Move a deal to Lead, Opportunity, Won, or Lost. | `deal_id`*, `stage`* | Confirmation phrase |
-| `log_deal_activity` | Write | Use this when the user shares a screenshot or description of an off-platform exchange (DM, text, call, in-person) with a prospect or customer to log against a Deal. | `deal_id`*, `note`*, `completed_plan_action_id` | Confirmation phrase |
+| `set_deal_name` | Write | Set or clear the name of the work on one Deal. Deprecated: use update_deal (name). | `deal_id`*, `name` | Confirmation phrase |
+| `set_deal_value_estimate` | Write | Set or clear a value estimate on one Deal. Deprecated: use update_deal (value_estimate). | `deal_id`*, `target_value` | Confirmation phrase |
+| `move_deal_stage` | Write | Move a deal to another pipeline stage. | `deal_id`*, `stage`*, `reason` | Confirmation phrase |
+| `log_deal_activity` | Write | Use this when the user shares a screenshot or description of an off-platform exchange (DM, text, call, in-person) with a prospect or customer to log against a Deal. | `deal_id`*, `note`*, `completed_plan_action_id`, `plan_action_outcome`, `kind` | Confirmation phrase |
 | `link_deal_item` | Write | Attach an existing invoice or proposal to ONE deal. | `deal_id`*, `entity_type`*, `entity_id`* | Confirmation phrase |
 | `unlink_deal_item` | Write | Remove an invoice or proposal link from ONE deal. | `deal_id`*, `entity_type`*, `entity_id`* | Confirmation phrase |
 | `get_deal_burn` | Read | How a deal is tracking against its budget: hours logged, billable vs unbilled WIP, amount billed, and what's left of the budget. | `deal_id`* | None |
 | `set_deal_auto_mode` | Sensitive write | Turn a deal's Auto mode on or off. Sensitive: lets the deal agent send messages on the deal by itself. | `deal_id`*, `enabled`* | Confirmation phrase |
-| `archive_deal` | Write | Archive an approved deal: it leaves the Deals board but keeps its stage, history and linked records, and can be restored from Archived deals. | `deal_id`* | Confirmation phrase |
-| `delete_deal` | Sensitive write | Permanently delete a deal with its messages, members and links; an active deal is archived first. | `deal_id`*, `operation_id` | Approve in the Every app |
+| `archive_deal` | Write | Archive an approved deal: it leaves the Deals board but keeps its stage, history and linked records, and can be restored from Archived deals. | `deal_id`*, `operation_id`, `reason` | Confirmation phrase |
+| `delete_deal` | Sensitive write | Permanently delete a deal with its messages, members and links. | `deal_id`*, `operation_id` | Approve in the Every app |
 | `approve_pending_deal` | Write | Approve a prospect awaiting review, activate it in Lead, and queue its plan. | `deal_id`* | Confirmation phrase |
 
 ### Sales strategies
@@ -128,7 +142,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `update_invoice` | Write | Update an invoice atomically using its updated_at from view_invoice and a new operation UUID. | `invoice_id`*, `changes`*, `expected_updated_at`*, `operation_id`* | Confirmation phrase |
 | `preview_document_send` | Read | Return the current To and CC recipients and recipient digest for an invoice or proposal. | `document_kind`*, `document_id`* | None |
 | `send_invoice` | Sensitive write | Email an invoice to the To and CC recipients returned by preview_document_send for the same invoice, and set its status to 'issued'. | `invoice_id`*, `recipients`* | Approve in the Every app |
-| `void_invoice` | Sensitive write | Void an invoice using its UUID and current updated_at from view_invoice: its status becomes void and it can no longer be paid. | `invoice_id`*, `expected_updated_at`*, `operation_id`* | Approve in the Every app |
+| `void_invoice` | Sensitive write | Void an invoice after independent human approval, using its UUID and current updated_at from view_invoice: its status becomes void and it can no longer be paid. | `invoice_id`*, `expected_updated_at`*, `operation_id`* | Approve in the Every app |
 | `generate_invoice_pdf` | Read | Use this when the user asks for a downloadable or printable PDF of an invoice. | `invoice_id`* | None |
 | `list_payments` | Read | List payments with optional filters for invoice, Person or Company, and payment type. | `invoice_id`, `company_id`, `person_id`, `payment_type`, `limit`, `offset`, `order_by`, `order_desc`, `response_format` | None |
 | `record_payment` | Write | Record a positive payment against the invoice UUID and updated_at from view_invoice. | `command`* | Confirmation phrase |
@@ -151,7 +165,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `update_proposal` | Write | Update a proposal atomically using the UUID and updated_at from view_proposal, plus a new operation UUID. | `proposal_id`*, `changes`*, `expected_updated_at`*, `operation_id`* | Confirmation phrase |
 | `duplicate_proposal` | Write | Copy a proposal to a new draft with its title, typed recipient, content and items preserved. | `proposal_id`*, `expected_updated_at`*, `operation_id`* | Confirmation phrase |
 | `send_proposal` | Sensitive write | Email a proposal to the To and CC recipients returned by preview_document_send for the same proposal, including a resend of an issued proposal. | `proposal_id`*, `recipients`*, `message` | Approve in the Every app |
-| `void_proposal` | Sensitive write | Retire a proposal while preserving its record. | `proposal_id`*, `expected_updated_at`*, `operation_id`* | Approve in the Every app |
+| `void_proposal` | Sensitive write | Void a proposal after independent human approval and preserve its record. | `proposal_id`*, `expected_updated_at`*, `operation_id`* | Approve in the Every app |
 | `delete_proposal` | Sensitive write | Permanently delete a proposal using its UUID and updated_at from view_proposal. | `proposal_id`*, `expected_updated_at`*, `operation_id`* | Approve in the Every app |
 | `convert_proposal_to_invoice` | Write | Convert an issued/approved proposal into a draft invoice for the same Person or Company. | `proposal_id`*, `expected_updated_at`*, `operation_id`* | Confirmation phrase |
 | `generate_proposal_pdf` | Write | Generate a PDF for a proposal. | `proposal_id`* | Confirmation phrase |
@@ -180,7 +194,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `update_meta_field_definition` | Write | Update settings on a custom field definition (meta field/metafield). | `definition_id`*, `updates`* | Confirmation phrase |
 | `get_meta_fields` | Read | Read the custom field values (meta fields/metafields) recorded on one Person, Company, or deal, including tracked boolean values and other remembered properties. | `entity_type`*, `entity_id`* | None |
 | `set_meta_fields` | Write | Set or remember custom field values (meta fields/metafields) on a Person, Company, or deal. | `entity_type`*, `entity_id`*, `values`*, `explicit_types`, `confidence` | Confirmation phrase |
-| `find_entities_by_meta_field` | Read | Find People, Companies, or Deals by a filterable custom field value (meta field/metafield), including scalar comparisons and list containment. | `entity_type`*, `key`*, `op`, `value`, `limit` | None |
+| `find_entities_by_meta_field` | Read | Find People, Companies, or Deals by a filterable custom field value (meta field/metafield), including scalar comparisons and list containment. | `entity_type`*, `key`*, `op`, `value`, `limit`, `cursor` | None |
 
 ### Email and calendar
 
@@ -191,11 +205,13 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `get_gmail_message` | Read | Get one Gmail message from the caller's mailbox. | `message_id`* | None |
 | `draft_email` | Write | Create a draft in the caller's Gmail mailbox for human review and sending. | `to`*, `subject`*, `body`*, `thread_id` | Confirmation phrase |
 | `send_email` | Sensitive write | Send an email immediately from the caller's Gmail mailbox to an external recipient. | `to`*, `subject`*, `body`*, `thread_id` | Approve in the Every app |
-| `list_calendar_events` | Read | List events from the caller's own Google Calendar account. | `start`*, `end`*, `max_results` | None |
+| `list_calendar_events` | Read | List events visible through the caller's Google account, including owned and shared writer calendars. | `start`*, `end`*, `max_results` | None |
 | `check_calendar_availability` | Read | Return busy blocks from the caller's primary Google Calendar. | `start`*, `end`* | None |
 | `create_calendar_event` | Sensitive write | Create an event in the caller's Google Calendar. Sensitive: can send invitations to attendees. | `summary`*, `start`*, `end`*, `attendees`, `description`, `include_meet`, `calendar_id` | Confirmation phrase |
 | `reschedule_calendar_event` | Sensitive write | Reschedule one Google Calendar event and optionally notify attendees. Sensitive: can send updated invitations to attendees. | `event_id`*, `start`*, `end`*, `calendar_id`, `send_updates` | Confirmation phrase |
-| `cancel_calendar_event` | Sensitive write | Delete one Google Calendar event and optionally notify attendees. | `event_id`*, `calendar_id`, `send_updates` | Approve in the Every app |
+| `cancel_calendar_event` | Sensitive write | Cancel one Calendar event after independent human approval. | `event_id`*, `calendar_id`, `send_updates`, `google_account_id`, `operation_id` | Approve in the Every app |
+| `cancel_calendar_events` | Sensitive write | Cancel 1 to 25 exact Calendar events after independent human approval. | `operation_id`*, `records`* | Approve in the Every app |
+| `trash_gmail_records` | Sensitive write | Move exact Gmail messages to Trash after independent human approval. | `operation_id`*, `records`* | Approve in the Every app |
 
 ### Scheduled tasks and reports
 
@@ -203,9 +219,10 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 |-|-|-|-|-|
 | `list_scheduled_tasks` | Read | List the user's self-directed scheduled tasks (routines) — a saved instruction that runs on a cadence (once, daily, weekly, or monthly). | `status` | None |
 | `create_scheduled_task` | Write | Create a self-directed scheduled task (a routine) that runs `instruction` on a cadence. | `title`*, `instruction`*, `schedule_type`*, `run_at_local`, `day_of_month`, `day_of_week`, `run_date`, `timezone`, `email`, `result_format` | Confirmation phrase |
-| `cancel_scheduled_task` | Sensitive write | Cancel a self-directed scheduled task so it no longer runs. | `task_id`* | Approve in the Every app |
+| `cancel_scheduled_task` | Sensitive write | Cancel one custom schedule after independent human approval. | `task_id`*, `operation_id` | Approve in the Every app |
+| `cancel_scheduled_tasks` | Sensitive write | Cancel 1 to 25 exact user-managed schedules after independent human approval. | `operation_id`*, `records`* | Approve in the Every app |
 | `get_scheduled_task_result` | Read | Read the latest completed result of one of the user's self-directed scheduled tasks. | `task_id`* | None |
 | `get_daily_brief` | Read | Read the caller's latest stored daily brief, optionally for a UTC date. | `date` | None |
-| `get_financial_report` | Read | Get revenue, outstanding AR, expenses, net, proposals, and recurring totals. | `entities` | None |
+| `get_financial_report` | Read | Get recorded revenue, invoice face-value rollups, expenses, net, proposals, and recurring totals. | `entities` | None |
 
-119 tools: 56 read, 41 write, 22 sensitive write.
+131 tools: 58 read, 43 write, 30 sensitive write.
