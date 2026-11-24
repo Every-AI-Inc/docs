@@ -197,7 +197,7 @@
     { "source": "/advanced/multi-currency", "destination": "/billing/invoices-and-proposals" },
     { "source": "/advanced/tax-management", "destination": "/billing/invoices-and-proposals" },
     { "source": "/advanced/reporting", "destination": "/reference/reports-and-export" },
-    { "source": "/data/csv-import", "destination": "/network/people" },
+    { "source": "/data/csv-import", "destination": "/reference/reports-and-export" },
     { "source": "/data/export", "destination": "/reference/reports-and-export" },
     { "source": "/ai/business-context", "destination": "/ai/context-and-voice" },
     { "source": "/ai/business-context-and-tokens", "destination": "/ai/context-and-voice" },

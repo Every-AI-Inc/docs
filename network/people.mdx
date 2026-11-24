@@ -73,38 +73,20 @@ Prefer not to connect your account? Import your LinkedIn connections from a CSV 
 </Frame>
 
 **How to import:**
-1. Go to [**People**](https://app.every.ai/network/people) → **Import** dropdown → **LinkedIn**
-2. Upload your `Connections.csv` file
-3. Preview new people (duplicates are auto-filtered)
-4. Click **Import**
 
-**What gets imported:** Name, email (if available), job title, company (in notes), LinkedIn profile URL
+1. Open [**People**](https://app.every.ai/network/people).
+2. Open **Add to network** or **Network** and select **LinkedIn export**.
+3. Attach `Connections.csv` in the conversation.
+4. Review the proposed import before you confirm it.
 
-<Accordion title="AI Relationship Summaries (Optional)">
-  After importing, upload your LinkedIn `Messages.csv` to generate AI-powered relationship timelines.
-
-  1. After import completes, click **"Upload Messages.csv"**
-  2. Every matches your message history to imported people via LinkedIn profile URLs
-  3. AI analyzes your conversations and generates concise summaries
-  4. Summaries appear in each person's notes section
-
-  **Example AI summary:**
-  ```
-  ## LinkedIn Message History
-  2024 - Connected and discussed potential collaboration
-  2024 - Caught up at industry conference
-  2025 - Discussed hiring for board company
-  ```
-
-  Relationship summaries help Every Agent understand your history with each person, enabling better personalized communication suggestions.
-</Accordion>
+If your LinkedIn archive includes `Messages.csv`, you can also attach it and ask Every for relationship context.
 
 ### Google Contacts Import
 
 Import your entire Google Contacts library with one click.
 
 **How to import:**
-1. Go to [**People**](https://app.every.ai/network/people) → **Import** dropdown → **Google Contacts**
+1. Go to [**People**](https://app.every.ai/network/people) → **Add to network** or **Network** → **Google Contacts**
 2. Authorize Google Contacts access if not already connected
 3. Preview new vs. existing people
 4. Click **Import**
@@ -112,7 +94,7 @@ Import your entire Google Contacts library with one click.
 **What gets imported:** Name, email, phone, organization, social URLs (LinkedIn, Twitter, etc.)
 
 <Note>
-  Google Contacts **Import** builds your full contact pool. **Scan Contacts** on the People page is a separate AI-assisted import workflow that suggests people who may be business contacts. [Prospecting](/prospecting/prospecting-agent) evaluates eligible people for those who match what you sell.
+  Google Contacts **Import** builds your full contact pool. **Scan Contacts** is a separate workflow that suggests people who can be business contacts. [Prospecting](/prospecting/prospecting-agent) evaluates eligible people for those who match what you sell.
 </Note>
 
 ### Scan Contacts (AI-powered)
@@ -147,13 +129,12 @@ Upload your file and describe what you need - the agent reads and processes the 
 
 Use a spreadsheet export when you are moving historical records from another CRM or invoicing tool.
 
-1. Export the source data as CSV, XLSX, or XLS.
-2. Open [**Data → Import**](https://app.every.ai/data/import) and upload one representative file.
-3. Review the Import Agent's proposed mapping, especially person-versus-company identity, dates, currencies, status values, and relationships between records.
-4. Correct the mapping before the final import.
-5. After completion, compare record counts and spot-check several people, companies, invoices, and balances.
+1. Export a representative file as CSV or XLSX.
+2. Open a private [Ask Every](https://app.every.ai/threads) conversation and attach the file.
+3. Specify which records to import. Review the proposed fields and links between records before you confirm.
+4. Check the receipt. Compare record counts and verify a sample in Every.
 
-The Import Agent can map connected business records such as companies, people, invoices, line items, payments, services, expenses, and time entries. Imports support undo receipts, but source exports are still your rollback reference—keep an untouched copy until you have verified the result.
+Keep an untouched source file until you verify the import. See [Import and export workspace data](/reference/reports-and-export) for receipt access and Undo.
 
 <Note>
   Importing data into Every is different from connecting HubSpot or Xero for live agent access. Use import for records that should live in Every; use an integration when the external system remains the source of truth.
@@ -306,7 +287,7 @@ Priya Patel (no affiliation - billed directly as a Person)
 </Tip>
 
 <Tip>
-  **Use AI summaries** - Upload LinkedIn Messages.csv after import for valuable relationship context.
+  **Use AI summaries** - If you have LinkedIn Messages.csv, attach it in the private conversation for relationship context.
 </Tip>
 
 ## Frequently asked questions
@@ -321,7 +302,7 @@ Priya Patel (no affiliation - billed directly as a Person)
   </Accordion>
 
   <Accordion title="Can I migrate historical CRM data, not just contacts?">
-    Yes. Use Data → Import with a CSV or Excel export. The Import Agent can map multiple related Every record types; review its proposed relationships and status mapping before the write.
+    Yes. Attach a CSV or XLSX export in a private Ask Every conversation. Review the proposed records and their relationships before you confirm.
   </Accordion>
 
   <Accordion title="How does Every prevent duplicate people?">

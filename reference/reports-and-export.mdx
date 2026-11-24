@@ -1,303 +1,53 @@
 ---
-title: "Reports & Export"
-description: "Track revenue, monitor outstanding invoices, analyze client payment patterns, summarize expenses, and export data to CSV for Xero, Wave, or custom formats"
-icon: "chart-bar"
+title: "Import and export workspace data"
+description: "Import records, find import receipts, and download invoice summaries or expenses as CSV in private Ask Every chat."
 ---
 
-## Overview
+## Download invoice summaries or expenses
 
-Every provides reporting, analytics, and flexible data export so you can track business performance, make data-driven decisions, and move data into your accounting software.
-
-<CardGroup cols={2}>
-  <Card title="Open Reports" icon="chart-bar" href="https://app.every.ai/settings/data" horizontal>
-    View your reports and analytics dashboard
-  </Card>
-
-  <Card title="Open Export" icon="file-export" href="https://app.every.ai/settings/data/export-invoices" horizontal>
-    Export your data to CSV
-  </Card>
-</CardGroup>
-
----
-
-## Reports
-
-Open [**Settings → Data**](https://app.every.ai/settings/data), find **Reports**, and choose a report:
-
-| Report | What it shows |
-|-|-|
-| **Revenue Over Time** | Monthly revenue from paid invoices |
-| **Outstanding Invoice Age** | How long unpaid invoices have been outstanding |
-| **Overdue Invoices** | Past-due invoices grouped into time bands |
-| **Average Time to Payment** | How quickly clients pay invoices |
-| **Sales Tax Report** | Tax charged to clients and tax paid on expenses |
-
-Reports include charts and tables. Where a date range applies, choose the last 7, 30, or 90 days, year to date, last year, or a custom range. Outstanding and overdue reports use the current unpaid invoice state instead of a selected reporting period.
-
-The Sales Tax Report helps you review recorded tax amounts; it does not file returns or determine which expenses are tax-deductible.
-
-### Ask for additional analysis
-
-Every Agent can analyze your available workspace records beyond the built-in reports. Be specific about the dates, currency, and whether you mean issued invoices or payments received:
+1. Open [Ask Every](https://app.every.ai/threads) in the correct workspace.
+2. Start a private conversation.
+3. Ask for a CSV of active invoices or expenses. Include a date range if needed.
+4. Open the download link from the same account and workspace.
 
 ```text
-Show unbilled expenses for ACME Corp.
-How many billable hours did I record last month?
-Compare payments received from my top five clients this quarter.
+Download a CSV of active invoices issued from January 1 through March 31, 2026.
+Download a CSV of active expenses dated from January 1 through March 31, 2026.
 ```
 
-These are agent requests, not additional report tabs. Review the records and assumptions behind the result before using it for accounting decisions.
+The invoice CSV has one summary row per invoice. It includes invoice dates, status, payment status, currency, and total. The expense CSV includes the date, merchant, category, description, currency, amount, and tax amount.
 
----
+Each file uses one record type and includes only active records you can access. The date filter includes both dates. Each file has a limit of 5,000 records and 4 MiB. Ask for a shorter date range if the file exceeds either limit.
 
-## Export
+These CSVs contain workspace records. For a workbook or an edit to a CSV that you upload, describe that task separately in chat. The workspace CSV uses standard columns. Check the destination's field requirements before you import it into another system.
 
-Export invoice and expense data to CSV for accounting software or your own reporting workflows. Every includes preset formats for Xero and Wave plus a fully customizable export mode.
+## Import records
 
-**Key capabilities:**
-- Preset formats for **Xero** and **Wave**
-- **Custom** exports with configurable columns
-- Invoice and expense export modes
-- Date range and status filtering
-- Live preview before download
-- Reusable templates for invoice exports
-- Fork preset formats into custom ones
+1. Export a representative file as CSV or XLSX. Save older XLS files as XLSX first.
+2. Attach the file in a private Ask Every conversation.
+3. Tell Every which records to import.
+4. Review the proposed fields and record matches. Confirm the import after you check the preview.
+5. Check the receipt and verify a sample of the records in Every.
 
-### Quick Start
+Keep the original file. For [LinkedIn](/network/people#linkedin-import) or [Google Contacts](/network/people#google-contacts-import), use the source controls in People.
 
-**Invoice export:** Settings > Data > Export invoices > Choose preset > Set filters > Preview > Download CSV
+### Find an import receipt
 
-**Expense export:** Settings > Data > Export expenses > Set filters > Preview > Download CSV
+Open [Inbox](https://app.every.ai/activity). In **Activity**, select **Import history** and open the receipt. You can also find a receipt in its original private conversation if you still have access to that conversation.
 
-**Custom export:** Start from Xero or Wave, click **Customize**, then add/remove/reorder columns and save as a template if needed
+The receipt shows available counts and results. If the receipt offers **Undo**, review the changes before you confirm. Undo can retain records that changed after the import. A queued Undo updates the receipt when it finishes.
 
-### Invoice Export
+Receipt access depends on your role and the import. Import history does not restore erased conversations or deleted source files.
 
-Invoice export supports flexible row models and field selection.
+## Ask a financial question
 
-**Row models:**
-- **Invoice Summary**: One row per invoice with totals
-- **Line Item Detail**: One row per line item for more detailed accounting imports
+Ask Every about the financial records you can access.
 
-**Available field groups:**
-- **Invoice**: Number, issue date, due date, status, payment status, currency, total, reference, notes
-- **Client**: Name, ID
-- **Line Items**: Name, description, quantity, rate, line total, discount, tax fields
-- **Computed**: Customer email, net amount, tax amount, gross amount, amount paid, balance due, paid date
+- “Which invoices are overdue?”
+- “What were my expenses by category last month?”
 
-### Expense Export
+[Connected AI tools](/integrations/connect-ai-tools) can also use the Every MCP financial summary, subject to workspace access.
 
-Expense export is designed for bookkeeping and reimbursement workflows.
+## Request other workspace data
 
-**Available field groups:**
-- **Expense**: Date, amount, description, category, merchant, receipt URL
-- **Client**: Name and ID for billable expenses
-- **Billing**: Whether the expense has been invoiced and linked invoice details
-- **Metadata**: Created date and related internal IDs
-
-### Preset Formats
-
-#### Xero
-
-Xero export is optimized for invoice import into Xero.
-
-**Format details:**
-- Xero-compatible invoice columns
-- Date format: `DD/MM/YYYY`
-- Includes `AccountCode`
-- Best for draft invoice imports into Xero
-
-**Typical import flow:**
-1. Export from Every in **Xero** format
-2. In Xero, go to **Business > Invoices > Import**
-3. Upload the CSV
-4. Review field mapping and imported drafts
-
-<Note>
-  Xero imports usually create drafts. Review them in Xero before approving or sending.
-</Note>
-
-#### Wave
-
-Wave export is designed for Wave Connect workflows.
-
-**Format details:**
-- Columns prepared for Wave Connect
-- Date format: `YYYY-MM-DD`
-- Includes customer, invoice number, line item description, quantity, price, amount, and tax fields
-
-**Typical import flow:**
-1. Export from Every in **Wave** format
-2. Open Google Sheets with Wave Connect installed
-3. Use Wave Connect to prepare and validate the data
-4. Upload the prepared sheet to Wave
-
-<Warning>
-  Wave import depends on Wave Connect. There is no direct CSV upload flow in Every itself.
-</Warning>
-
-#### Custom
-
-Custom export gives you full control over the columns and headers.
-
-**Best for:**
-- Accountant-specific exports
-- Internal spreadsheet analysis
-- Systems that need different headers
-- Specialized reporting or migration work
-
-### Export Filtering
-
-#### Date Range
-
-Use presets such as:
-- This Month
-- Last Month
-- This Quarter
-- Year to Date
-- Last Year
-- Custom range
-
-#### Invoice Filters
-
-Filter invoice exports by:
-- **Date mode**: issue date, due date, or paid date
-- **Invoice status**: draft, issued, paid, overdue, void
-- **Payment status**: unpaid, partially paid, fully paid
-- **Client**
-
-#### Expense Filters
-
-Filter expense exports by:
-- Expense date
-- Billing status
-- Category
-- Archived vs active records
-
-### Customizing Exports
-
-#### Fork a Preset
-
-Start with Xero or Wave, then customize it:
-
-1. Select a preset
-2. Click **Customize**
-3. Add, remove, or reorder columns
-4. Rename headers if needed
-5. Save as a template for future reuse
-
-<Tip>
-  Forking is the fastest way to build a custom export that is close to Xero or Wave but needs a few extra fields.
-</Tip>
-
-#### Field Selector
-
-When customizing columns:
-- Choose fields from grouped categories
-- Reorder them in the export column list
-- Rename headers to match your target system
-- Remove anything you do not need
-
-#### Templates
-
-Save invoice export setups so your team can reuse them. Expense export layouts can be customized for the current export, but cannot be saved as reusable templates.
-
-**Templates can store:**
-- Export type
-- Preset/custom column layout
-- Filters
-- Date mode
-
-**Examples:**
-- Monthly accountant export
-- Quarter-end revenue detail
-
-### Preview & Download
-
-Before downloading, Every shows a preview so you can verify:
-- Row structure
-- Headers
-- Filter results
-- Formatting
-
-If the preview looks wrong, adjust filters or columns before generating the CSV.
-
-<Tip>
-  Preview first when using line-item detail exports. They can produce many more rows than invoice summary mode.
-</Tip>
-
-<Tip>
-  Pick the right date mode for your accountant. Cash-basis reporting often wants paid date; accrual workflows often want issue date.
-</Tip>
-
-<Tip>
-  Save templates for recurring exports instead of rebuilding them every month.
-</Tip>
-
-### Export Troubleshooting
-
-**Export missing expected invoices:** Check date mode, status filters, and client filters.
-
-**Too many rows in CSV:** You may be using line-item detail instead of invoice summary.
-
-**Wave import issues:** Validate the data through Wave Connect and make sure customer names match what Wave expects.
-
-**Xero import issues:** Verify required columns are present and dates are in the expected Xero format.
-
----
-
-## Next Steps
-
-<CardGroup cols={2}>
-  <Card
-    title="Deals"
-    icon="chart-line"
-    href="https://app.every.ai"
-  >
-    Open your deals board and table
-  </Card>
-
-  <Card
-    title="Import Data"
-    icon="file-import"
-    href="/network/people"
-  >
-    Bring historical companies, people, invoices, expenses, or other records into Every
-  </Card>
-
-  <Card
-    title="Tax Management"
-    icon="calculator"
-    href="/billing/invoices-and-proposals"
-  >
-    Review tax recorded on invoices
-  </Card>
-
-  <Card
-    title="Xero Integration"
-    icon="building"
-    href="/integrations/xero"
-  >
-    Connect Xero for agent-powered accounting access
-  </Card>
-
-  <Card
-    title="Expenses"
-    icon="receipt"
-    href="/billing/expenses"
-  >
-    Analyze business expenses
-  </Card>
-
-  <Card
-    title="Every Agent"
-    icon="sparkles"
-    href="/ai/every-agent"
-  >
-    Ask the agent to help you prepare exports and analyze results
-  </Card>
-</CardGroup>
-
-<Note>
-  **Need help?** Contact support at [hello@every.ai](mailto:hello@every.ai)
-</Note>
+For other workspace data, such as time records, contact [hello@every.ai](mailto:hello@every.ai). Use this contact if you cannot access chat. Include the workspace name, requested records, and date range. Every verifies who can receive the data.

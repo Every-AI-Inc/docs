@@ -10,10 +10,6 @@ The generally available Xero connection gives Every Agent conversational access 
 
 Xero remains the accounting system of record. Every remains the client-operations workspace for warm leads, proposals, invoices, payments, expenses, time tracking, and agent workflows.
 
-<Note>
-  Every also has a separate direct accounting-sync gateway in a limited pilot. Do not assume that connecting Xero on this page creates an automatic two-way sync or exposes pilot controls to your organization.
-</Note>
-
 ## What Every Agent can do
 
 The connected toolset includes reads such as:
@@ -72,29 +68,16 @@ Use the Xero contact details as context while I create a draft Person or Company
 
 When you need records to live in Every, import or create them in Every and verify the result. When Xero should remain authoritative, use the Xero connection and name Xero explicitly in the request.
 
-## Export Every invoices for Xero
+## Download Every invoices
 
-You can export an accounting-ready CSV without using the live connection:
-
-1. Open [**Data → Export Invoices**](https://app.every.ai/data/export-invoices).
-2. Choose the Xero preset.
-3. Set the date and status filters.
-4. Preview and download the CSV.
-5. Import it into Xero and review Xero's field mapping and validation results.
-
-Xero imports normally create records in Xero's own workflow. Review them there before approval or sending.
-
-<Card title="Reports & Export" icon="file-export" href="/reference/reports-and-export" horizontal>
-  See Xero preset fields, filters, and custom exports
-</Card>
+Request the [invoice summary CSV](/reference/reports-and-export#download-invoice-summaries-or-expenses) in a private Ask Every conversation. The file uses Every's standard columns. Check Xero's import fields before you adapt the file for Xero.
 
 ## Migrating accounting history
 
 Choose the path based on where the records should live:
 
-- **Historical Every workspace:** Export CSV/XLSX from the source and use [**Data → Import**](https://app.every.ai/data/import). Review Person/Company matching, currencies, taxes, invoice status, line items, and payments before the write.
+- **Historical Every workspace:** Attach a representative CSV or XLSX file in [private Ask Every chat](/reference/reports-and-export#import-records). Review Person/Company matching, currencies, taxes, invoice status, line items, and payments before the write.
 - **Xero stays authoritative:** Keep the data in Xero and use Every Agent for supported Xero reads and permission-gated actions.
-- **Accounting-sync pilot:** If your organization has the Accounting settings feature, follow the controls and mapping requirements shown there. Do not infer pilot availability from this public connection guide.
 
 ## Disconnect or reconnect
 
@@ -140,8 +123,8 @@ Manage the connection under **Agent → Connections**.
     Add Xero to Every Agent
   </Card>
 
-  <Card title="Reports & Export" icon="file-export" href="/reference/reports-and-export">
-    Export Every invoices in Xero format
+  <Card title="Import and export workspace data" icon="file-export" href="/reference/reports-and-export">
+    Download invoice summaries or expenses from Every
   </Card>
 
   <Card title="Every Agent" icon="sparkles" href="/ai/every-agent">
