@@ -147,6 +147,40 @@ every tool call list_invoices --arg payment_status=overdue --arg limit=100 --jso
 every tool call create_invoice --args invoice.json --yes --json
 ```
 
+### Push your own activity onto a Person
+
+If you already collect your own iMessage, WhatsApp, X, Signal or Telegram history, you can push each
+message onto the right Person's timeline. The Every agent and the deal agent then use it as context,
+and the Person's deals replan on it.
+
+```bash Log one interaction
+# 1. Find the Person by email or phone digits
+every tool call list_people --arg 'query="4155550123"' --json
+
+# 2. Log the message. external_id makes a re-run safe: a repeat returns deduped: true.
+every tool call log_interaction --args - --yes --json <<'JSON'
+{
+  "person_id": "<person uuid>",
+  "channel": "imessage",
+  "direction": "inbound",
+  "occurred_at": "2026-10-20T14:03:00Z",
+  "external_id": "imessage:chat123:msg456",
+  "content": "Hey, can you send the revised proposal by Friday?",
+  "channel_identity": {"kind": "phone", "value": "+14155550123"}
+}
+JSON
+```
+
+Channels: `imessage`, `whatsapp`, `sms`, `phone_call`, `in_person`, `meeting`, `linkedin`,
+`instagram`, `twitter` (or `x`), `slack`, `signal`, `telegram`, `other`. For a channel outside that
+list, send `"channel": "other"` with a `"channel_label"` such as `"Discord"`; the timeline titles the
+row with it. Add `"deal_id"` to attach the interaction to one specific deal. Loop over a JSONL export
+to push a batch; one call per message is fine within the key's rate limit.
+
+`view_person` returns the Person's email and phone methods and their social links. `update_person`
+accepts a `links` list (`{"action": "upsert", "link_type": "twitter", "url": "https://x.com/handle"}`
+or `{"action": "remove", "id": "<link id>"}`) next to `methods`.
+
 ```bash Curated aliases
 every invoice list --status overdue --json
 every invoice create --client "Acme Consulting" --amount 100 --yes --json
