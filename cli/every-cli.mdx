@@ -185,7 +185,8 @@ or `{"action": "remove", "id": "<link id>"}`) next to `methods`.
 every invoice list --status overdue --json
 every invoice create --client "Acme Consulting" --amount 100 --yes --json
 every invoice send <invoice_id> --yes --allow-destructive --json
-every deal list --stage opportunity --json
+every deal stages --json           # your workspace's stages, in order
+every deal list --stage "Discovery booked" --json
 every deal move <deal_id> won --yes --json
 every contact list --search "acme" --json
 ```

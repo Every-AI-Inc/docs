@@ -16,35 +16,83 @@ Every prepares and updates the work, while you control who enters the pipeline a
 
 ## Pipeline stages
 
-The board has four columns: Lead, Opportunity, Won, and Lost. Prospects are not a column. They live on their own [**Prospects**](https://app.every.ai/prospects) page, and the Deals header shows **Prospects · N** to get there.
+Each workspace has its own stages. **Lead** is always the first column, and **Won** and **Lost** are always the last two. Between Lead and Won you can have up to seven stages of your own, such as Discovery booked or Proposal sent. A new workspace starts with one middle stage, **Opportunity**.
 
-| Column | What it means |
+Prospects are not a column. They live on their own [**Prospects**](https://app.every.ai/prospects) page, and the Deals header shows **Prospects · N** to get there.
+
+<Frame>
+  <img src="/images/features/custom-deal-stages-board.png" alt="The Deals board with the columns Lead, Discovery booked, Opportunity, Proposal under review, and Won" />
+</Frame>
+
+| Stage | What it means |
 |-|-|
-| **Lead** | An approved prospect before a meaningful sales motion is underway. |
-| **Opportunity** | An active sales motion, from a positive reply through proposal, invoice, and close. |
-| **Won** | Work closed successfully under your configured criteria. |
-| **Lost** | Work closed unsuccessfully or intentionally parked. |
+| **Lead** | An approved prospect before a meaningful sales motion is underway. Always first. |
+| **Your middle stages** | The steps of your sales process, in the order you set. A new workspace has one: **Opportunity**, an active sales motion from a positive reply through proposal, invoice, and close. |
+| **Won** | Work closed successfully under your stage rules. Always after your middle stages. |
+| **Lost** | Work closed unsuccessfully or intentionally parked. Always last. |
 
-Opportunity holds the full active conversation instead of splitting every milestone into a separate stage. Proposal and invoice status appear on the deal so you can see the commercial state without rebuilding your pipeline around each document.
+The board, the table view, filters, the deal sheet, and each deal's history all use your stage names. Proposal and invoice status appear on the deal, so you do not need a stage for each document.
 
-## Stage criteria
+## Customize your stages
 
-Stage criteria tell Every what each stage means for your business. They set the goal Every works toward at each stage: how it plans each deal, which stage it thinks a deal is in, and what it tries to get out of each conversation, especially in [Auto mode](/prospecting/auto-mode).
+Add, rename, reorder, or remove the stages between Lead and Won.
 
-For some businesses a reply is enough to count as an Opportunity; for others it takes a booked meeting. Write the criteria that match how you sell.
+**To open the editor:** On [**Deals**](https://app.every.ai/), select the **Deal settings** button in the header. The **Stage rules** section lists every stage in order and shows how many of your seven middle stages you use.
 
-**To edit them:** On [**Deals**](https://app.every.ai/deals), select the **Deal settings** button in the header → **Stage criteria**. Select a stage (**Lead**, **Opportunity**, **Won**, or **Lost**), edit its criteria, and select **Save**. Each stage shows whether it uses Every's default or has been customized for your business.
+<Frame>
+  <img src="/images/features/custom-deal-stages-stage-rules.png" alt="Deal settings with the Stage rules section: Lead, Discovery booked, Opportunity, Proposal under review, Won, and Lost, with Add stage and Add rule buttons" />
+</Frame>
 
-**For a single deal:** Open the deal's **Stage criteria** chip (it reads **Default** or **Customized**) to customize criteria for that deal only. Leaving a stage blank uses your workspace default.
+- **Add a stage:** Select **Add stage**, type a name, and select **Add**. The new stage appears before Won. You can have up to 7 stages between Lead and Won.
+- **Rename a stage:** Select **⋯** on the stage → **Rename**.
+- **Reorder stages:** Drag a middle stage by its handle to a new place. The new order saves when you drop it.
+- **Remove a stage:** Select **⋯** on the stage → **Remove**. See [Removing a stage](#removing-a-stage).
+
+Lead, Won, and Lost cannot be renamed, moved, or removed. Stage names can be up to 40 characters and must be unique in your workspace. Names that Every keeps for its built-in stages, such as Lead, Opportunity, Won, Lost, Prospect, and Qualified, cannot be used for a new stage.
+
+<Note>
+  Only workspace admins can add, rename, reorder, or remove stages. Anyone in the workspace can edit a stage's rules.
+</Note>
+
+### Removing a stage
+
+Removing a stage never deletes deals. When you select **Remove**, Every asks where the stage's deals should go. Pick any open stage under **Move deals to** (Lead or another middle stage), then select **Remove stage**.
+
+<Frame>
+  <img src="/images/features/custom-deal-stages-remove-stage.png" alt="The Remove Discovery booked confirmation, with the Move deals to picker set to Lead and the Remove stage button" />
+</Frame>
+
+Every moves the deals, including archived ones, in the background. The column shows the progress and disappears when every deal has moved. Moved deals keep their history, and Every updates their plans for the new stage.
+
+## Stage rules
+<span id="stage-criteria" />
+
+Stage rules tell Every what each stage means for your business. They set the goal the agent works toward at each stage: how it plans each deal, which stage it thinks a deal is in, and what it tries to get out of each conversation, especially in [Auto mode](/prospecting/auto-mode). Every stage has rules, including the ones you add.
+
+For some businesses a reply is enough to count as an Opportunity; for others it takes a booked meeting. Write the rules that match how you sell.
+
+**To edit them:** On [**Deals**](https://app.every.ai/), select the **Deal settings** button in the header. Under **Stage rules**, open a stage to edit or remove its rules, or select **Add rule** and pick the stage it applies to. Rules that Every learned from your guidance, stage moves, and archived deals appear with the stage they apply to; **All stages** holds the ones that apply everywhere.
+
+**For a single deal:** Open the deal and select **View stage rules** next to its stage to see or change the rules for that deal only.
+
+## Ask Every about your stages
+
+Every reads your workspace's stages, so you can use your own stage names in chat.
 
 <Tip>
-  Below the criteria, **What Every learned** in Deal settings lists the lessons Every took from your guidance, stage moves, and the deals you archive.
+  Ask Every Agent: "What stages do I have?", "Move Acme to Discovery booked", or "Add a deal for Northwind in Proposal sent".
 </Tip>
+
+Every can create a new deal in Lead or any of your middle stages. Connected assistants (ChatGPT, Claude, and other MCP clients) and the [Every CLI](/cli/every-cli) accept a stage's name or its key wherever a tool takes a stage, and an assistant can also record a past deal directly in Won or Lost. In the CLI, `every deal stages` lists your stages in order. If you give a stage name that does not exist, the reply lists the stages you have.
+
+## On mobile
+
+The Every iPhone app shows your stages on the board and their rules in **Deal settings**. To add, rename, reorder, or remove stages, select **Manage stages on web**.
 
 ## How deals get into the pipeline
 
 - **Prospecting:** Every scores your network for each target and lists qualified matches on the Prospects page. Approving one adds it to Lead.
-- **Manual deals:** Add a person or company directly to any active stage.
+- **Manual deals:** Add a person or company directly to Lead or any of your middle stages.
 - **Commercial activity:** When configured, proposals or invoices created outside the board can be linked to a deal so the sales and billing records stay connected.
 
 ## Review prospects
@@ -83,7 +131,7 @@ Connect both from [LinkedIn & Instagram](/integrations/linkedin-and-instagram).
 
 Every reads the conversations you have with a deal's contact on Gmail, LinkedIn, and Instagram, including messages you send outside Every, and attaches each one to the right person and deal:
 
-- A positive reply can move the deal to Opportunity and trigger a new plan.
+- A positive reply can move the deal to a later stage and trigger a new plan.
 - A neutral reply updates the plan without forcing a stage change.
 - A negative reply is recorded so Every does not plan from stale assumptions.
 
@@ -114,7 +162,15 @@ Manual stage moves are authoritative: Every replans around the stage you chose. 
   </Accordion>
 
   <Accordion title="Where do I change what counts as an Opportunity or a Win?">
-    In [stage criteria](#stage-criteria): Deals → **Deal settings** → **Stage criteria**. Every plans and moves deals against those criteria.
+    In [stage rules](#stage-rules): Deals → **Deal settings** → **Stage rules**. The agent plans and moves deals against those rules.
+  </Accordion>
+
+  <Accordion title="Can I add my own stages?">
+    Yes. A workspace admin can add up to seven stages between Lead and Won, and rename, reorder, or remove them. See [Customize your stages](#customize-your-stages).
+  </Accordion>
+
+  <Accordion title="What happens to deals when I remove a stage?">
+    Nothing is deleted. You choose an open stage for its deals, Every moves them in the background, and the column disappears when the move is done.
   </Accordion>
 
   <Accordion title="Is Prospects a pipeline stage?">
@@ -126,7 +182,7 @@ Manual stage moves are authoritative: Every replans around the stage you chose. 
   </Accordion>
 
   <Accordion title="Can I move a deal myself?">
-    Yes. Drag the deal to another stage. Your move takes precedence, and Every updates the plan for the stage you selected.
+    Yes. Drag the deal to another stage, or ask Every to move it ("Move Acme to Discovery booked"). Your move takes precedence, and the agent updates the plan for the stage you selected.
   </Accordion>
 </AccordionGroup>
 
