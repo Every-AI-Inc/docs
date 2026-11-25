@@ -8,6 +8,10 @@ icon: "list-check"
 
 This page lists every tool that the Every admin MCP server (`https://admin-mcp.every.ai`) gives to an MCP client that is not ChatGPT or Claude. ChatGPT and Claude get a reviewed subset of the same tools. The list is generated from the live server, so the names, inputs and classifications match what a client receives.
 
+<Note>
+  The ChatGPT app and Claude.ai connectors do not have `update_deal`, `deal_outreach`, or the new deal automation inputs yet: `attention`, `inactive_days`, `owner`, `updated_since` and `sort` on `list_deals`, `include` on `view_deal`, `after` and `after_id` on `view_entity_timeline`, `reason` on `move_deal_stage`, `plan_action_outcome` and `kind` on `log_deal_activity`, `name`, `value_estimate`, `owner` and `goal` on `create_deal`, and `topic` on `get_started`. Use the [Every CLI](/cli/every-cli) or a direct MCP connection for these. See [Automate your CRM with an agent](/integrations/automate-with-an-agent).
+</Note>
+
 - **Transport:** Streamable HTTP at the root URL.
 - **Authentication:** OAuth 2.1 through Clerk (dynamic client registration, authorization code with PKCE, `offline_access` refresh), or an organization [API key](/integrations/api-keys) for headless use. Every tool acts only inside the signed-in member's organization.
 - **Read-only access:** an API key can be limited to read permissions. An OAuth connection gets the member's normal permissions in Every.
@@ -21,7 +25,7 @@ This page lists every tool that the Every admin MCP server (`https://admin-mcp.e
 | **Write** | Creates or changes data inside Every. | The first call returns a short confirmation phrase. Call the same tool again with `confirmation` set to that phrase. |
 | **Sensitive write** | Sends something to another person, deletes or voids a record, or changes what can happen automatically. | Tools marked "Approve in the Every app" wait until the member approves the exact action in Every. The call returns a pending result. After approval, repeat the same call with the same arguments before the approval expires. A changed argument creates a new request. Hosts should ask the user before every call to a sensitive write. |
 
-Sends, deletes and voids are never done without approval. Every never moves money: `record_payment` records a payment that already happened, and invoices are paid outside the MCP connection.
+From a signed-in connection, sends, deletes and voids are never done without approval. An [API key](/integrations/api-keys) can delete People, Companies or Deals only with a Delete permission that an admin ticked. Every never moves money: `record_payment` records a payment that already happened, and invoices are paid outside the MCP connection.
 
 ## Results, errors and retries
 
