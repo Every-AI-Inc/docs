@@ -104,7 +104,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `link_deal_item` | Write | Attach an existing invoice or proposal to ONE deal. | `deal_id`*, `entity_type`*, `entity_id`* | Confirmation phrase |
 | `unlink_deal_item` | Write | Remove an invoice or proposal link from ONE deal. | `deal_id`*, `entity_type`*, `entity_id`* | Confirmation phrase |
 | `get_deal_burn` | Read | How a deal is tracking against its budget: hours logged, billable vs unbilled WIP, amount billed, and what's left of the budget. | `deal_id`* | None |
-| `set_deal_auto_mode` | Sensitive write | Turn a deal's Auto mode on or off. Sensitive: lets the deal agent send messages on the deal by itself. | `deal_id`*, `enabled`* | Confirmation phrase |
+| `set_deal_auto_mode` | Sensitive write | Turn a deal's Auto mode on or off. Sensitive: lets Every send messages on the deal by itself. | `deal_id`*, `enabled`* | Confirmation phrase |
 | `archive_deal` | Write | Archive an approved deal: it leaves the Deals board but keeps its stage, history and linked records, and can be restored from Archived deals. | `deal_id`*, `operation_id`, `reason` | Confirmation phrase |
 | `delete_deal` | Sensitive write | Permanently delete a deal with its messages, members and links. | `deal_id`*, `operation_id` | Approve in the Every app |
 | `approve_pending_deal` | Write | Approve a prospect awaiting review, activate it in Lead, and queue its plan. | `deal_id`* | Confirmation phrase |
