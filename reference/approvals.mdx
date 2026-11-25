@@ -77,7 +77,7 @@ Every applies the same server-side safety gate whether you connect through ChatG
 
 - Read-only requests run immediately.
 - Ordinary workspace changes may require the client to repeat an exact action-and-target confirmation supplied by Every.
-- Higher-impact actions require you to review the complete action details and choose **Approve** or **Cancel** in the Every web app. These include sends, deletes, archiving or deleting People and Companies, and prospect rejections.
+- Higher-impact actions require you to review the complete action details and choose **Allow action** or **Cancel** in the Every web app. These include sends, deletes, archiving or deleting People and Companies, and prospect rejections.
 - **Archiving a deal** from the Every CLI or a direct MCP connection (for example Claude Code, Codex or Cursor) needs only the typed confirmation, with no approval in the app, because you can restore an archived deal at any time. From the ChatGPT app or a Claude.ai connector, it still needs your approval.
 
 <Card title="Open Approvals" icon="shield-check" href="https://app.every.ai/chat/approvals">
@@ -86,17 +86,17 @@ Every applies the same server-side safety gate whether you connect through ChatG
 
 The Approvals page lists every request that waits for you: from connected apps and from your own chats in Every. With two or more requests, use **Approve all** or **Cancel all**.
 
-The approval card shows the complete action details, not only a friendly summary. The synthetic example below deliberately includes a suspicious mismatch to show why you should inspect every field before approving.
+The approval card shows the complete action details, not only a friendly summary. Check every field, such as the recipient's address, before you allow the action.
 
 <Frame>
-  <img src="/images/features/mcp-approval-details.png" alt="Every approval card showing the complete recipient, subject, email body, and thread details before an email is sent" />
+  <img src="/images/features/chat-approvals-page.png" alt="The Approvals page under Chat with one waiting request: a payment reminder for invoice INV-0010, its recipient, and the Cancel and Allow action buttons" />
 </Frame>
 
 ### Approve and continue
 
 1. Ask your connected AI client to perform the action.
 2. Open [**Every → Chat → Approvals**](https://app.every.ai/chat/approvals) and inspect the exact action details.
-3. Choose **Approve** or **Cancel**.
+3. Choose **Allow action** or **Cancel**.
 4. If the AI client returned a pending message, ask it to retry the **same action with the same arguments**.
 
 Every may keep the original tool call open for up to 30 seconds. That wait is separate from the approval window: the request stays open for **24 hours** from creation, and an approval can be consumed only once. Changing any argument creates a different approval request. Denied, expired, or already-used approvals cannot execute the action.
