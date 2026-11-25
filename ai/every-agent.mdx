@@ -1,6 +1,6 @@
 ---
 title: "Every Agent"
-description: "An AI business assistant for CRM, warm-lead prospecting, proposals, invoicing, payments, expenses, and time tracking, with review gates for external sends"
+description: "Every works with you in chat across your CRM, warm-lead prospecting, proposals, invoicing, payments, expenses, and time tracking, and asks before anything goes out"
 icon: "sparkles"
 ---
 
@@ -20,6 +20,18 @@ It is not a separate chatbot with a copied database. It works against the live r
 <Card title="Open Chat" icon="message-circle" href="https://app.every.ai/chat" horizontal>
   Start a chat with Every in the app
 </Card>
+
+## Where to find Every
+
+- **Chat** — the **Chat** page in the left nav. Your chats are listed at the left; on a phone, the list is the Chat page and a chat opens from it. Select **New chat** (Shift+Cmd+J) to start a new one.
+- **Ask bar** — on other pages, type in **Ask Every…** at the bottom of the page. Every works in the background and tells you when the reply is ready; the chat is on the Chat page. Cmd+J puts your cursor there.
+- **Cmd+K** — search your records, start an action, or ask Every from the palette.
+- **On a record** — select **Ask Every** on a record card to ask about that record.
+- **Other apps** — Slack, ChatGPT, Claude, the iPhone app, email (`agent@every.ai`), and the Every CLI. Find them in **Settings → Apps**.
+
+When a reply names a record, open it and it shows as a side panel over the chat, so you keep your place.
+
+Each chat has a **⋯** menu to rename it, copy a link or the chat as Markdown, or delete it. In a team workspace, the same menu makes a chat private or shares it with your team. See [Private chats](/teams/teams#private-chats).
 
 ## What Every Can Reach
 
@@ -78,6 +90,8 @@ In interactive app chat, actions that **leave your workspace or remove data are 
 
 Reads, drafts, and internal edits happen directly so the chat stays fast; the irreversible, client-facing steps are the ones that ask first.
 
+Every request that waits for you, from your chats and from connected apps, is also listed on [**Chat → Approvals**](https://app.every.ai/chat/approvals). Approve or cancel each one, or use **Approve all** or **Cancel all**.
+
 <Warning>
   Always double-check invoice and email details before confirming a send. Once an email is delivered to a client, it cannot be unsent.
 </Warning>
@@ -116,9 +130,16 @@ The newly written part of your reply must be exact, the invoice number must matc
 
 You don't have to know where a page lives. Ask Every to take you somewhere and it can navigate the app for you — "open the payments page," "take me to my overdue invoices," "show me ACME's company record." This pairs well with analysis: ask a question, then jump straight to the records behind the answer.
 
+## In the message box
+
+- **+** adds context (a record or a skill), attaches files, or adds files from Google Drive. You can also paste or drop a file.
+- **Mode** (in the **+** menu) switches between **Auto**, which adjusts to each request, and **Max**, for the hardest tasks.
+- Type **@** to tag a record or an active skill.
+- While Every is working, you can keep typing. New messages wait in a queue and go out in order.
+
 ## Voice Input
 
-Every supports voice input. Click the microphone icon in the chat input, speak your request, and your speech is transcribed and sent as a normal message.
+Every supports voice input. Click the microphone icon in the message box and speak your request. Select the check mark to stop: your words go into the message box, so you can review them before you send.
 
 **Useful for:**
 - Logging time while working
