@@ -116,7 +116,7 @@ Each verb gets the gate that fits it:
 |-|-|-|
 | `list`, `view`, `deal stages`, `approvals` | None | Runs at once |
 | `create`, `update`, `deal move`, `deal outreach edit`, `deal outreach cancel` | `--yes` | Confirmation phrase, handled by the CLI |
-| `invoice send`, `proposal send`, `deal outreach send` | `--yes --allow-destructive` | Waits for your approval in Settings → Approvals |
+| `invoice send`, `proposal send`, `deal outreach send` | `--yes --allow-destructive` | Waits for your approval in Chat → Approvals |
 | `every tool call deal_outreach` (any action) | `--yes --allow-destructive` | A send waits for approval. Edit and cancel take a confirmation phrase |
 
 For ordinary writes, Every may return an exact action-and-target confirmation. In an interactive terminal, CLI 0.6.3 or newer can confirm the trusted phrase and retry once after your local consent.
@@ -274,7 +274,7 @@ Every keeps one draft for the message a deal owes. Read it, edit it if needed, t
     ```bash
     every deal outreach send <deal_id> --yes --allow-destructive --json
     ```
-    The CLI reads the draft again, shows its channel, recipient, subject and text, and asks to send that exact version. Pass `--draft-version <v>` to send a version you already read. Every then holds the send for you: the command exits `4`, and `error.approvals_url` links to Settings → Approvals.
+    The CLI reads the draft again, shows its channel, recipient, subject and text, and asks to send that exact version. Pass `--draft-version <v>` to send a version you already read. Every then holds the send for you: the command exits `4`, and `error.approvals_url` links to Chat → Approvals.
   </Step>
   <Step title="Approve, then run the same command again">
     Review the To, Cc, subject and text on the approval card and approve it. Then rerun the identical command within 24 hours to send.
@@ -287,7 +287,7 @@ To stop a scheduled or held send, use `every deal outreach cancel <deal_id> --se
 
 ### Check approvals
 
-`every approvals` lists the requests that wait for approval in Every: status, tool, deal and action, the connection that asked, and when each was created and expires. By default it shows the pending and approved requests of this connection. `--all` shows every request of the last 24 hours. It is read only: you approve in [**Settings → Approvals**](https://app.every.ai/settings/approvals), never from the CLI.
+`every approvals` lists the requests that wait for approval in Every: status, tool, deal and action, the connection that asked, and when each was created and expires. By default it shows the pending and approved requests of this connection. `--all` shows every request of the last 24 hours. It is read only: you approve in [**Chat → Approvals**](https://app.every.ai/chat/approvals), never from the CLI.
 
 <Card title="Automate your CRM with an agent" icon="robot" href="/integrations/automate-with-an-agent">
   Run your deals and prospects on a schedule with the CLI and the use-every skill
