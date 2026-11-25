@@ -6,7 +6,7 @@ icon: "credit-card"
 
 ## Overview
 
-Every supports both online credit card payments through Stripe and manual payment tracking for offline payment methods. Link payments to the invoice they settle so Every can update its payment status and outstanding balance. Every Agent can also record a payment without an invoice when that is what you intend.
+Every supports both online credit card payments through Stripe and manual payment tracking for offline payment methods. Link payments to the invoice they settle so Every can update its payment status and outstanding balance. Every can also record a payment without an invoice when that is what you intend.
 
 <Card title="Open Payments" icon="credit-card" href="https://app.every.ai/payments" horizontal>
   View and manage all payment records in Every
@@ -33,7 +33,7 @@ Accept major credit cards (Visa, MasterCard, Amex, Discover) directly on invoice
 **Recording:** Open invoice → Click Record Payment → Enter amount, date, method, optional notes/reference → Save (invoice status updates automatically)
 
 <Tip>
-  **Ask Every Agent:** Record manual payments:
+  **Ask Every:** Record manual payments:
   - "Record a $5,000 check payment from ACME Corp"
   - "Mark invoice INV-123 as paid by bank transfer"
 </Tip>
@@ -93,7 +93,7 @@ Open invoice (must be issued) → Click Record Payment → Enter amount (full or
 **Result:** Payment record created, invoice status updated (Paid/Partial/Unpaid), outstanding balance recalculated, activity timeline updated
 
 <Tip>
-  **Ask Every Agent:** Record detailed payments:
+  **Ask Every:** Record detailed payments:
   - "Record a $3,000 partial payment from ACME Corp on invoice INV-123"
   - "Add a bank transfer payment of $10,000 received yesterday"
   - "Mark check #4567 for $2,500 from Tech Solutions as received"
@@ -106,7 +106,7 @@ Record first partial payment → Invoice shows "Paid $X of $Y" with outstanding 
 **Example:** Invoice $1,000 → Payment 1: $500 (Partially Paid, balance $500) → Payment 2: $500 (Paid, balance $0)
 
 <Tip>
-  **Ask Every Agent:** Handle partial payments:
+  **Ask Every:** Handle partial payments:
   - "Record the first installment of $1,000 from ACME Corp"
   - "Record the final payment of $3,000 to complete invoice INV-456"
 </Tip>
@@ -116,7 +116,7 @@ Record first partial payment → Invoice shows "Paid $X of $Y" with outstanding 
 View all payment records per invoice in the Payments section (date, amount, method, who recorded it, reference/notes, timestamp). Click payment for full details.
 
 <Tip>
-  **Ask Every Agent:** View payment history:
+  **Ask Every:** View payment history:
   - "Show me all payments received this month"
   - "List payments from ACME Corp"
 </Tip>
@@ -149,7 +149,7 @@ Send reminder emails to clients with overdue or upcoming invoices.
 </Note>
 
 <Tip>
-  **Ask Every Agent:** Send reminders efficiently:
+  **Ask Every:** Send reminders efficiently:
   - "Send payment reminders to all overdue invoices"
   - "Remind ACME Corp about their outstanding invoice"
   - "Send reminders to invoices overdue by more than 7 days"
@@ -166,7 +166,7 @@ Whoever you billed - a Company or a Person - can report payments they've made, w
 **Managing Claims:** Navigate to Payments/Invoices → See pending claims badge → Review details → Approve (verify payment received, check amount) or Reject (add reason) → Client notified
 
 <Tip>
-  **Ask Every Agent:** Manage payment claims:
+  **Ask Every:** Manage payment claims:
   - "Approve the payment claim from ACME Corp"
   - "Show me all pending payment claims"
 </Tip>
@@ -185,7 +185,7 @@ Invoice status auto-updates based on payments:
 **Outstanding Balance:** Total invoice amount - all payments recorded (updates automatically with each payment)
 
 <Tip>
-  **Ask Every Agent:** Check outstanding balances:
+  **Ask Every:** Check outstanding balances:
   - "Which invoices are still waiting for payment?"
   - "What's the total outstanding balance across all clients?"
 </Tip>
@@ -203,7 +203,7 @@ Any payment **record** can be deleted in Every — including ones created by an 
 </Warning>
 
 <Tip>
-  **Ask Every Agent:** Delete incorrect payments:
+  **Ask Every:** Delete incorrect payments:
   - "Delete the payment I just recorded on invoice INV-123"
   - "Remove the incorrect payment from ACME Corp invoice"
 </Tip>
@@ -220,7 +220,7 @@ View all payments across all invoices with:
 **Summary Metrics:** Payments received count, total amount received
 
 <Tip>
-  **Ask Every Agent:** View payment reports:
+  **Ask Every:** View payment reports:
   - "Show me all payments received in Q4"
   - "What's the total amount received this year?"
   - "Show payments for ACME Corp sorted by date"
@@ -231,7 +231,7 @@ View all payments across all invoices with:
 For deeper analytics (average days to payment, on-time rate, method breakdowns, revenue trends), ask Every in a chat. Every gives the aggregated metrics, or a CSV on request, while the Payments page focuses on day-to-day operations.
 
 <Tip>
-  **Ask Every Agent:** Analyze payment patterns:
+  **Ask Every:** Analyze payment patterns:
   - "Run the payment time report for ACME Corp"
   - "What's our most common payment method last quarter?"
   - "How much revenue did we receive in December?"
@@ -271,7 +271,7 @@ For deeper analytics (average days to payment, on-time rate, method breakdowns, 
   </Accordion>
 
   <Accordion title="Are overdue reminders sent automatically?">
-    No reminder is sent just because an invoice becomes overdue. Send one from the invoice, or ask Every Agent to prepare it and approve the send. Background routines can surface what is overdue without contacting the client.
+    No reminder is sent just because an invoice becomes overdue. Send one from the invoice, or ask Every to prepare it and approve the send. Background routines can surface what is overdue without contacting the client.
   </Accordion>
 
   <Accordion title="Does a client's payment claim mark the invoice paid?">

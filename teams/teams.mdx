@@ -1,12 +1,12 @@
 ---
 title: "Teams & Multi-User"
-description: "Invite teammates into one organization with shared records, per-member ownership and attribution, private agent chats, and per-user Google connections"
+description: "Invite teammates into one organization with shared records, per-member ownership and attribution, private chats, and per-user Google connections"
 icon: "users"
 ---
 
 ## Overview
 
-An Every organization can have more than one member. Everyone in the org shares the same business records — people, companies, invoices, proposals, and pipeline deals — while a few things stay personal to each member: their agent chats can be kept private, and each person connects their own Google account.
+An Every organization can have more than one member. Everyone in the org shares the same business records — people, companies, invoices, proposals, and pipeline deals — while a few things stay personal to each member: their chats can be kept private, and each person connects their own Google account.
 
 <Note>
   Multi-user behavior only appears once your org has **two or more members**. Solo organizations see the single-user experience with none of the team UI below (no avatars, no "Owner" labels, no All/My filters).
@@ -17,7 +17,7 @@ An Every organization can have more than one member. Everyone in the org shares 
 Every uses a simple two-layer model:
 
 - **Shared by default.** All business records — people, companies, invoices, proposals, and deals — are organization-wide. Every member sees every record. There is no per-record or role-based access control on business data.
-- **Personal where it matters.** Agent chat threads can be made private to a single member, and Gmail / Google Calendar / Google Contacts connections are scoped per person rather than per org.
+- **Personal where it matters.** Chats can be made private to a single member, and Gmail / Google Calendar / Google Contacts connections are scoped per person rather than per org.
 
 <Note>
   AI credits are a single **organization-wide pool** — all members draw from the same balance. There is no per-seat metering or per-member usage breakdown.
@@ -27,7 +27,7 @@ Every uses a simple two-layer model:
 
 Open **Settings** at the bottom of the desktop left rail, go to **Business** (`/settings/organization`), and find the **Team** card. Click **Invite teammate** and add them by email — they'll receive an invitation link that adds them to this workspace once they sign in. The Team card also lists current members with their avatar, name, email, and role.
 
-You can also just ask the agent: *"invite dana@example.com to this workspace."* It confirms the address with you before sending.
+You can also just ask Every: *"invite dana@example.com to this workspace."* It confirms the address with you before sending.
 
 ### Seats and plans
 
@@ -72,26 +72,26 @@ Each teammate connects their own [LinkedIn and Instagram](/integrations/linkedin
 
 Gmail accounts are connected per person too. Each one has a **Workspace access** control for whether teammates can use it or it stays private to its owner. See [Google Workspace](/integrations/google-workspace#connecting-more-than-one-gmail-account).
 
-## Private agent chats
+## Private chats
 
-Each agent chat thread has a visibility setting:
+Each chat has a visibility setting:
 
 - **Organization (default)** — visible to every member of the org.
-- **Private** — visible only to the member who owns the thread.
+- **Private** — visible only to the member who owns the chat.
 
-You can toggle a thread between Organization and Private from the thread menu when you own it. Private threads (and their messages) are hidden from teammates everywhere they're read.
+You can toggle a chat between Organization and Private from the chat menu when you own it. Private chats (and their messages) are hidden from teammates everywhere they're read.
 
 <Note>
-  Threads that touch **personal Google data** (your Gmail, Calendar, Drive, or Contacts) and threads created by **scheduled tasks** — like your [Daily Brief](/scheduled-tasks/daily-brief) — are automatically made private and locked so they can't be re-shared. This keeps one member's inbox and calendar content from appearing in a teammate's view.
+  Chats that touch **personal Google data** (your Gmail, Calendar, Drive, or Contacts) and chats created by **scheduled tasks** — like your [Daily Brief](/scheduled-tasks/daily-brief) — are automatically made private and locked so they can't be re-shared. This keeps one member's inbox and calendar content from appearing in a teammate's view.
 </Note>
 
 ## Per-user Google connections
 
 Google connections are **per member, not per organization**. Each teammate connects their own Gmail, Google Calendar, and Google Contacts under **Connections**.
 
-- The agent uses **your** Google account for your work — reading your calendar, scanning your inbox for replies, sending on your behalf.
+- Every uses **your** Google account for your work — reading your calendar, scanning your inbox for replies, sending on your behalf.
 - The Connections page shows your personal connection status alongside which teammates have connected their own accounts.
-- For pipeline outreach, the agent uses the **deal owner's** Gmail to send and to scan for replies.
+- For pipeline outreach, Every uses the **deal owner's** Gmail to send and to scan for replies.
 
 <Card title="Connect Google Workspace" icon="mail" href="/integrations/google-workspace" horizontal>
   Connect your own Gmail, Calendar, and Contacts
@@ -104,7 +104,7 @@ Across the app, members appear as avatars (their photo, or initials when no phot
 - Deal cards on the Deals page and the deal detail dialog ("Owner")
 - Person and company activity timelines ("Created by")
 - The Team section in Business settings
-- The thread list, next to private-thread indicators
+- The chat list, next to private-chat indicators
 
 All of this identity UI only renders in multi-member orgs.
 

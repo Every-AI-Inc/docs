@@ -13,7 +13,7 @@ Schedule agent work to run as a recurring routine or a one-time reminder. Instea
 </Card>
 
 **Highlights:**
-- Every run uses full agent context and posts its results to its own thread, with undo history
+- Every run uses full agent context and posts its results to its own chat, with undo history
 - Recurring tasks run on a cadence you choose — daily, weekly, monthly, or a custom interval — with timezone-aware start times
 - One-time tasks run once, at a specific date and time
 - Results show up in Activity on Home, plus an optional email summary
@@ -58,7 +58,7 @@ Use **Add task** from [Chat → Scheduled](https://app.every.ai/chat/scheduled) 
 4. Save — Every runs it from here on.
 
 <Tip>
-  **Ask Every Agent:** You can also set up a task conversationally — "Every weekday at 8am, check my inbox for unpaid invoices and draft reminders."
+  **Ask Every:** You can also set up a task conversationally — "Every weekday at 8am, check my inbox for unpaid invoices and draft reminders."
 </Tip>
 
 ## Cadence & scheduling
@@ -79,13 +79,13 @@ Every recurring task stores a local run time, so it fires at the right moment fo
 
 ## Managing tasks from chat
 
-Every agent thread has a **clock icon** that opens a popup listing the tasks connected to that conversation, so you can check status, adjust cadence, or turn a task off without leaving the chat. Active [skills](/ai/memory-and-skills) can also be @-tagged directly in chat, the same way you'd tag them when creating a task.
+Every chat has a **clock icon** that opens a popup listing the tasks connected to that chat, so you can check status, adjust cadence, or turn a task off without leaving the chat. Active [skills](/ai/memory-and-skills) can also be @-tagged directly in chat, the same way you'd tag them when creating a task.
 
-## Results, threads & undo
+## Results, chats & undo
 
-- **Its own thread.** Each run posts a summary, links, and any drafts into a dedicated agent thread. Open it from [Chat](https://app.every.ai/chat) to read the full result or follow up directly.
-- **Undo history.** Runs that change records capture an undo snapshot, so you can revert a scheduled change right from the thread.
-- **Activity.** Upcoming runs preview in **Activity** on [**Home**](https://app.every.ai/); completed runs show success or failure badges with quick links back to the originating thread.
+- **Its own chat.** Each run posts a summary, links, and any drafts into a dedicated chat. Open it from [Chat](https://app.every.ai/chat) to read the full result or follow up directly.
+- **Undo history.** Runs that change records capture an undo snapshot, so you can revert a scheduled change right from the chat.
+- **Activity.** Upcoming runs preview in **Activity** on [**Home**](https://app.every.ai/); completed runs show success or failure badges with quick links back to the originating chat.
 - **Optional email.** Turn on the email summary for any task to also receive a recap by email after each run.
 
 <Tip>
@@ -98,7 +98,7 @@ Every agent thread has a **clock icon** that opens a popup listing the tasks con
   **One task at a time per workspace.** If you trigger a run while another agent task is already in flight, you'll see "Another agent task is running for this workspace" — wait for the current run to finish (check Activity on Home or the latest chat) before retrying.
 </Warning>
 
-- **Tasks use AI credits.** Each run consumes credits based on the work the agent does. If your credits are exhausted when a run is due, it's skipped — see [Credit Usage & Errors](/plans/credit-usage-and-errors) for exactly what happens (including why a skipped run can show as "Completed").
+- **Tasks use AI credits.** Each run consumes credits based on the work Every does. If your credits are exhausted when a run is due, it's skipped — see [Credit Usage & Errors](/plans/credit-usage-and-errors) for exactly what happens (including why a skipped run can show as "Completed").
 - **Team scope.** In a multi-member workspace, your Daily Brief is private to you, while custom task definitions are shared with the team. Cards show a **Private** or **Team** badge so you know who can see each one.
 
 ## Next steps

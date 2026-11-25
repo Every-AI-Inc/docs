@@ -40,7 +40,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 |-|-|-|-|-|
 | `open_every_workspace` | Read | Open Every Home or one selected record. | `view`, `entity_type`, `entity_id` | None |
 | `get_workspace_setup` | Read | Read current setup readiness and a bounded Business DNA summary without starting scans, minting links or changing settings. | None | None |
-| `get_workspace_priorities` | Read | Read your current ranked Priorities with scoped context for an Ask Every conversation. | None | None |
+| `get_workspace_priorities` | Read | Read your current ranked Priorities with scoped context for a chat with Every. | None | None |
 | `get_home` | Read | Show the first-run getting-started overview of Every's features and setup. | None | None |
 | `get_started` | Read | Use this when a newly connected user wants to get started or set up Business DNA. | `topic` | None |
 | `what_every_does` | Read | Use this for high-level capability questions about Every. | None | None |
@@ -49,7 +49,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | `business_settings` | Read | Get business settings: name, address, default currency, timezone, tax rates with IDs, and subdomain. | None | None |
 | `get_signup_status` | Read | Check whether the user's Every signup is finished, and what is needed to finish it. | `include_optional_setup_url` | None |
 | `complete_signup` | Write | Finish the user's Every signup with the profile the user confirmed. | `organization_name`*, `description`, `public_links` | Confirmation phrase |
-| `ask_assistant` | Read | Ask the Every assistant a read-only question about the workspace. It cannot change data. | `message`* | None |
+| `ask_assistant` | Read | Ask Every a read-only question about the workspace. It cannot change data. | `message`* | None |
 
 ### People and Companies
 
@@ -88,7 +88,7 @@ Inputs marked * are required. The transport field `confirmation` is not listed.
 | Tool | Class | What it does | Inputs | Every approval |
 |-|-|-|-|-|
 | `get_pipeline_summary` | Read | Read active deal counts, linked value by stage, and pending-review count without a display. | None | None |
-| `get_pipeline_settings` | Read | Read the org's pipeline (sales stage) settings: the ordered stages (key, label, role), each stage's success criteria and whether the agent is allowed to move a deal into it, plus whether Won automation is enabled overall. | None | None |
+| `get_pipeline_settings` | Read | Read the org's pipeline (sales stage) settings: the ordered stages (key, label, role), each stage's success criteria and whether Every is allowed to move a deal into it, plus whether Won automation is enabled overall. | None | None |
 | `update_pipeline_stages` | Sensitive write | Add, rename or reorder the org's middle Deal stages (between Lead and Won), or set the rules of an existing stage. | `action`*, `label`, `criteria`, `after_stage`, `stage`, `order`, `expected_edit_version` | Approve in the Every app |
 | `list_deals` | Read | Read pipeline deals as text and structured data without a display. | `stage`, `review_state`, `search`, `limit`, `offset`, `order_by`, `order_desc`, `response_format`, `include_archived`, `attention`, `inactive_days`, `owner`, `updated_since`, `sort` | None |
 | `list_workspace_deals` | Read | Show one interactive Deals board when the user asks to see Deals, their pipeline, or Deal lanes. | `stage`, `search`, `offset`, `limit`, `focus` | None |

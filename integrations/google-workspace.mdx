@@ -6,11 +6,11 @@ icon: "mail"
 
 ## Overview
 
-Google Workspace integration connects Every with your Gmail, Calendar, Drive, and Contacts. Import people, send emails through the Agent, attach Drive files, and schedule meetings seamlessly.
+Google Workspace integration connects Every with your Gmail, Calendar, Drive, and Contacts. Import people, send emails through Every, attach Drive files, and schedule meetings seamlessly.
 
 **What You Can Do:**
 - Import people from Google Contacts
-- Send emails through Gmail (via Every Agent)
+- Send emails through Gmail (via Every)
 - Create and view calendar events
 - Attach Google Drive files you create in or open with Every (Drive Picker)
 - Keep deals current from your Gmail conversations
@@ -46,7 +46,7 @@ On a team workspace, each account also has a **Workspace access** control for wh
 - **Contacts:** Read contact information
 
 <Tip>
-  **Ask Every Agent:** Connect Google:
+  **Ask Every:** Connect Google:
   - "Connect my Google Workspace account"
   - "Set up Google integration"
   - "Link my Gmail to Every"
@@ -64,11 +64,11 @@ Scopes define what Every can access. If a feature requires missing scopes, the a
 
 ## Gmail Integration
 
-### Sending Emails via Agent
+### Sending Emails with Every
 
-The Every Agent can send emails through your Gmail account:
+Every can send emails through your Gmail account:
 
-**How It Works:** Chat with Agent ("Send an email to ACME Corp thanking them for payment") → Agent drafts the exact email → The app shows a permission card → You approve or deny → Approved email is sent from your Gmail
+**How It Works:** Chat with Every ("Send an email to ACME Corp thanking them for payment") → Every drafts the exact email → The app shows a permission card → You approve or deny → Approved email is sent from your Gmail
 
 **Use Cases:**
 - Invoice reminders and thank you messages
@@ -77,7 +77,7 @@ The Every Agent can send emails through your Gmail account:
 - Custom client communications
 
 <Tip>
-  **Ask Every Agent:** Send emails:
+  **Ask Every:** Send emails:
   - "Send invoice INV-123 via Gmail to ACME Corp"
   - "Email a payment reminder to John Smith"
   - "Draft a follow-up email to my client about the proposal"
@@ -85,13 +85,13 @@ The Every Agent can send emails through your Gmail account:
 
 ### Suggested Responses
 
-Agent generates context-aware email suggestions (API: `/api/generate-suggested-messages`). View client message → Generate response → Select from 2-3 options → Customize → Send.
+Every generates context-aware email suggestions (API: `/api/generate-suggested-messages`). View client message → Generate response → Select from 2-3 options → Customize → Send.
 
 ## Google Calendar Integration
 
 ### Managing Events
 
-**Via Agent:** "Create a calendar event for my meeting with ACME Corp next Tuesday at 2 PM"
+**Via chat:** "Create a calendar event for my meeting with ACME Corp next Tuesday at 2 PM"
 
 **Features:**
 - Meeting title and description
@@ -106,7 +106,7 @@ Agent generates context-aware email suggestions (API: `/api/generate-suggested-m
 - Follow-up task scheduling
 
 <Tip>
-  **Ask Every Agent:** Schedule meetings:
+  **Ask Every:** Schedule meetings:
   - "Schedule a meeting with ACME Corp next Tuesday at 2 PM"
   - "Add a reminder for invoice follow-up on Friday"
   - "Set up a meeting with TechCo to discuss the proposal"
@@ -134,7 +134,7 @@ Every connects to Drive with the **`drive.file`** scope. This is a privacy-prese
 - Reference a document you've shared with Every
 
 <Tip>
-  **Ask Every Agent** to work with files you've already picked or created with Every:
+  **Ask Every** to work with files you've already picked or created with Every:
   - "Attach the proposal template I selected from Drive"
   - "Use the spec sheet I shared from Drive for this proposal"
 </Tip>
@@ -184,7 +184,7 @@ Open [**Prospects**](https://app.every.ai/prospects) and select **Add target**. 
 </Tip>
 
 <Tip>
-  **Ask Every Agent:**
+  **Ask Every:**
   - "Find prospects among agency founders in my network"
   - "What did my last prospecting pass target?"
 </Tip>
@@ -209,13 +209,13 @@ Every tracks which people exist in your team's Google Contacts, helping you iden
 
 ### Company Enrichment
 
-After a company is created, open its record and click **Enrich**. Every Agent uses Gmail, Calendar, Google Contacts, and public web data to enrich the record with company info, additional people, and social profiles.
+After a company is created, open its record and click **Enrich**. Every uses Gmail, Calendar, Google Contacts, and public web data to enrich the record with company info, additional people, and social profiles.
 
-## Every Agent Integration
+## Using Google Workspace in chat
 
-The Agent leverages Google integrations with the `check_google_services_status` tool to verify connections before using features.
+Every leverages Google integrations with the `check_google_services_status` tool to verify connections before using features.
 
-**Agent Capabilities:**
+**What Every can do:**
 - Send Gmail emails
 - Create calendar events
 - Attach Drive files you've picked or created with Every
@@ -225,11 +225,11 @@ The Agent leverages Google integrations with the `check_google_services_status` 
 **Example Flow:**
 ```
 User: "Send invoice reminder to ACME Corp"
-Agent: ✓ Checks Gmail connection
+Every: ✓ Checks Gmail connection
        ✓ Drafts professional reminder
        ✓ Shows the exact recipient and message for approval
 User:  ✓ Approves the permission card
-Agent: ✓ Sends via your Gmail
+Every: ✓ Sends via your Gmail
        ✓ Logs activity
 ```
 
@@ -247,7 +247,7 @@ Agent: ✓ Sends via your Gmail
 **Health Info:** Last successful sync, active scopes, token expiration, error messages
 
 <Tip>
-  **Ask Every Agent:** Check Google status:
+  **Ask Every:** Check Google status:
   - "Check my Google Workspace connection status"
   - "Is Gmail connected?"
   - "What Google permissions do I have enabled?"
@@ -278,8 +278,8 @@ Agent: ✓ Sends via your Gmail
 Disconnecting stops future Google access. It does not remove people, company records, or relationship activity that Every already added to your workspace.
 
 - **Delete Google-sourced data but keep your Every account:** Email [hello@every.ai](mailto:hello@every.ai) from the email address on your Every account. Name the workspace and connected Google account, and describe what Google-sourced data you want removed. We verify the request before deleting data.
-- **Delete your personal Every account in a shared workspace:** Go to [**Settings → Profile**](https://app.every.ai/settings/profile) → **Delete my account**. This permanently deletes your private conversations, connected Google account and access tokens, and personal notification settings. Shared business records stay with the workspace, with your attribution removed.
-- **Delete a solo workspace and all of its data:** Go to [**Settings → Business**](https://app.every.ai/settings/organization) → **Delete organization**. Deletion is scheduled for 24 hours and can be cancelled before it runs. When it completes, the workspace's records, files, connected-account data, and conversations are permanently deleted.
+- **Delete your personal Every account in a shared workspace:** Go to [**Settings → Profile**](https://app.every.ai/settings/profile) → **Delete my account**. This permanently deletes your private chats, connected Google account and access tokens, and personal notification settings. Shared business records stay with the workspace, with your attribution removed.
+- **Delete a solo workspace and all of its data:** Go to [**Settings → Business**](https://app.every.ai/settings/organization) → **Delete organization**. Deletion is scheduled for 24 hours and can be cancelled before it runs. When it completes, the workspace's records, files, connected-account data, and chats are permanently deleted.
 
 <Note>
   If you are the only member of a workspace, deleting the organization is the available full-deletion path. If you are the only administrator of a shared workspace, make another member an administrator before deleting your personal account.
@@ -340,7 +340,7 @@ Disconnecting stops future Google access. It does not remove people, company rec
 </Tip>
 
 <Tip>
-  **Use Agent for emails** - Let Agent draft professional emails based on your data.
+  **Use Every for emails** - Let Every draft professional emails based on your data.
 </Tip>
 
 <Tip>
@@ -379,7 +379,7 @@ Disconnecting stops future Google access. It does not remove people, company rec
     icon="robot"
     href="/ai/every-agent"
   >
-    Let Agent send emails and create events
+    Let Every send emails and create events
   </Card>
 
   <Card

@@ -1,12 +1,12 @@
 ---
 title: "HubSpot CRM Integration"
-description: "Connect HubSpot for conversational lookups of contacts, companies, deals, properties, owners, and campaign data in Every Agent"
+description: "Connect HubSpot for conversational lookups of contacts, companies, deals, properties, owners, and campaign data in Every"
 icon: "hubspot"
 ---
 
 ## Overview
 
-HubSpot integration connects Every Agent to your HubSpot CRM, enabling conversational access to your contacts, companies, and deals. Instead of switching between apps, ask Every Agent to look up CRM data, search contacts, and view deal pipeline information.
+HubSpot integration connects Every to your HubSpot CRM, enabling conversational access to your contacts, companies, and deals. Instead of switching between apps, ask Every to look up CRM data, search contacts, and view deal pipeline information.
 
 **Key features:**
 - Search and view HubSpot contacts and companies
@@ -15,22 +15,22 @@ HubSpot integration connects Every Agent to your HubSpot CRM, enabling conversat
 - Secure OAuth connection with fine-grained permissions
 
 <Note>
-  HubSpot integration is **agent-powered**: you query HubSpot data through Every Agent. It is not an automatic two-way sync, and connecting it does not copy the whole CRM into Every.
+  HubSpot integration is **agent-powered**: you query HubSpot data through Every. It is not an automatic two-way sync, and connecting it does not copy the whole CRM into Every.
 </Note>
 
 ## How HubSpot Integration Works
 
 ### Agent-Powered Access
 
-Every Agent connects directly to HubSpot's API, giving you conversational access to your CRM:
+Every connects directly to HubSpot's API, giving you conversational access to your CRM:
 
 ```
 You: "Find my contact at Acme Corp"
-Agent: "I found John Smith at Acme Corp. Email: john@acme.com, Phone: 555-0100.
+Every: "I found John Smith at Acme Corp. Email: john@acme.com, Phone: 555-0100.
        They have an open deal 'Website Redesign' worth $25,000 in the Proposal stage."
 
 You: "What deals do I have closing this month?"
-Agent: "You have 3 deals closing in January:
+Every: "You have 3 deals closing in January:
        - Acme Corp Website Redesign: $25,000 (Proposal)
        - TechStart Consulting: $15,000 (Negotiation)
        - Beta Inc Support Contract: $8,500 (Closing)"
@@ -68,7 +68,7 @@ Agent: "You have 3 deals closing in January:
 HubSpot shows the current permission set during OAuth. Review it there before connecting. Every's supported HubSpot tools are used for searches and reads; do not assume a HubSpot record was updated unless the tool result explicitly proves it.
 
 <Tip>
-  **Ask Every Agent:** After connecting, verify access:
+  **Ask Every:** After connecting, verify access:
   - "Search for a contact in HubSpot"
   - "Show me my HubSpot deals"
   - "Look up [company name] in HubSpot"
@@ -83,7 +83,7 @@ HubSpot shows the current permission set during OAuth. Review it there before co
 - ⚠️ Needs reconnection - Token expired, click to reconnect
 - ❌ Not connected - Integration not set up
 
-## Using HubSpot with Every Agent
+## Using HubSpot with Every
 
 ### Search Contacts
 
@@ -139,7 +139,7 @@ If your HubSpot connection expires:
 2. Find HubSpot → Click **Disconnect**
 3. Confirm disconnection
 
-**What happens:** Every Agent loses HubSpot access. No data is deleted from either system. You can reconnect anytime.
+**What happens:** Every loses HubSpot access. No data is deleted from either system. You can reconnect anytime.
 
 ## Common Workflows
 
@@ -148,7 +148,7 @@ If your HubSpot connection expires:
 ```
 You: "I need to invoice Acme Corp. Can you find their details in HubSpot?"
 
-Agent: "I found Acme Corp in HubSpot:
+Every: "I found Acme Corp in HubSpot:
        - Primary Contact: John Smith (john@acme.com)
        - Deal: Website Redesign ($25,000) - marked as Won
 
@@ -160,7 +160,7 @@ Agent: "I found Acme Corp in HubSpot:
 ```
 You: "Give me a summary of my sales pipeline"
 
-Agent: "Your HubSpot pipeline summary:
+Every: "Your HubSpot pipeline summary:
        - Prospecting: 5 deals ($45,000)
        - Proposal: 3 deals ($35,000)
        - Negotiation: 2 deals ($28,000)
@@ -174,7 +174,7 @@ Agent: "Your HubSpot pipeline summary:
 ```
 You: "I'm meeting with TechStart tomorrow. What do I know about them?"
 
-Agent: "TechStart Inc from HubSpot:
+Every: "TechStart Inc from HubSpot:
        - Industry: Software
        - Contacts: Sarah Chen (CEO), Mike Park (CTO)
        - Active Deal: Platform Integration ($18,000) in Proposal stage
@@ -184,7 +184,7 @@ Agent: "TechStart Inc from HubSpot:
 ## Best Practices
 
 <Tip>
-  **Keep HubSpot data clean** - Every Agent retrieves what's in HubSpot, so accurate CRM data means accurate agent responses.
+  **Keep HubSpot data clean** - Every retrieves what's in HubSpot, so accurate CRM data means accurate replies.
 </Tip>
 
 <Tip>
@@ -199,7 +199,7 @@ Agent: "TechStart Inc from HubSpot:
 
 <AccordionGroup>
   <Accordion title="Does connecting HubSpot migrate my CRM into Every?">
-    No. The connection gives Every Agent conversational access to supported HubSpot reads. If you want historical records to live in Every, attach a representative CSV or XLSX file in [private Ask Every chat](/reference/reports-and-export#import-records) and review the proposed mapping.
+    No. The connection gives Every conversational access to supported HubSpot reads. If you want historical records to live in Every, attach a representative CSV or XLSX file in [a private chat](/reference/reports-and-export#import-records) and review the proposed mapping.
   </Accordion>
 
   <Accordion title="Which system is the source of truth?">
@@ -207,7 +207,7 @@ Agent: "TechStart Inc from HubSpot:
   </Accordion>
 
   <Accordion title="Does disconnecting delete HubSpot or Every data?">
-    No. It removes the agent's HubSpot access. Records already stored in either system remain where they are.
+    No. It removes Every's HubSpot access. Records already stored in either system remain where they are.
   </Accordion>
 </AccordionGroup>
 
@@ -230,7 +230,7 @@ Agent: "TechStart Inc from HubSpot:
 
 **Solution:** Reconnect HubSpot and ensure you approve all requested permissions during OAuth
 
-### Agent can't access deals
+### Every can't access deals
 
 **Check:** Your HubSpot user account has deals access and deal permissions were approved during connection
 
