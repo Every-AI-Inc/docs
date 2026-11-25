@@ -112,7 +112,7 @@ The CLI classifies every tool and gates it locally, then Every applies its serve
 
 For ordinary writes, Every may return an exact action-and-target confirmation. In an interactive terminal, CLI 0.6.3 or newer can confirm the trusted phrase and retry once after your local consent.
 
-Higher-impact actions also create a request in [**Every → Settings → Approvals**](https://app.every.ai/settings/approvals). The CLI never automatically retries a human-approved action: after approving, rerun the identical command with the same arguments and flags within 10 minutes.
+Higher-impact actions also create a request in [**Every → Chat → Approvals**](https://app.every.ai/chat/approvals). The CLI never automatically retries a human-approved action: after approving, rerun the identical command with the same arguments and flags within 10 minutes.
 
 In a non-interactive context, a missing flag fails fast with exit code `4` and names the exact flag needed — it never silently prompts and hangs.
 

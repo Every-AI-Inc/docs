@@ -1,6 +1,6 @@
 ---
 title: "Scheduled Tasks"
-description: "Schedule agent work to run as a recurring routine or a one-time reminder — built-in and custom tasks, managed from Agent or right in chat"
+description: "Schedule work for Every to run as a recurring routine or a one-time reminder — built-in and custom tasks, managed from Chat → Scheduled or right in a chat"
 icon: "clock"
 ---
 
@@ -8,7 +8,7 @@ icon: "clock"
 
 Schedule agent work to run as a recurring routine or a one-time reminder. Instead of asking Every something each time, turn on the tasks you want it to keep doing — a morning brief, a sweep of overdue invoices, or any custom request — and Every runs them for you, on your schedule.
 
-<Card title="Open Scheduled Tasks" icon="clock" href="https://app.every.ai/agent/tasks" horizontal>
+<Card title="Open Scheduled" icon="clock" href="https://app.every.ai/chat/scheduled" horizontal>
   Turn tasks on or off, set their cadence, and review past runs
 </Card>
 
@@ -16,12 +16,12 @@ Schedule agent work to run as a recurring routine or a one-time reminder. Instea
 - Every run uses full agent context and posts its results to its own thread, with undo history
 - Recurring tasks run on a cadence you choose — daily, weekly, monthly, or a custom interval — with timezone-aware start times
 - One-time tasks run once, at a specific date and time
-- Results show up in the Activity Timeline, plus an optional email summary
+- Results show up in Activity on Home, plus an optional email summary
 - One agent task runs at a time per workspace, so scheduled work never overlaps
 - A manual **Run Now** lets you test a task without touching its future schedule
 
 <Note>
-  Scheduled Tasks was previously called "Heartbeat" / "Automations." The old `/agent/heartbeat` and `/agent/automations` links now redirect to **Agent → Scheduled Tasks** at [https://app.every.ai/agent/tasks](https://app.every.ai/agent/tasks).
+  Scheduled tasks were previously called "Heartbeat" / "Automations." The old `/agent/tasks`, `/agent/heartbeat`, and `/agent/automations` links now redirect to **Chat → Scheduled** at [https://app.every.ai/chat/scheduled](https://app.every.ai/chat/scheduled).
 </Note>
 
 ## Recurring
@@ -42,15 +42,15 @@ Prospecting is not a scheduled task. It runs automatically from the [Prospects](
 
 ### Custom recurring tasks
 
-Write your own recurring request and Every runs it on the schedule you set — for example, "Every Monday, summarize last week's revenue and open proposals." Use **Add Task**, describe the work, and pick a cadence.
+Write your own recurring request and Every runs it on the schedule you set — for example, "Every Monday, summarize last week's revenue and open proposals." Use **Add task**, describe the work, and pick a cadence.
 
 ## One-time
 
-A one-time task runs once, at a specific date and time, then it's done — useful for a single reminder or a request you only need run once, like "Next Friday at 9am, check whether the ACME invoice was paid." Create one from **Add Task** the same way as a custom recurring task, but choose a specific date and time instead of a repeating cadence.
+A one-time task runs once, at a specific date and time, then it's done — useful for a single reminder or a request you only need run once, like "Next Friday at 9am, check whether the ACME invoice was paid." Create one from **Add task** the same way as a custom recurring task, but choose a specific date and time instead of a repeating cadence.
 
 ## Creating a task
 
-Use **Add Task** from [Scheduled Tasks](https://app.every.ai/agent/tasks) (or ask Every Agent in chat) to create a custom recurring or one-time task:
+Use **Add task** from [Chat → Scheduled](https://app.every.ai/chat/scheduled) (or ask Every in a chat) to create a custom recurring or one-time task:
 
 1. Describe the request in plain language.
 2. **@-tag** specific people, companies, or deals to scope the task to them, or **@-tag an active [skill](/ai/memory-and-skills)** so the task follows that skill's guidance.
@@ -83,9 +83,9 @@ Every agent thread has a **clock icon** that opens a popup listing the tasks con
 
 ## Results, threads & undo
 
-- **Its own thread.** Each run posts a summary, links, and any drafts into a dedicated agent thread. Open it from [Every Agent](https://app.every.ai/agent) to read the full result or follow up directly.
+- **Its own thread.** Each run posts a summary, links, and any drafts into a dedicated agent thread. Open it from [Chat](https://app.every.ai/chat) to read the full result or follow up directly.
 - **Undo history.** Runs that change records capture an undo snapshot, so you can revert a scheduled change right from the thread.
-- **Activity Timeline.** Upcoming runs preview on the [**Activity**](https://app.every.ai/activity) page; completed runs show success or failure badges with quick links back to the originating thread.
+- **Activity.** Upcoming runs preview in **Activity** on [**Home**](https://app.every.ai/); completed runs show success or failure badges with quick links back to the originating thread.
 - **Optional email.** Turn on the email summary for any task to also receive a recap by email after each run.
 
 <Tip>
@@ -95,7 +95,7 @@ Every agent thread has a **clock icon** that opens a popup listing the tasks con
 ## Good to know
 
 <Warning>
-  **One task at a time per workspace.** If you trigger a run while another agent task is already in flight, you'll see "Another agent task is running for this workspace" — wait for the current run to finish (check the Activity Timeline or the latest agent thread) before retrying.
+  **One task at a time per workspace.** If you trigger a run while another agent task is already in flight, you'll see "Another agent task is running for this workspace" — wait for the current run to finish (check Activity on Home or the latest chat) before retrying.
 </Warning>
 
 - **Tasks use AI credits.** Each run consumes credits based on the work the agent does. If your credits are exhausted when a run is due, it's skipped — see [Credit Usage & Errors](/plans/credit-usage-and-errors) for exactly what happens (including why a skipped run can show as "Completed").
